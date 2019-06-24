@@ -22,4 +22,5 @@ test
  
  테스트를 해봅시다
  
- 
+prop.properties 작성 예시
+/list.do=com.bitcamp.controller.ListAction
