@@ -24,5 +24,3 @@ test
  
 prop.properties 작성 예시
 /list.do=com.bitcamp.controller.ListAction
-
-?????
