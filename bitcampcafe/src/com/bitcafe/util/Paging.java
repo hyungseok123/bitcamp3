@@ -1,14 +1,17 @@
 package com.bitcafe.util;
 
 public class Paging {
-	private int currpage;		// set ÆäÀÌÁö¿¡¼­ ÆÄ¶ó¹ÌÅÍ°ª º¸³½°Å ¹Þ¾Æ¿È
-	private int totalcount;	// set dao¿¡¼­ Äõ¸®µ¹¸° °ª ¹Þ¾Æ¿È
-	private int totalpage;		// 
-	private int blocksize;		//
-	private int startrow;
-	private int endrow;
-	private int startblock;
-	private int endblock;
+	//############################################ SET #####################################
+	private int currpage;		// í˜„ìž¬ íŽ˜ì´ì§€ ê°’ íŒŒë¼ë¯¸í„°ë¡œ ë°›ì•„ì˜¤ì„¸ìš©
+	private int totalcount;	// ëª¨ë“  ê°’ ê°¯ìˆ˜ DAOì—ì„œ ë¶ˆëŸ¬ì™€ì„œ setí•˜ì‹œë©´ ë‹¤ ë°‘ì— ë©”ì†Œë“œì—ì„œ ê³„ì‚°í•´ë“œë¦½ë‹ˆë‹¤
+	private int totalpage;		// ê²Œì‹œê¸€ ì–¼ë§ˆë‚˜ ë³´ì—¬ì¤„ê±´ì§€
+	private int blocksize;		// ë°‘ì— ë¸”ë¡ì—ì„œ ë³´ì—¬ì¤„ íŽ˜ì´ì§€ ê°¯ìˆ˜ ìž…ë‹ˆë‹¤
+	
+	//######################################ê±´ë“¤ì§€ ë§ˆì„¸ì—¬###################################
+	private int startrow;		// ì‹œìž‘
+	private int endrow;		// ë
+	private int startblock;	// ë°‘ì— ë¸”ë¡ì—ì„œ ì²˜ìŒìœ¼ë¡œ ì‹œìž‘í•  ìˆ«ìžìž…ë‹ˆë‹¤
+	private int endblock;		// ë°‘ì— ë¸”ë¡ì—ì„œ ëìœ¼ë¡œ ë³´ì—¬ì¤„ ìˆ«ìžìž…ë‹ˆë‹¤.
 	public int getCurrpage() {
 		return currpage;
 	}
@@ -61,11 +64,11 @@ public class Paging {
 	private void makePaging() {
 /*		totalcount = service.getCount();*/
 		int pagepercount = 10;
-		totalpage = (totalcount / pagepercount) + ((totalcount % pagepercount == 0) ? 0 : 1);	// 10À» ±âÁØÀ¸·Î ÆäÀÌÁö¼ýÀÚ°¡ À»¸¶³ª µÇ´Âµ¥
-		startrow = (currpage - 1) * pagepercount + 1;											// ½ÃÀÛ ¼ýÀÚ
-		endrow = startrow + pagepercount - 1;													// ³¡ ¼ýÀÚ
-		if (endrow > totalcount) endrow = totalcount;											// 27ÆäÀÌÁö±îÁö ÀÖÀ»¶§ 30±îÁö Ç¥½ÃµÇ¸é ¾ÈµÇ´Ï±î..?
-		blocksize = 5;																			// 1ºí·Ï 5°³ .. 1ºÎÅÍ 5ÆäÀÌÁö±îÁö º¸¿©Áö´Â ¸ñ·Ï
+		totalpage = (totalcount / pagepercount) + ((totalcount % pagepercount == 0) ? 0 : 1);	
+		startrow = (currpage - 1) * pagepercount + 1;											
+		endrow = startrow + pagepercount - 1;													
+		if (endrow > totalcount) endrow = totalcount;											
+		blocksize = 5;																			
 		startblock = ((currpage - 1) / blocksize) * blocksize + 1;
 		endblock = startblock + blocksize - 1;
 		if (totalpage < endblock) endblock = totalpage;

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h1>MAIN</h1>
+	<jsp:include page="comment.jsp"></jsp:include>
 </body>
 </html>
