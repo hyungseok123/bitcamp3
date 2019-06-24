@@ -8,15 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bitcafe.util.ForwardAction;
 
-public class CommentListAction implements Action {
+public class MemberInsertAction implements Action {
 
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		System.out.println("작동됨");
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/main.jsp?page=comment.jsp");
+		forward.setPath("/login/memberinsertpage.jsp");
+		
 		return forward;
 	}
 
