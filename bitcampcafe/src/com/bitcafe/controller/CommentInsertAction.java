@@ -8,11 +8,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bitcafe.util.ForwardAction;
 
-public class CommentListAction implements Action {
+public class CommentInsertAction implements Action {
 
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		System.out.println("???");
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
