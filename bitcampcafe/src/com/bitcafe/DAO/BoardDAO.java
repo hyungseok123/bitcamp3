@@ -30,7 +30,9 @@ public class BoardDAO {
 		sql.append(" select count(*) from board ");
 		int datacount = 0;
 
-		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString()); ResultSet rs = pstmt.executeQuery();) {
+		try (
+				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+				ResultSet rs = pstmt.executeQuery();) {
 
 			if (rs.next()) {
 				datacount = rs.getInt(1);

@@ -16,7 +16,7 @@ public class BoardListAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	 
+		 
 		//현재페이지
 		String curr = request.getParameter("currpage");
 		int currpage= 1;
@@ -56,7 +56,7 @@ public class BoardListAction implements Action {
 			endblock=totalpage;
 		
 		// arrylist로 자료 받아서 dto로 넣기->service에 getList메서드 만들기
-		List<BoardDTO> list = service.getList(startrow,endrow);
+		List<BoardDTO> list = service.getList(startrow, endrow);
 		request.setAttribute("list", list);
 		request.setAttribute("totalpage", totalpage);
 		request.setAttribute("currpage", currpage);
@@ -70,6 +70,6 @@ public class BoardListAction implements Action {
 		
 		return forward;
 	}
-	 
+
 
 }
