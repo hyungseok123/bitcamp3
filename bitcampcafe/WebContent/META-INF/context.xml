@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	  <Resource name="jdbc/bitcamp" auth="Container" type="javax.sql.DataSource"
+               maxTotal="30" maxIdle="30" maxWaitMillis="-1"
+               username="team3" password="0321" driverClassName="com.mysql.cj.jdbc.Driver"
+               url="jdbc:mysql://mydb.ccwyoert3u4p.ap-northeast-2.rds.amazonaws.com:3306/mydb"/>
+</Context>
