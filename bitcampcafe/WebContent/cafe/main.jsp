@@ -7,8 +7,63 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<h1>MAIN</h1>
-	<jsp:include page="comment.jsp"></jsp:include>
+<body> 
+	<c:set var="currpage" value="${requestScope.currpage }"></c:set>
+	<c:set var="startblock" value="${requestScope.startblock }"></c:set>
+	<c:set var="endblock" value="${requestScope.endblock }"></c:set>
+	<c:set var="list" value="${requestScope.list }"></c:set>
+	<c:set var="totalpage" value="${requestScope.totalpage }"></c:set>
+
+	<table>
+
+		<thead>
+			<tr>
+				<td>게시글번호</td>
+				<td>제목</td>
+				<td>내용</td>
+				<td>작성일</td>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+
+			<c:forEach var="board" items="${list }">
+				<tr>
+					<td>${board.board_no}</td>
+					<td>${board.board_title }</td>
+					<td>${board.board_content }</td>
+					<td>${board.board_writedate}</td>
+				 
+				</tr>
+
+
+			</c:forEach>
+
+
+		</tbody>
+
+
+
+	</table>
+
+	<c:if test="${startblock>1 }">
+		<a href="main.do?currpage=${startblock-1 }">이전</a>
+	</c:if>
+
+	<c:forEach var="i" begin="${startblock }" end="${endblock }">
+
+		<c:if test="${i==currpage }">
+			<c:out value="${i }"></c:out>
+		</c:if>
+
+		<c:if test="${i!=currpage }">
+			<a href="main.do?currpage=${i }"><c:out value="${i }"></c:out></a>
+		</c:if>
+
+	</c:forEach>
+
+	<c:if test="${endblock<totalpage }">
+		<a href="main.do?currpage=${endblock+1 }">다음</a>
+	</c:if>
 </body>
 </html>
