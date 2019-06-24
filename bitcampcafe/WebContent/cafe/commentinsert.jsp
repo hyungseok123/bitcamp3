@@ -10,9 +10,11 @@
 <link rel="stylesheet" href="http://localhost:8088/bitcampcafe/css/skin.css"/>
 </head>
 <body>
-<div class="box-reply2 bg-color u_cbox" id="3udpB">
-댓글리스트
+<div>
+  <form method="post" action="commentinsertaction.do">
+    <textarea cols="100" rows="5">test</textarea>
+    <input type="submit" value="등록">
+  </form>
 </div>
-	<jsp:include page="commentinsert.jsp"></jsp:include>
 </body>
 </html>
