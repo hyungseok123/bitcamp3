@@ -88,7 +88,7 @@
 	</form>
 	<div class="line"></div>
 	<div id="undertext">
-		<a href="memberinsert.do" id="loginsert">회원가입</a>
+		<a href="../memberinsert.do" id="loginsert">회원가입</a>
 		<a href="#">회원탈퇴</a>
 		<input type="button" onclick="send()">
 	</div>
