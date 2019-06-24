@@ -11,7 +11,7 @@
   </welcome-file-list>
     <filter>
     <filter-name>encoding</filter-name>
-    <filter-class>com.bitcamp.comm.EncodingFilter</filter-class>
+    <filter-class>com.bitcafe.util.EncodingFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>UTF-8</param-value>
