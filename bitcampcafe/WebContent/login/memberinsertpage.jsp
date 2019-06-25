@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<title>회원가입</title>
@@ -122,6 +122,7 @@
 				}
 				else {
 					event.preventDefault();
+					alert('잘못된 곳을 수정해주세요');
 				}
 			});
 		});
@@ -182,7 +183,7 @@
 </header>
 <section>
 	<a href="https://www.naver.com"><h1 id="title">Bit Cafe</h1></a>
-	<form method="get" action="../memberinsertresult.do">
+	<form method="post" action="../memberinsertresult.do">
 		<label for="member_id">아이디</label>
 		<input type="text" id="member_id" name="member_id" required >
 		<div class="input_undertext"></div>

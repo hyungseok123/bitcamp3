@@ -69,4 +69,25 @@ public class MemberDAO {
 			pstmt.executeUpdate();
 		}
 	}
+	
+	public MemberDTO memberLogin(Connection conn, String member_id, String member_pwd) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select member_no, member_nickname, member_joindate from member ");
+		sql.append(" where member_id = ? and member_pwd = ? ");
+		ResultSet rs = null;
+		MemberDTO memberdto = new MemberDTO();
+		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+			pstmt.setString(1, member_id);
+			pstmt.setString(2, member_pwd);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberdto.setMember_no(rs.getInt("member_no"));
+				memberdto.setMember_nickname(rs.getString("member_nickname"));
+				memberdto.setMember_joindate(rs.getDate("member_joindate"));
+			}
+		} finally {
+			if(rs != null) try { rs.close(); } catch(SQLException e) {}
+		}
+		return memberdto;
+	}
 }

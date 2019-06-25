@@ -55,6 +55,19 @@ public class MemberService {
 		}
 	}
 	
+	public MemberDTO memberLogin(String member_id, String member_pwd) {
+		MemberDTO memberdto = null;
+		try(Connection conn = DBConnection.gettb().getConnection();) {
+			MemberDAO memberdao = MemberDAO.getInstance();
+			memberdto = memberdao.memberLogin(conn, member_id, member_pwd);
+		} catch(SQLException | NamingException e) {
+			System.out.println(e);
+		}
+		return memberdto;
+	}
+	
+	
+	
 	private void closeconn(Connection conn) {
 		if(conn != null) try {conn.close();} catch(SQLException e) {}
 	}
