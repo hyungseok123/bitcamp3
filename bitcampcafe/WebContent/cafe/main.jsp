@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- 
+>>>>>>> branch 'master' of https://github.com/hyungseok123/bitcamp3.git
 	<c:set var="currpage" value="${requestScope.currpage }"></c:set>
 	<c:set var="startblock" value="${requestScope.startblock }"></c:set>
 	<c:set var="endblock" value="${requestScope.endblock }"></c:set>
@@ -67,6 +67,5 @@
 	<c:if test="${endblock<totalpage }">
 		<a href="main.do?currpage=${endblock+1 }">다음</a>
 	</c:if>
- 
 </body>
 </html>

@@ -25,7 +25,7 @@ public class CommentInsertAction implements Action {
 		int result = service.commentInsert();
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(true);
-		forward.setPath("/cafe/main.jsp?page=comment.jsp");
+		forward.setPath("/cafe/template/template.jsp?page=comment.jsp");
 		return forward;
 	}
 
