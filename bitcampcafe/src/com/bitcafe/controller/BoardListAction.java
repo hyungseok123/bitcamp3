@@ -10,19 +10,30 @@ import javax.servlet.http.HttpServletResponse;
 import com.bitcafe.DTO.BoardDTO;
 import com.bitcafe.service.BoardService;
 import com.bitcafe.util.ForwardAction;
+import com.bitcafe.util.Paging;
 
 public class BoardListAction implements Action {
 
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 
+		
+		//=============================================
+		Paging paging = new Paging();
+		
 		//현재페이지
 		String curr = request.getParameter("currpage");
 		int currpage= 1;
 		if(curr!=null) {
 			currpage = Integer.parseInt(curr);
 		}
+		
+		paging.setCurrpage(currpage);
+		paging.setStartblock(1);
+		paging.setTotalcount(10);
+		
+		
+		
 		
 		//1페이지에 보여지는 자료의 수 	
 		int pagepercount = 10; 

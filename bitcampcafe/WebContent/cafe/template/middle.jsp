@@ -11,9 +11,9 @@ width: 800px;
 }
 #aside {
 	float: left;
-	background-color: blue;
+	background-color: white;
 	width: 20%;
-	height: 200px;
+	height: 100px;
 }
 
 #content {
