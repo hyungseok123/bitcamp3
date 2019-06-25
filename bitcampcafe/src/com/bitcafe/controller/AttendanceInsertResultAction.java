@@ -8,8 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bitcafe.DTO.attendanceDTO;
-import com.bitcafe.service.attendanceService;
+import com.bitcafe.DTO.AttendanceDTO;
+import com.bitcafe.service.AttendanceService;
 import com.bitcafe.util.ForwardAction;
 
 public class AttendanceInsertResultAction implements Action {
@@ -23,19 +23,21 @@ public class AttendanceInsertResultAction implements Action {
 		  String content=request.getParameter("content");		
 		Date writedate = Date(request.getParameter("writedate"));
 		int mno=Integer.parseInt(request.getParameter("mno"));
-			attendanceDTO dto = new attendanceDTO();
+			AttendanceDTO dto = new AttendanceDTO();
 			dto.setAttendance_no(no);
 			dto.setAttendance_content(content);
 			dto.setAttendance_writedate(writedate);
 			dto.setMember_no(mno);
 			
-			attendanceService service=attendanceService.getService();
+			AttendanceService service=AttendanceService.getService();
 			int result = service.AttendanceInsert(dto);
 			request.setAttribute("result", result);
+			ForwardAction forward = new ForwardAction();
+			forward.setRedirect(false);
+			forward.setPath("/cafe/attendance.do");
 			
 			
-			
-			return "/ForwardAction.do";
+			return forward;
 	}
 
 }

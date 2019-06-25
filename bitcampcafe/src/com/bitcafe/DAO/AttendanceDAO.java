@@ -8,15 +8,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bitcafe.DTO.attendanceDTO;
+import com.bitcafe.DTO.AttendanceDTO;
 
-public class attendanceDAO {
-	private static attendanceDAO dao = new attendanceDAO();
-    public static attendanceDAO getDAO()
+public class AttendanceDAO {
+	private static AttendanceDAO dao = new AttendanceDAO();
+    public static AttendanceDAO getDAO()
     {
     	return dao;
     }
-    private attendanceDAO() {}
+    private AttendanceDAO() {}
 	
 	
     public int getCount(Connection conn) throws SQLException
@@ -40,11 +40,11 @@ public class attendanceDAO {
     
     
     
-    public List<attendanceDTO> attendanceList(Connection conn, int startrow, int endrow) throws SQLException {
+    public List<AttendanceDTO> attendanceList(Connection conn, int startrow, int endrow) throws SQLException {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
-		List<attendanceDTO> arr = new ArrayList<>();
+		List<AttendanceDTO> arr = new ArrayList<>();
 		StringBuilder sql=new StringBuilder();
 		sql.append("        select *               ");
 		sql.append(" from (                        ");
@@ -66,7 +66,7 @@ public class attendanceDAO {
 		
 			while(rs.next())
 			{
-				attendanceDTO dto = new attendanceDTO();
+				AttendanceDTO dto = new AttendanceDTO();
 				dto.setAttendance_no(rs.getInt("attendance_no"));
 				dto.setAttendance_content(rs.getString("attendance_content"));
 				dto.setAttendance_writedate(rs.getDate("attendance_writedate"));
@@ -85,7 +85,7 @@ public class attendanceDAO {
 		return arr;
 	}
 	
-     public attendanceDTO  ReadData(Connection conn, int num)
+     public AttendanceDTO  ReadData(Connection conn, int num)
      {
     	 PreparedStatement pstmt=null;
     	 StringBuilder sql=new StringBuilder();
@@ -96,7 +96,7 @@ public class attendanceDAO {
     	 sql.append("          ,member_no           ");
     	 sql.append(" from  attendance                     ");
     	 sql.append(" where  attendance_no=?                   ");
-    	 attendanceDTO data=new attendanceDTO();
+    	 AttendanceDTO data=new AttendanceDTO();
     	 try{
     		 pstmt=conn.prepareStatement(sql.toString());
     		 pstmt.setInt(1, num);
@@ -173,7 +173,7 @@ public class attendanceDAO {
 		
 		
 	}
-	public int AttendanceUpdate(Connection conn, attendanceDTO dto) throws SQLException
+	public int AttendanceUpdate(Connection conn, AttendanceDTO dto) throws SQLException
     {
     	StringBuilder sql = new StringBuilder();
     	sql.append("  update attendance                                ");
