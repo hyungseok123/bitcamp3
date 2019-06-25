@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bitcafe.DTO.attendanceDTO;
-import com.bitcafe.service.attendanceService;
+import com.bitcafe.DTO.AttendanceDTO;
+import com.bitcafe.service.AttendanceService;
 import com.bitcafe.util.ForwardAction;
 
 public class AttendanceUpdateResultAction implements Action {
@@ -18,22 +18,20 @@ public class AttendanceUpdateResultAction implements Action {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
-		int no = Integer.parseInt(request.getParameter("no"));
 		String content=request.getParameter("content");
-		Date writedate = Date(request.getParameter("writedate"));
-		int mno = Integer.parseInt(request.getParameter("no"));
-		attendanceDTO dto = new attendanceDTO();
-		dto.setAttendance_no(no);
-		dto.setAttendance_content(content);
-		dto.setAttendance_writedate(writedate);
-		dto.setMember_no(mno);
-		
-		attendanceService service=attendanceService.getService();
+		AttendanceDTO dto = new AttendanceDTO();
+		dto.setAttendance_content(content);	
+		AttendanceService service=AttendanceService.getService();
 		int result = service.AttendanceUpdate(dto);
 		
+		ForwardAction forward = new ForwardAction();
+		forward.setRedirect(false);
+		forward.setPath("cafe/attendance.do");
+	
 		
 		
-		return "/list.do";
+		
+		return forward;
 	}
 
 }

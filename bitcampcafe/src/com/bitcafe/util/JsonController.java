@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 
 import com.bitcafe.controller.JsonAction;
 import com.bitcafe.controller.MemberIdOverlapCheckJsonAction;
+import com.bitcafe.controller.MemberLoginJsonAction;
 import com.bitcafe.controller.MemberNicknameOverlapCheckJsonAction;
 
 @WebServlet("*.json")
@@ -37,6 +38,8 @@ public class JsonController extends HttpServlet {
 			jact = new MemberIdOverlapCheckJsonAction();
 		} else if(path.equals("/membernicknamecheck.json")) {
 			jact = new MemberNicknameOverlapCheckJsonAction();
+		} else if(path.equals("/memberlogin.json")) {
+			jact = new MemberLoginJsonAction();
 		}
 		
 		JSONObject json = jact.execute(request, response);

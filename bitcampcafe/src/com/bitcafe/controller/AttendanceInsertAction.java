@@ -16,7 +16,7 @@ public class AttendanceInsertAction implements Action {
 		// TODO Auto-generated method stub
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/main.jsp?page=main.jsp");
+		forward.setPath("/cafe/board/attendance.jsp");
 		return forward;
 	}
 
