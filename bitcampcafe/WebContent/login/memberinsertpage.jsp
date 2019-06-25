@@ -118,11 +118,11 @@
 		});
 		
 		function send() {
-			(document.frm).submit();
-			console.log('memberIdCheck : '+memberIdCheck);
+			$('#frm').submit();
+/* 			console.log('memberIdCheck : '+memberIdCheck);
 			console.log('memberPwd1Check : '+memberPwd1Check);
 			console.log('memberPwd2Check : '+memberPwd2Check);
-			console.log('memberNicknameCheck : '+memberNicknameCheck);
+			console.log('memberNicknameCheck : '+memberNicknameCheck); */
 		}
 	</script>
 	<style>
@@ -182,7 +182,7 @@
 </header>
 <section>
 	<a href="https://www.naver.com"><h1 id="title">Bit Cafe</h1></a>
-	<form id="frm" action="memberinsertresult.do">
+	<form id="frm" name="frm" action="memberinsertresult.do">
 		<label for="member_id">아이디</label>
 		<input type="text" id="member_id" name="memeber_id" required >
 		<div class="input_undertext"></div>
@@ -195,7 +195,7 @@
 		<label for="member_nickname">닉네임</label>
 		<input type="text" id="member_nickname" name="member_nickname" required>
 		<div class="input_undertext"></div>
-		<input type="button" value="제출" id="submit" onclick="send()">
+		<input type="submit" value="제출" id="submit" onclick="send()">
 	</form>
 </section>
 </body>

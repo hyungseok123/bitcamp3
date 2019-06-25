@@ -8,16 +8,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bitcafe.util.ForwardAction;
 
-public class AttendanceInsertAction implements Action {
+public class BoardInsertAction implements Action {
 
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(false);
-		forward.setPath("/cafe/main.jsp?page=main.jsp");
-		return forward;
+		
+		ForwardAction act=new ForwardAction();
+		act.setRedirect(false);
+		act.setPath("/cafe/main.jsp?page=comment.jsp");
+		
+		return act;
 	}
 
 }
