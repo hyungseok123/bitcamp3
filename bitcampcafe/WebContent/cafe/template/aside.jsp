@@ -8,11 +8,12 @@
 <style type="text/css">
 #information{
 border: 1px solid;
-height: 50%;
+height: 175%;
+
 }
 #category{
 border: 1px solid;
-height: 50%;
+height: 420%;
 }
 
 </style>

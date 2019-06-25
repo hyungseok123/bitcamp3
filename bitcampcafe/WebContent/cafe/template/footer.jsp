@@ -7,15 +7,31 @@
 <title>Insert title here</title>
 <style>
 .b {
-	width: 600px;
+	width: 1000px;
 	height: 100px;
-	background-color: pink;
+	background-color: red;
 	clear: both;
+	position:absolute;
+	bottom:0px;
+	left:500px;
+	
+	
 }
+.b1{
+    position:relative;
+    bottom:-224px;
+    border-top:2px solid silver;
+    left:492px;
+    width:52.5%;
+
+}
+
+
 </style>
 
 </head>
 <body>
 	<div class="b">풋터입니다.</div>
+	<div class="b1"></div>
 </body>
 </html>

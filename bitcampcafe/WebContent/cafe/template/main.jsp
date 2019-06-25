@@ -6,6 +6,14 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
+<style>
+*{margin:0 padding:0}
+
+
+
+</style>
+
+
 </head>
 <body>
 <jsp:include page ="header.jsp"></jsp:include>
