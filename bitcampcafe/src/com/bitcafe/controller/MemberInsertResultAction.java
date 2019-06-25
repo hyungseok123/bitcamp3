@@ -30,7 +30,7 @@ public class MemberInsertResultAction implements Action{
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(true);
-		forward.setPath("http://localhost:8080/bitcampcafe/login/loginpage.jsp");
+		forward.setPath("/bitcampcafe/login/loginpage.jsp");
 		return forward;
 	}
 

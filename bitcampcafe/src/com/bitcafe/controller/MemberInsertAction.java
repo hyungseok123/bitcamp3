@@ -16,7 +16,7 @@ public class MemberInsertAction implements Action {
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(true);
-		forward.setPath("http://localhost:8080/bitcampcafe/login/memberinsertpage.jsp");
+		forward.setPath("/bitcampcafe/login/memberinsertpage.jsp");
 		
 		return forward;
 	}

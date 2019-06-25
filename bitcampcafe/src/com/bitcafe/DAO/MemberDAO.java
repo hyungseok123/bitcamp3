@@ -90,4 +90,25 @@ public class MemberDAO {
 		}
 		return memberdto;
 	}
+	
+	public MemberDTO memberDetail(Connection conn, int member_no) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select member_id, member_nickname ");
+		sql.append(" from member ");
+		sql.append(" where member_no = ? ");
+		ResultSet rs = null;
+		MemberDTO memberdto = new MemberDTO();
+		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+			pstmt.setInt(1, member_no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				memberdto.setMember_no(member_no);
+				memberdto.setMember_id(rs.getString("member_id"));
+				memberdto.setMember_nickname(rs.getString("member_nickname"));
+			}
+		} finally {
+			if(rs != null) try { rs.close(); } catch(SQLException e) {}
+		}
+		return memberdto;
+	}
 }

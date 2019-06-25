@@ -26,13 +26,13 @@
 					if(result == null || result == "") {
 						textposition.text('');
 					}
-					else if(result=='{"result":false}') {
+					else if(result=='{"result":false}') { //로그인 실패 문구
 						var position = $('.input_undertext');
 						position.text('가입하지 않은 아이디 이거나 아이디 또는 비밀번호가 틀렸습니다.');
 						position.css('color','red');
 					}
-					else {
-						location.href="http://localhost:8080/bitcampcafe/login/logintest.jsp";
+					else { //로그인 성공하면 이동하는 페이지
+						location.href="logintest.jsp";
 					}
 				}
 				,error:function(data){
