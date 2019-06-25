@@ -115,15 +115,16 @@
 					}
 				});
 			});		
+			
+			$('form').on('submit',function(event){
+				if(memberIdCheck==true && memberPwd1Check==true && memberPwd2Check==true && memberNicknameCheck==true) {
+					$('form').submit();
+				}
+				else {
+					event.preventDefault();
+				}
+			});
 		});
-		
-		function send() {
-			$('#frm').submit();
-/* 			console.log('memberIdCheck : '+memberIdCheck);
-			console.log('memberPwd1Check : '+memberPwd1Check);
-			console.log('memberPwd2Check : '+memberPwd2Check);
-			console.log('memberNicknameCheck : '+memberNicknameCheck); */
-		}
 	</script>
 	<style>
 		section {
@@ -174,7 +175,6 @@
 			font-size: 15px;
 			color: red;	
 		}
-		
 	</style>
 </head>
 <body>
@@ -182,20 +182,20 @@
 </header>
 <section>
 	<a href="https://www.naver.com"><h1 id="title">Bit Cafe</h1></a>
-	<form id="frm" name="frm" action="memberinsertresult.do">
+	<form method="get" action="../memberinsertresult.do">
 		<label for="member_id">아이디</label>
-		<input type="text" id="member_id" name="memeber_id" required >
+		<input type="text" id="member_id" name="member_id" required >
 		<div class="input_undertext"></div>
 		<label for="member_pwd1">비밀번호</label>
-		<input type="password" id="member_pwd1" name="memeber_pwd1" required >
+		<input type="password" id="member_pwd1" name="member_pwd1" required >
 		<div class="input_undertext"></div>
 		<label for="member_pwd2">비밀번호 확인</label>
-		<input type="password" id="member_pwd2" name="memeber_pwd2" required >
+		<input type="password" id="member_pwd2" name="member_pwd2" required >
 		<div class="input_undertext"></div>
 		<label for="member_nickname">닉네임</label>
 		<input type="text" id="member_nickname" name="member_nickname" required>
 		<div class="input_undertext"></div>
-		<input type="submit" value="제출" id="submit" onclick="send()">
+		<input type="submit" value="제출" id="submit">
 	</form>
 </section>
 </body>

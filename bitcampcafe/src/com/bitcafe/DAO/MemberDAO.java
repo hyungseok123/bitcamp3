@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.bitcafe.DTO.MemberDTO;
+
 public class MemberDAO {
 	private static MemberDAO memberdao = new MemberDAO();
 	
@@ -54,5 +56,17 @@ public class MemberDAO {
 			if(rs != null) try { rs.close(); } catch(SQLException e) {}
 		}
 		return result;
+	}
+	
+	public void memberInsert(Connection conn, MemberDTO memberdto) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" insert into member(member_id, member_nickname, member_pwd, member_joindate) ");
+		sql.append(" values(?, ?, ?, now() ) ");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+			pstmt.setString(1, memberdto.getMember_id());
+			pstmt.setString(2, memberdto.getMember_nickname());
+			pstmt.setString(3, memberdto.getMember_pwd());
+			pstmt.executeUpdate();
+		}
 	}
 }
