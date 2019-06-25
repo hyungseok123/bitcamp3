@@ -6,13 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Comment</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8088/bitcampcafe/css/cafe.css"/>
-<link rel="stylesheet" href="http://localhost:8088/bitcampcafe/css/skin.css"/>
 </head>
 <body>
-<div class="box-reply2 bg-color u_cbox" id="3udpB">
-댓글리스트
+<div>
+  <form method="post" action="commentinsertaction.do">
+    <c:if test="${list != null }">
+      <input type="hidden" value="${list[0].board_no }">
+    </c:if>
+    <textarea name="content" cols="100" rows="5"></textarea>
+    <input type="submit" value="등록">
+  </form>
 </div>
-	<jsp:include page="commentinsert.jsp"></jsp:include>
 </body>
 </html>

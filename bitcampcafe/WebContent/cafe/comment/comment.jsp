@@ -6,15 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Comment</title>
-<link rel="stylesheet" type="text/css" href="http://localhost:8088/bitcampcafe/css/cafe.css"/>
-<link rel="stylesheet" href="http://localhost:8088/bitcampcafe/css/skin.css"/>
 </head>
 <body>
-<div>
-  <form method="post" action="commentinsertaction.do">
-    <textarea cols="100" rows="5">test</textarea>
-    <input type="submit" value="등록">
-  </form>
+<div class="box-reply2 bg-color u_cbox" id="3udpB"><ul>
+<c:forEach var="list" items="${list }">
+	<li><c:out value="${list.member_nickname }"/></li>
+	<li><c:out value="${list.comment_content }"/></li>
+	<li><c:out value="${list.comment_writedate }"/></li>
+</c:forEach>
+</ul>
 </div>
+	<jsp:include page="commentinsert.jsp"></jsp:include>
 </body>
 </html>

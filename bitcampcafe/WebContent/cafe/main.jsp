@@ -8,7 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>MAIN</h1>
-	<jsp:include page="comment.jsp"></jsp:include>
+<h1>메인 페이지 입니다.</h1>
+<!-- top nav -->
+<!-- header -->
+<!-- search -->
+<!-- aside -->
+<!-- article -->
+<!-- footer -->
 </body>
 </html>
