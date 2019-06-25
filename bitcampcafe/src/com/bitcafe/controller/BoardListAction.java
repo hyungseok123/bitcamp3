@@ -30,7 +30,8 @@ public class BoardListAction implements Action {
 		
 		paging.setCurrpage(currpage);
 		paging.setStartblock(1);
-		paging.setTotalcount(10);
+		paging.setBlocksize(10);
+		paging.setTotalpage(10);
 		
 		
 		
@@ -76,7 +77,7 @@ public class BoardListAction implements Action {
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe.board.jsp");
+		forward.setPath("/cafe/template/main.jsp");
 		
 		
 		return forward;

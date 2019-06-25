@@ -24,7 +24,7 @@ public class AttendanceUpdateAction implements Action {
 		
 		
 		
-		return "modify.jsp";
+		return "boardupdate.jsp";
 	
 	}
 
