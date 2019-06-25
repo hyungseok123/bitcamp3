@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<c:set var="currpage" value="${requestScope.currpage }"></c:set>
 	<c:set var="startblock" value="${requestScope.startblock }"></c:set>
 	<c:set var="endblock" value="${requestScope.endblock }"></c:set>
@@ -66,5 +67,14 @@
 	<c:if test="${endblock<totalpage }">
 		<a href="main.do?currpage=${endblock+1 }">다음</a>
 	</c:if>
+=======
+<h1>메인 페이지 입니다.</h1>
+<!-- top nav -->
+<!-- header -->
+<!-- search -->
+<!-- aside -->
+<!-- article -->
+<!-- footer -->
+>>>>>>> branch 'master' of https://github.com/hyungseok123/bitcamp3.git
 </body>
 </html>

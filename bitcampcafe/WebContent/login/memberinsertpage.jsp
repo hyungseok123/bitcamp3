@@ -4,45 +4,130 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>LoginPage</title>
+	<title>회원가입</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
+	var memberIdCheck = false;
+	var memberPwd1Check = false;
+	var memberPwd2Check = false;
+	var memberNicknameCheck = false;
+	var pwdBuffer = "";
+	
 		$(document).ready(function(){
-			$('#member_id').on("propertychange change keyup paste input",function(){
-				var oldVal;
+			$('#member_id').on("focusout",function(){
 				var currentval = $(this).val();
-				if(currentval == oldVal) {
-					return;
-				}
-				oldVal = currentval;
 				var textposition = $(this).next();
 				$.ajax({
-					url:"insert.js"
+					url:"../memberidcheck.json"
 					,data: {member_id:currentval}
 					,type: "post"
 					,dataType:"json"
 					,success:function(data){
 						console.log('성공');
 						var result = JSON.stringify(data); // 제이슨 객체를 String으로 변환
-						if(result=='{"result":true}') {
-							textposition.text('이미 사용중이거나 탈퇴한 아이디입니다.');
+						if(currentval == null || currentval == "") {
+							textposition.text('필수 입력정보입니다.');
+							textposition.css('color','red');
+							memberIdCheck = false;
+						}
+						else if(result=='{"result":true}') {
+							textposition.text('이미 사용중인 아이디입니다.');
+							textposition.css('color','red');
+							memberIdCheck = false;
 						}
 						else {
-							textposition.text('필수 입력정보입니다.');
+							textposition.text('사용 가능한 아이디입니다.');
+							textposition.css('color','#03c75a');
+							memberIdCheck = true;
 						}
-					
 					}
 					,error:function(data){
 						console.log('실패');
 					}
 				});
 			});
+			
+			$('#member_pwd1').on("focusout",function(){
+				var currentval = $(this).val();
+				var textposition = $(this).next();
+				if(currentval == null || currentval == "") {
+					textposition.text('필수 입력정보입니다.');
+					textposition.css('color','red');
+					memberPwd1Check = false;
+				}
+				else {
+					textposition.text('사용가능한 비밀번호 입니다.');
+					textposition.css('color','#03c75a');
+					pwdBuffer = currentval;
+					memberPwd1Check = true;
+				}
+			});
+			
+			$('#member_pwd2').on("focusout",function(){
+				var currentval = $(this).val();
+				var textposition = $(this).next();
+				if(currentval == null || currentval == "") {
+					textposition.text('필수 입력정보입니다.');
+					textposition.css('color','red');
+					memberPwd2Check = false;
+				}
+				else if(pwdBuffer != currentval) {
+					textposition.text('비밀번호가 일치하지 않습니다.');
+					textposition.css('color','red');
+					memberPwd2Check = false;
+				}
+				else {
+					textposition.text('비밀번호가 일치합니다.');
+					textposition.css('color','#03c75a');
+					memberPwd2Check = true;
+				}
+			});
+			
+			$('#member_nickname').on("focusout",function(){
+				var currentval = $(this).val();
+				var textposition = $(this).next();
+				$.ajax({
+					url:"../membernicknamecheck.json"
+					,data: {member_nickname:currentval}
+					,type: "post"
+					,dataType:"json"
+					,success:function(data){
+						console.log('성공');
+						var result = JSON.stringify(data); // 제이슨 객체를 String으로 변환
+						if(currentval == null || currentval == "") {
+							textposition.text('필수 입력정보입니다.');
+							textposition.css('color','red');
+							memberNicknameCheck = false;
+						}
+						else if(result=='{"result":true}') {
+							textposition.text('이미 사용중인 닉네임입니다.');
+							textposition.css('color','red');
+							memberNicknameCheck = false;
+						}
+						else {
+							textposition.text('사용 가능한 닉네임입니다.');
+							textposition.css('color','#03c75a');
+							memberNicknameCheck = true;
+						}
+					}
+					,error:function(data){
+						console.log('실패');
+					}
+				});
+			});		
 		});
+		
+		function send() {
+			(document.frm).submit();
+			console.log('memberIdCheck : '+memberIdCheck);
+			console.log('memberPwd1Check : '+memberPwd1Check);
+			console.log('memberPwd2Check : '+memberPwd2Check);
+			console.log('memberNicknameCheck : '+memberNicknameCheck);
+		}
 	</script>
 	<style>
 		section {
 			width: 460px;
-			/*background-color: antiquewhite;*/
 			margin: 0 auto;
 		}
 		
@@ -97,20 +182,20 @@
 </header>
 <section>
 	<a href="https://www.naver.com"><h1 id="title">Bit Cafe</h1></a>
-	<form>
+	<form id="frm" action="memberinsertresult.do">
 		<label for="member_id">아이디</label>
 		<input type="text" id="member_id" name="memeber_id" required >
-		<div class="input_undertext">필수정보입니다.</div>
-		<label for="member_pwd">비밀번호</label>
-		<input type="password" id="member_pwd" name="memeber_pwd" required >
-		<div class="input_undertext">필수정보입니다.</div>
-		<label for="member_name">이름</label>
-		<input type="text" id="member_name" name="member_name" required >
-		<div class="input_undertext">필수정보입니다.</div>
-		<label for="member_pwd">닉네임</label>
+		<div class="input_undertext"></div>
+		<label for="member_pwd1">비밀번호</label>
+		<input type="password" id="member_pwd1" name="memeber_pwd1" required >
+		<div class="input_undertext"></div>
+		<label for="member_pwd2">비밀번호 확인</label>
+		<input type="password" id="member_pwd2" name="memeber_pwd2" required >
+		<div class="input_undertext"></div>
+		<label for="member_nickname">닉네임</label>
 		<input type="text" id="member_nickname" name="member_nickname" required>
-		<div class="input_undertext">필수정보입니다.</div>
-		<input type="submit" value="제출" id="submit">
+		<div class="input_undertext"></div>
+		<input type="button" value="제출" id="submit" onclick="send()">
 	</form>
 </section>
 </body>

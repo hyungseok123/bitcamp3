@@ -2,7 +2,7 @@ package com.bitcafe.DTO;
 
 import java.sql.Date;
 
-public class commentDTO {
+public class CommentDTO {
 	private int comment_no;
 	private String comment_content;
 	private Date comment_writedate;
@@ -11,6 +11,13 @@ public class commentDTO {
 	private int comment_order;
 	private int board_no;
 	private int member_no;
+	private String member_nickname;
+	public String getMember_nickname() {
+		return member_nickname;
+	}
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
+	}
 	public int getComment_no() {
 		return comment_no;
 	}

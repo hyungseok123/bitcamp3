@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>LoginPage</title>
+	<title>로그인</title>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script>
 		function send() {
@@ -90,7 +90,6 @@
 	<div id="undertext">
 		<a href="../memberinsert.do" id="loginsert">회원가입</a>
 		<a href="#">회원탈퇴</a>
-		<input type="button" onclick="send()">
 	</div>
 </section>
 </body>

@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.bitcafe.DTO.commentDTO;
-import com.mysql.cj.protocol.Resultset;
+import com.bitcafe.DTO.CommentDTO;
 
-public class commentDAO {
-	private static commentDAO dao = new commentDAO();
-	public static commentDAO getDAO() {
+
+public class CommentDAO {
+	private static CommentDAO dao = new CommentDAO();
+	public static CommentDAO getDAO() {
 		return dao;
 	}
 	public int commentTotalCount(Connection conn) throws SQLException {
@@ -29,13 +29,13 @@ public class commentDAO {
 		} catch (SQLException e) {
 			throw e;
 		} finally {
-	    	if(pstmt!=null) try{ conn.close();} catch(SQLException e){}
-	    	if(rs!=null) try{ conn.close();} catch(SQLException e){}
+			if(rs!=null) try{ conn.close();} catch(SQLException e){}
+			if(pstmt!=null) try{ conn.close();} catch(SQLException e){}
 		}
 		return result;
 	}
-	public List<commentDTO> commentList(Connection conn) throws SQLException {
-		List<commentDTO> result = new ArrayList<>();
+	public List<CommentDTO> commentList(Connection conn) throws SQLException {
+		List<CommentDTO> result = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
@@ -46,14 +46,17 @@ public class commentDAO {
 		sql.append(" 		, comment_depth          ");
 		sql.append(" 		, comment_order          ");
 		sql.append(" 		, board_no               ");
-		sql.append(" 		, member_no              ");
-		sql.append(" from comment                    ");
-		sql.append(" order by comment_writedate desc ");
+		sql.append(" 		, m.member_no            ");
+		sql.append(" 		, m.member_nickname      ");
+		sql.append(" from comment c join member m    ");
+		sql.append(" on c.member_no = m.member_no    ");
+		sql.append(" order by comment_no desc        ");
+		sql.append(" 		, comment_order asc      ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				commentDTO dto = new commentDTO();
+				CommentDTO dto = new CommentDTO();
 				dto.setComment_no(rs.getInt("comment_no"));
 				dto.setComment_content(rs.getString("comment_content"));
 				dto.setComment_writedate(rs.getDate("comment_writedate"));
@@ -62,14 +65,26 @@ public class commentDAO {
 				dto.setComment_order(rs.getInt("comment_order"));
 				dto.setBoard_no(rs.getInt("board_no"));
 				dto.setMember_no(rs.getInt("member_no"));
+				dto.setMember_nickname(rs.getString("member_nickname"));
 				result.add(dto);
 			}
 		} catch (SQLException e) {
 			throw e;
 		} finally {
-	    	if(pstmt!=null) try{ conn.close();} catch(SQLException e){}
-	    	if(rs!=null) try{ conn.close();} catch(SQLException e){}
+			if(rs!=null) try{ conn.close();} catch(SQLException e){}
+			if(pstmt!=null) try{ conn.close();} catch(SQLException e){}
 		}
+		return result;
+	}
+	public int commentInsert(Connection conn, CommentDTO dto) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" insert into comment( comment_content, comment_writedate, comment_parent  ");
+		sql.append(" 					, comment_depth, comment_order, board_no, member_no ) ");
+		sql.append(" value( ?, now(), ?, 0, 0, ?, ? )                                         ");
+		
 		return result;
 	}
 }
