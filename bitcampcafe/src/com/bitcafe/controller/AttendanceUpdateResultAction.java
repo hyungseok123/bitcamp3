@@ -20,7 +20,7 @@ public class AttendanceUpdateResultAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		int no = Integer.parseInt(request.getParameter("no"));
 		String content=request.getParameter("content");
-		Date writedate = request.getParameter("writedate");
+		Date writedate = Date(request.getParameter("writedate"));
 		int mno = Integer.parseInt(request.getParameter("no"));
 		attendanceDTO dto = new attendanceDTO();
 		dto.setAttendance_no(no);

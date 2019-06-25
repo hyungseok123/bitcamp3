@@ -3,6 +3,7 @@ package com.bitcafe.controller;
 import java.io.IOException;
 import java.sql.Date;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +21,7 @@ public class AttendanceInsertResultAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		  int no = Integer.parseInt(request.getParameter("no"));
 		  String content=request.getParameter("content");		
-		Date writedate=request.getParameter("writedate");
+		Date writedate = Date(request.getParameter("writedate"));
 		int mno=Integer.parseInt(request.getParameter("mno"));
 			attendanceDTO dto = new attendanceDTO();
 			dto.setAttendance_no(no);
@@ -34,7 +35,7 @@ public class AttendanceInsertResultAction implements Action {
 			
 			
 			
-			return "/list.do";
+			return "/ForwardAction.do";
 	}
 
 }

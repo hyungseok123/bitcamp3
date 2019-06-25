@@ -14,11 +14,23 @@ width: 800px;
 	background-color: white;
 	width: 20%;
 	height: 100px;
+	position:relative;
+	left:494px;
+	top:239px;
+	
 }
 
 #content {
 	background-color: green;
-	width: 70%;
+	width: 100%;
+	height:620px;
+	
+    position:relative;
+    left:690px;
+    top:220px;
+    
+
+
 }
 </style>
 </head>
