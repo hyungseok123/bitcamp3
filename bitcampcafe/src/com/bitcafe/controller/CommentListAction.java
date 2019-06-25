@@ -21,7 +21,7 @@ public class CommentListAction implements Action {
 		request.setAttribute("list", list);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/template/main.jsp?page=comment.jsp");
+		forward.setPath("/cafe/template/template.jsp?page=comment.jsp");
 		return forward;
 	}
 
