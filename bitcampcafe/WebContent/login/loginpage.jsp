@@ -5,6 +5,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>LoginPage</title>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script>
+		function send() {
+			location.href="memberinsert.do";
+		}
+	</script>
 	<style>
 		section{
 			width: 460px;
@@ -82,8 +88,9 @@
 	</form>
 	<div class="line"></div>
 	<div id="undertext">
-		<a href="memberInsertPage.jsp" id="loginsert">회원가입</a>
+		<a href="../memberinsert.do" id="loginsert">회원가입</a>
 		<a href="#">회원탈퇴</a>
+		<input type="button" onclick="send()">
 	</div>
 </section>
 </body>

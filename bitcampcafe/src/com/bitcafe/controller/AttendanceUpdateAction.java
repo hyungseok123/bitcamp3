@@ -18,7 +18,7 @@ public class AttendanceUpdateAction implements Action {
 		// TODO Auto-generated method stub
 		int no = Integer.parseInt(request.getParameter("no"));
 		attendanceService service = attendanceService.getService();
-		attendanceDTO dto = service.detailService(no);
+		attendanceDTO dto = (attendanceDTO)service.list();
 		request.setAttribute("dto", dto);
 		
 		
