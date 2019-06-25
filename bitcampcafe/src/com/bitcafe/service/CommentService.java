@@ -58,6 +58,7 @@ public class CommentService {
 			conn.setAutoCommit(false);
 			CommentDAO dao = CommentDAO.getDAO();
 /*			result = dao.commentInsert(conn);*/
+			System.out.println("???");
 			conn.commit();
 		} catch(SQLException| NamingException e) {
 			System.out.println(e);
