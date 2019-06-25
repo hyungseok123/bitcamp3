@@ -30,9 +30,7 @@ public class BoardDAO {
 		sql.append(" select count(*) from board ");
 		int datacount = 0;
 
-		try (
-				PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-				ResultSet rs = pstmt.executeQuery();) {
+		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString()); ResultSet rs = pstmt.executeQuery();) {
 
 			if (rs.next()) {
 				datacount = rs.getInt(1);
@@ -41,7 +39,6 @@ public class BoardDAO {
 		}
 		return datacount;
 	}// getCount
-	
 
 	// service에서 getCount 호출함->service로 이동
 
@@ -98,6 +95,32 @@ public class BoardDAO {
 
 		return arr;
 
+	}
+
+	public int BoardInsertData(Connection conn, String title, String content) {
+		PreparedStatement pstmt = null;
+		StringBuilder sb = new StringBuilder();
+		sb.append("  insert   into   board 							      ");
+		sb.append("                          (board_title, board_content)  ");
+		sb.append(" values (b1seq.nextval, ? ,? )                   ");
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sb.toString());
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println(e);
+			throw new RuntimeException();
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+		}
+		return result;
 	}
 
 }

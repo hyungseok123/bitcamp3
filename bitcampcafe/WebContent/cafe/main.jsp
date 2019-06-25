@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body> 
+<body>
 	<c:set var="currpage" value="${requestScope.currpage }"></c:set>
 	<c:set var="startblock" value="${requestScope.startblock }"></c:set>
 	<c:set var="endblock" value="${requestScope.endblock }"></c:set>
@@ -18,11 +18,11 @@
 
 		<thead>
 			<tr>
-				<td>게시글번호</td>
-				<td>제목</td>
-				<td>내용</td>
-				<td>작성일</td>
-				<td></td>
+				<th>번호</th>
+				<th>제목</th>
+				<th>내용</th>
+				<th>등록일</th>
+				<th>조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,7 +33,8 @@
 					<td>${board.board_title }</td>
 					<td>${board.board_content }</td>
 					<td>${board.board_writedate}</td>
-				 
+
+
 				</tr>
 
 
