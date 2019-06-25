@@ -9,11 +9,8 @@
 </head>
 <body>
 <h1>메인 페이지 입니다.</h1>
-<!-- top nav -->
-<!-- header -->
-<!-- search -->
-<!-- aside -->
-<!-- article -->
-<!-- footer -->
+  <jsp:include page="header.jsp"></jsp:include> <!-- topnav, header, search -->
+  <jsp:include page="middle.jsp"></jsp:include> <!-- aside, content -->
+  <jsp:include page="footer.jsp"></jsp:include> <!-- footer -->
 </body>
 </html>
