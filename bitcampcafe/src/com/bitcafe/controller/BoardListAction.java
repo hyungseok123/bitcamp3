@@ -65,7 +65,7 @@ public class BoardListAction implements Action {
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/main.jsp");
+		forward.setPath("/cafe.board.jsp");
 		
 		
 		return forward;

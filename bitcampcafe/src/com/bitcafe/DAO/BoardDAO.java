@@ -30,7 +30,8 @@ public class BoardDAO {
 		sql.append(" select count(*) from board ");
 		int datacount = 0;
 
-		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString()); ResultSet rs = pstmt.executeQuery();) {
+		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString()); 
+				ResultSet rs = pstmt.executeQuery();) {
 
 			if (rs.next()) {
 				datacount = rs.getInt(1);
@@ -101,7 +102,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		StringBuilder sb = new StringBuilder();
 		sb.append("  insert   into   board 							      ");
-		sb.append("                          (board_title, board_content)  ");
+		sb.append("      (board_no, board_title, board_content)  ");
 		sb.append(" values (b1seq.nextval, ? ,? )                   ");
 		int result = 0;
 		try {
