@@ -9,9 +9,9 @@
 </head>
 <body>
 <div>
-  <form method="post" action="commentinsertaction.do">
+  <form method="post" action="commentinsert.do">
     <c:if test="${list != null }">
-      <input type="hidden" value="${list[0].board_no }">
+      <input type="hidden" name="board_no" value="${list[0].board_no }">
     </c:if>
     <textarea name="content" cols="100" rows="5"></textarea>
     <input type="submit" value="등록">

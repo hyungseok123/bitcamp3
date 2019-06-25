@@ -15,6 +15,7 @@ public class CommentService {
 	public static CommentService getService() {
 		return service;
 	}
+	private CommentService() {}
 	public int commentTotalCount() {
 		int result = 0;
 		Connection conn = null;
@@ -49,7 +50,7 @@ public class CommentService {
 		}
 		return result;
 	}
-	public int commentInsert() {
+	public int commentInsert(CommentDTO dto) {
 		int result = 0;
 		Connection conn = null;
 		try {
@@ -57,11 +58,26 @@ public class CommentService {
 			conn = db.getConnection();
 			conn.setAutoCommit(false);
 			CommentDAO dao = CommentDAO.getDAO();
-/*			result = dao.commentInsert(conn);*/
+			result = dao.commentInsert(conn, dto);
 			conn.commit();
 		} catch(SQLException| NamingException e) {
 			System.out.println(e);
 			try{ conn.rollback();} catch(SQLException e1){}
+		} finally {
+			if(conn!=null) try{ conn.close();} catch(SQLException e){}
+		}
+		return result;
+	}
+	public int getMaxParent() {
+		int result = 0;
+		Connection conn = null;
+		try {
+			DBConnection db = DBConnection.gettb();
+			conn = db.getConnection();
+			CommentDAO dao = CommentDAO.getDAO();
+			result = dao.commentMaxParent(conn);
+		} catch(SQLException| NamingException e) {
+			System.out.println(e);
 		} finally {
 			if(conn!=null) try{ conn.close();} catch(SQLException e){}
 		}
