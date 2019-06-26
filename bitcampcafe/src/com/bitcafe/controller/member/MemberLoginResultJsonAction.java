@@ -28,6 +28,7 @@ public class MemberLoginResultJsonAction implements JsonAction {
 			result = true;
 			HttpSession session = request.getSession(true);
 			session.setAttribute("memberInfo", memberInfo);
+			session.setMaxInactiveInterval(60*60*24); //세션 시간을 24시간으로 설정
 		}
 		JSONObject json = new JSONObject();
 		json.put("result", result);
