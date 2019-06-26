@@ -83,4 +83,19 @@ public class CommentService {
 		}
 		return result;
 	}
+	public int getMaxOrder(int parentOrder) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			DBConnection db = DBConnection.gettb();
+			conn = db.getConnection();
+			CommentDAO dao = CommentDAO.getDAO();
+			result = dao.commentMaxOrder(conn, parentOrder);
+		} catch(SQLException| NamingException e) {
+			System.out.println(e);
+		} finally {
+			if(conn!=null) try{ conn.close();} catch(SQLException e){}
+		}
+		return result;
+	}
 }

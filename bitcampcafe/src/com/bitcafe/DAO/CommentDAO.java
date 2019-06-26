@@ -50,7 +50,7 @@ public class CommentDAO {
 		sql.append(" 		, m.member_nickname      ");
 		sql.append(" from comment c join member m    ");
 		sql.append(" on c.member_no = m.member_no    ");
-		sql.append(" order by comment_parent desc    ");
+		sql.append(" order by comment_parent asc     ");
 		sql.append(" 		, comment_order asc      ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
@@ -82,13 +82,15 @@ public class CommentDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" insert into comment( comment_content, comment_writedate, comment_parent  ");
 		sql.append(" 					, comment_depth, comment_order, board_no, member_no ) ");
-		sql.append(" value( ?, now(), ?, 0, 0, ?, ? )                                         ");
+		sql.append(" value( ?, now(), ?, ?, ?, ?, ? )                                         ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getComment_content());
 			pstmt.setInt(2, dto.getComment_parent());
-			pstmt.setInt(3, dto.getBoard_no());
-			pstmt.setInt(4, dto.getMember_no());
+			pstmt.setInt(3, dto.getComment_depth());
+			pstmt.setInt(4, dto.getComment_order());
+			pstmt.setInt(5, dto.getBoard_no());
+			pstmt.setInt(6, dto.getMember_no());
 			result = pstmt.executeUpdate();
 		} catch(SQLException e) {
 			throw e;
@@ -106,14 +108,33 @@ public class CommentDAO {
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				result = rs.getInt(1);
-			}
+			if(rs.next()) result = rs.getInt(1);
 		} catch(SQLException e) {
 			throw e;
 		} finally {
+			if(rs!=null) try{ rs.close();} catch(SQLException e){}
 			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
 		} 
+		return result;
+	}
+	public int commentMaxOrder(Connection conn, int parentOrder) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select max(comment_order) from comment ");
+		sql.append(" where comment_parent = ?               ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, parentOrder);
+			rs = pstmt.executeQuery();
+			if (rs.next()) result = rs.getInt(1);
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if(rs!=null) try{ rs.close();} catch(SQLException e){}
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
 		return result;
 	}
 }

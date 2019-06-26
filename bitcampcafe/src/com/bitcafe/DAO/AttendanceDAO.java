@@ -129,18 +129,19 @@ public class AttendanceDAO {
     	 if(rs!=null) try{ rs.close();} catch(SQLException e){}
      }
 	
-     public int AttendanceInsert(Connection conn, String attendance_content, Date attendance_writedate)
+     public int AttendanceInsert(Connection conn, String attendance, int member_no)
      {
     	   PreparedStatement pstmt=null;
     	   StringBuilder sb=new StringBuilder();
     	   sb.append("  insert   into   attendance 							      ");
-    	   sb.append("                          (attendance_no,attendance_content, attendance_writedate)  ");
-    	   sb.append(" values (b1seq.nextval, ? ,? )                   ");
+    	   sb.append("                          (member_no,attendance_content, attendance_writedate)  ");
+    	   sb.append(" values(?,?,now())                  ");
     	   int r=0;
     	   try{
     		   pstmt=conn.prepareStatement(sb.toString());
-    		   pstmt.setString(1, attendance_content);
-    		   pstmt.setDate(2, attendance_writedate);
+    		   pstmt.setInt(1, member_no);
+    		   pstmt.setString(2, attendance);
+    		   
     		   r=pstmt.executeUpdate();
     		   
     	   }catch(SQLException e)
@@ -153,22 +154,22 @@ public class AttendanceDAO {
     	   return r;
      }
 
-	public void AttendanceDelete(Connection conn, int no) throws SQLException {
+	public int AttendanceDelete(Connection conn, AttendanceDTO dto) throws SQLException {
 		// TODO Auto-generated method stub
 		
 	
 		StringBuilder sql = new StringBuilder();
 		sql.append(" delete from attendance          ");
 		sql.append("   where member_no =?              ");
-		
+		int result =0;
 		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 				
 				)
 		{
-			pstmt.setInt(1, no);
-		    pstmt.executeUpdate();
+			pstmt.setInt(1, dto.getMember_no());
+		   result = pstmt.executeUpdate();
 		}
-		
+		return result;
 	
 		
 		

@@ -5,7 +5,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.bitcafe.DTO.MemberDTO;
+import com.bitcafe.service.AttendanceService;
 import com.bitcafe.util.ForwardAction;
 
 public class AttendanceInsertAction implements Action {
@@ -16,8 +19,8 @@ public class AttendanceInsertAction implements Action {
 		// TODO Auto-generated method stub
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/board/attendance.jsp");
-		return forward;
-	}
-
+		forward.setPath("/cafe/attendanceinsert.jsp");
+	return forward;	
+}
+	
 }
