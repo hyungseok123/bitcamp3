@@ -36,7 +36,7 @@ public class MemberUpdateResultAction implements Action {
 		session.removeAttribute("memberInfo"); //해당 세션을 삭제 (로그아웃)
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(true);
-		forward.setPath("list.do"); //로그인 페이지로 이동
+		forward.setPath("login.do"); //로그인 페이지로 이동
 		return forward;
 	}
 

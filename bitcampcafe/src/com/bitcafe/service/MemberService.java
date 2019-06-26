@@ -18,11 +18,11 @@ public class MemberService {
 		return memberservice;
 	}
 	
-	public boolean memberIdOverlapCheck(String member_id, String session_member_id) {
+	public boolean memberIdOverlapCheck(String member_id, int session_member_no) {
 		boolean result = false; 
 		try(Connection conn = DBConnection.gettb().getConnection();) {
 			MemberDAO memberdao = MemberDAO.getInstance();
-			result = memberdao.memberIdOverlapCheck(conn, member_id, session_member_id);
+			result = memberdao.memberIdOverlapCheck(conn, member_id, session_member_no);
 		} catch(SQLException | NamingException e) {
 			System.out.println(e);
 		}
@@ -91,6 +91,7 @@ public class MemberService {
 			closeconn(conn);
 		}
 	}
+	
 	
 	private void closeconn(Connection conn) {
 		if(conn != null) try {conn.close();} catch(SQLException e) {}

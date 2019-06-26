@@ -17,23 +17,26 @@ public class MemberDAO {
 		return memberdao;
 	}
 	
-	public boolean memberIdOverlapCheck(Connection conn, String member_id, String session_member_id) throws SQLException{
+	public boolean memberIdOverlapCheck(Connection conn, String member_id, int session_member_no) throws SQLException{
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select member_id from member");
 		sql.append(" where member_id = ? ");
+		if(session_member_no != -1) {
+			sql.append(" and member_no = ? ");
+		}
 		boolean result = false;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, member_id);
+			if(session_member_no != -1) {
+				pstmt.setInt(2, session_member_no);
+			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				String tmp_member_id = rs.getString(1);
-				if(tmp_member_id != null && tmp_member_id.equals(session_member_id)) {
-					result = false;
-				}
-				else {
+				if(tmp_member_id != null) {
 					result = true;
 				}
 			}
@@ -145,6 +148,27 @@ public class MemberDAO {
 			pstmt.setInt(4, memberdto.getMember_no());
 			pstmt.executeUpdate();
 		}
+	}
+	
+	public String memberIdSearch(Connection conn, int Member_no) throws SQLException{
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select member_id from member ");
+		sql.append(" where member_no = ? ");
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String member_id = null; 
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, Member_no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				member_id = rs.getString("member_id");
+			}
+		} finally {
+			autoClose(rs);
+			autoClose(pstmt);
+		}
+		return member_id;
 	}
 	
 	private void autoClose(AutoCloseable ac) {

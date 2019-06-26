@@ -18,18 +18,17 @@ public class MemberIdOverlapCheckJsonAction implements JsonAction {
 	@Override
 	public JSONObject execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("작동됨 !");
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("memberInfo");
-		String session_member_id = null;
+		int session_member_no = -1;
 		if(obj != null) {
 			MemberDTO memberdto = (MemberDTO)obj;
-			session_member_id = memberdto.getMember_id();
+			session_member_no = memberdto.getMember_no();
 		}
 		
 		String member_id = request.getParameter("member_id");
 		MemberService memberservice = MemberService.getInstance();
-		boolean result = memberservice.memberIdOverlapCheck(member_id, session_member_id);
+		boolean result = memberservice.memberIdOverlapCheck(member_id, session_member_no);
 		
 		JSONObject json = new JSONObject();
 		json.put("result", result);
