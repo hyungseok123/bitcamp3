@@ -11,7 +11,7 @@
  
 </head>
 <body>
-	<form method="post" action="boardinsertresult.do" name="boardForm">
+	<form method="post" action="boardinsertresult.do">
  
 	<table >
 		<tr>

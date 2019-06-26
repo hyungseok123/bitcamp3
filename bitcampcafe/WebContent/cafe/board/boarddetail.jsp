@@ -9,7 +9,7 @@
 <c:set var="data" value="${requestScope.data}" />
 </head>
 
-<form method="post" action="boarddetail.do" name="boardForm">
+<form method="post" action="boarddetail.do" >
 
 	 
 

@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action=" " name="boardForm" 
-			enctype="multipart/form-data">
+	<form method="post" action="">
 
 	 
 

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-	<form method="post" action="boardupdate.do" name="boardForm">
+	<form method="post" action="boardupdate.do">
 
 		<table>
 			<tr>
