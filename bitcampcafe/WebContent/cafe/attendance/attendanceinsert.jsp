@@ -14,5 +14,9 @@
 
 
 </form>
+<div id="result"> <!-- ajax처리 -->
+
+
+</div>
 </body>
 </html>

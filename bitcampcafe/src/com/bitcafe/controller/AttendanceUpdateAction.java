@@ -26,12 +26,12 @@ public class AttendanceUpdateAction implements Action {
 		forward.setPath("cafe/update.do");
 		
 		
-<<<<<<< HEAD
+
 		
-		return "boardupdate.jsp";
-=======
+	
+
 		return forward;
->>>>>>> branch 'master' of https://github.com/hyungseok123/bitcamp3.git
+
 	
 	}
 
