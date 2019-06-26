@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="http://localhost:8088/bitcampcafe/cafe/comment/tempcommentcss.css">
+<link rel="stylesheet" href="http://localhost:8080/bitcampcafe/cafe/comment/tempcommentcss.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
