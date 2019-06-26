@@ -34,7 +34,6 @@ public class JsonController extends HttpServlet {
 	private void req(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
 		JsonAction jact = null;
-		System.out.println("path : "+path);
 		if(path.equals("/memberidcheck.json")) {
 			jact = new MemberIdOverlapCheckJsonAction();
 		} else if(path.equals("/membernicknamecheck.json")) {
