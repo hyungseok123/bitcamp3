@@ -24,7 +24,7 @@ public class BoardInsertResultAction implements Action {
 		service.BoardInsertService(title, content);
 		ForwardAction forward=new ForwardAction();
 		forward.setRedirect(true);
-		forward.setPath("boardinsertresult.do");
+		forward.setPath("boarddetail.do");
 		
 		return forward;
 	}
