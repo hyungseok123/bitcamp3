@@ -193,4 +193,23 @@ public class CommentDAO {
 		}  
 		return result;
 	}
+	public int commentUpdating(Connection conn, int comment_no, String content) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update comment          ");
+		sql.append(" set comment_content = ? ");
+		sql.append(" where comment_no = ?    ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, content);
+			pstmt.setInt(2, comment_no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}
 }

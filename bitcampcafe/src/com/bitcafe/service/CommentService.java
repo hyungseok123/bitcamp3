@@ -134,4 +134,22 @@ public class CommentService {
 		}
 		return result;
 	}
+	public int commentUpdate(int comment_no, String content) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			DBConnection db = DBConnection.gettb();
+			conn = db.getConnection();
+			conn.setAutoCommit(false);
+			CommentDAO dao = CommentDAO.getDAO();
+			result = dao.commentUpdating(conn, comment_no, content);
+			conn.commit();
+		} catch(SQLException| NamingException e) {
+			System.out.println(e);
+			try{ conn.rollback();} catch(SQLException e1){}
+		} finally {
+			if(conn!=null) try{ conn.close();} catch(SQLException e){}
+		}
+		return result;
+	}
 }
