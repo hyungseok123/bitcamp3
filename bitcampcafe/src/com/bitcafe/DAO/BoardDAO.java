@@ -27,20 +27,21 @@ public class BoardDAO {
 		sql.append("        ,board_favcount    ");
 		sql.append("        ,category_no        ");
 		sql.append("        ,member_no          ");
-		sql.append(" from  board          ");
+		sql.append(" from  board                ");
 
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				BoardDTO data = new BoardDTO();
-				data.setBoardNo(rs.getInt("board_no"));
-				data.setBoardTitle(rs.getString("board_title"));
-				data.setBoardContent(rs.getString("board_content"));
-				data.setBoardViewcount(rs.getInt("board_viewcount"));
-				data.setBoardFavcount(rs.getInt("board_favcount"));
-				data.setCategoryNo(rs.getInt("category_no"));
-				data.setMemberNo(rs.getInt("member_no"));
+				data.setBoard_no(rs.getInt("board_no"));
+				data.setBoard_title(rs.getString("board_title"));
+				data.setBoard_writedate(rs.getDate("board_writedate"));
+				data.setBoard_content(rs.getString("board_content"));
+				data.setBoard_viewcount(rs.getInt("board_viewcount"));
+				data.setBoard_favcount(rs.getInt("board_favcount"));
+				data.setCategory_no(rs.getInt("category_no"));
+				data.setMember_no(rs.getInt("member_no"));
 				arr.add(data);
 			}
 
