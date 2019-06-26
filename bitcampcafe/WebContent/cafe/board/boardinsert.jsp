@@ -22,15 +22,27 @@
 			</tr>
 			<tr>
 				<td>제 목</td>
-				<td><input name="board_title" type="text" size="70"
-					maxlength="100" value="${board.board_title}" /></td>
+				<td><input name="title" type="text" size="70" maxlength="100"
+					value="${board.board_title}" /></td>
 			</tr>
 			<tr>
 				<td>내 용</td>
-				<td><textarea name="board_content" cols="72" rows="20">
+				<td><textarea name="content" cols="72" rows="20">
 					${board.board_content}
 				</textarea></td>
 			</tr>
+			<tr>
+				<td>작성자</td>
+				<td><input name="title" type="text" size="70" maxlength="100"
+					value="${board.member_nickname}" /></td>
+			</tr>
+			<tr>
+				<td>작성일</td>
+				<td><input name="title" type="text" size="70" maxlength="100"
+					value="${board.board_writedate}" /></td>
+			</tr>
+
+
 
 			<tr align="center" valign="middle">
 				<td colspan="5"><input type="reset" value="작성취소"> <input
