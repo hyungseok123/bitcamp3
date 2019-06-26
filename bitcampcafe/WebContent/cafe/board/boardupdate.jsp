@@ -15,7 +15,7 @@
 	<table >
 		<tr>
 			<td id="title">작성자</td>
-			<td>${board.board_id}</td>
+			<td>${board.member_no}</td>
 		</tr>
 			<tr>
 			<td id="title">
@@ -39,7 +39,7 @@
 		 
 		 
 		
-		<tr align="center" valign="middle">
+		<tr>
 			<td colspan="5">
 				<input type="reset" value="작성취소" >
 				<input type="submit" value="수정" >

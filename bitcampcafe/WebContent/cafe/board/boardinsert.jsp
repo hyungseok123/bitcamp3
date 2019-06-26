@@ -11,15 +11,14 @@
  
 </head>
 <body>
-	<form method="post" action=" " name="boardForm" 
-			enctype="multipart/form-data">
+	<form method="post" action="boardinsert.do" name="boardForm">
 
 	 
 
 	<table >
 		<tr>
 			<td id="title">작성자</td>
-			<td>${board.board_id}</td>
+			<td>${board.member_no}</td>
 		</tr>
 			<tr>
 			<td id="title">

@@ -9,28 +9,40 @@
 <c:set var="data" value="${requestScope.data}" />
 </head>
 
+<form method="post" action="boarddetail.do" name="boardForm">
 
-<body>
+	 
+
 	<table >
 		<tr>
-			<td>번호</td>
-			<td id="boardno"><c:out value="${data.getBoardNo() }" /></td>		</tr>
-		<tr>
-			<td>제목</td>
-			<td><c:out value="${data.getBoardTitle() }" /></td>
+			<td id="title">작성자</td>
+			<td>${board.member_no}</td>
+		</tr>
+			<tr>
+			<td id="title">
+				제 목
+			</td>
+			<td>
+				<input name="board_subject" type="text" size="70" maxlength="100" 
+					value="${board.board_subject}"/>
+			</td>		
 		</tr>
 		<tr>
-			<td>내용</td>
-			<td><c:out value="${data.getBoardContent() }" /></td>
+			<td id="title">
+				내 용
+			</td>
+			<td>
+				<textarea name="board_content" cols="72" rows="20">
+					${board.board_content}
+				</textarea>			
+			</td>		
 		</tr>
-
-	</table>
-	<form method="post" action=" "
-		name="frm">
-		<textarea rows="5" cols="50" name="content" id="content"></textarea>
-		<br> <input type="text" id="writer" name="writer"> <input
-			type="button" onclick='send()' value="추가">
+		 
+		 
+	 
+	</table>	
 	</form>
-	<div id="result"></div>
-</body>
+	
+
+
 </html>
