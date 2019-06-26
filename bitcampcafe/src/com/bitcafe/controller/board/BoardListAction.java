@@ -1,4 +1,4 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.board;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bitcafe.DTO.BoardDTO;
+import com.bitcafe.controller.Action;
 import com.bitcafe.service.BoardService;
 import com.bitcafe.util.ForwardAction;
 import com.bitcafe.util.Paging;
