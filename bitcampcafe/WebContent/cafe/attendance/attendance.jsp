@@ -11,12 +11,14 @@
 <body>
 
 
-<div id="result">
+<div>
 
-<c:forEach var="dto" items=${list} > 
-<c:out value="${list }"></c:out>
 
-</c:forEach>
+
+<c:out value="hi"></c:out>
+<a href="attendanceupdate.do">수정하기</a>
+<a href="attendancedelete.do">삭제하기</a>
+
 
 </div>
 </body>

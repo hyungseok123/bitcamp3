@@ -19,6 +19,7 @@ public class AttendanceUpdateResultAction implements Action {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		String content=request.getParameter("content");
+		//request.setAttribute("content", content);
 		AttendanceDTO dto = new AttendanceDTO();
 		dto.setAttendance_content(content);	
 		AttendanceService service=AttendanceService.getService();

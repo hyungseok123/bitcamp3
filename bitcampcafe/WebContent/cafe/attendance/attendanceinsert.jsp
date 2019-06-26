@@ -32,16 +32,14 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<form method = "post" action="attendanceinsertresultaction.do">
+<c:out value="${content }"></c:out>
+<form id="frm" method = "post" action="attendanceinsertresultaction.do">
  <textarea name="attendance" cols="100" rows="8"></textarea>
     <input type="submit" value="출석!">
 
 
 </form>
 <div id="result"> 
- 
-
- 
  
 </div>
 </body>
