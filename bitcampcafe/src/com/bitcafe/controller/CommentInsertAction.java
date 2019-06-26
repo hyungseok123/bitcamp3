@@ -18,19 +18,32 @@ public class CommentInsertAction implements Action {
 			throws ServletException, IOException {
 		CommentService service = CommentService.getService();
 		CommentDTO dto = new CommentDTO();
-		
+	// 댓글 내용
 		String content = request.getParameter("content");
-		int comment_parent =  service.getMaxParent();
-		int board_no = Integer.parseInt(request.getParameter("board_no"));
-		// login session 정보 #############################################
-		
-		int member_no = 1; 
-		
-		// 나중에 고칠 부분 ###############################################
 		dto.setComment_content(content);
-		dto.setComment_parent(comment_parent + 1);
+	// 댓글 부모
+		int parent = Integer.parseInt(request.getParameter("parent"));
+		if (parent == 0) {
+			parent = service.getMaxParent();
+			dto.setComment_parent(parent + 1);
+		} else {
+			dto.setComment_parent(parent);
+		}
+	// 댓글 깊이
+		int depth = Integer.parseInt(request.getParameter("depth"));
+		dto.setComment_depth(depth);
+	// 댓글 순서
+		int order = 0;
+		int parentOrder =Integer.parseInt(request.getParameter("parent"));
+		if (parent != 0) order = service.getMaxOrder(parentOrder);
+		dto.setComment_order(order + 1);
+	// 게시판 번호
+		int board_no = Integer.parseInt(request.getParameter("board_no"));	
 		dto.setBoard_no(board_no);
+	// 회원 번호
+		int member_no  = Integer.parseInt(request.getParameter("member_no"));
 		dto.setMember_no(member_no);
+	// DB 추가	
 		int result = service.commentInsert(dto);
 		request.setAttribute("result", result);
 		ForwardAction forward = new ForwardAction();

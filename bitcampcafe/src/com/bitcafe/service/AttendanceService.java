@@ -43,7 +43,7 @@ public class AttendanceService {
 
 	}
 
-	public int AttendanceInsert(AttendanceDTO dto)
+	public int AttendanceInsert(String attendance, int member_no)
 	{
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
@@ -51,7 +51,7 @@ public class AttendanceService {
 		try{conn = db.getConnection();
 		conn.setAutoCommit(false);
 		AttendanceDAO dao=AttendanceDAO.getDAO();
-		dao.AttendanceInsert(conn, dto);
+		result = dao.AttendanceInsert(conn, attendance,member_no);
 
 		conn.commit();
 		}catch(SQLException|NamingException e)
@@ -66,14 +66,14 @@ public class AttendanceService {
 
 
 
-	public int AttendanceDelete(int no)
+	public int AttendanceDelete(AttendanceDTO dto)
 	{
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
 		int result =0;
 		try { conn=db.getConnection();
 		AttendanceDAO dao = AttendanceDAO.getDAO();
-		result = dao.AttendanceDelete(conn, no);
+		result = dao.AttendanceDelete(conn, dto);
 
 
 		}catch(SQLException|NamingException e)

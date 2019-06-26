@@ -37,12 +37,15 @@
 				</textarea>			
 			</td>		
 		</tr>
-		 
-		 
-	 
-	</table>	
-	</form>
-	
+		 <tr align="center" valign="middle">
+			<td colspan="5">
+				<input type="reset" value="수정" >
+				<input type="submit" value="확인">
 
+			</td>
+		</tr>
+		  
+	</table>	
+	</form> 
 
 </html>
