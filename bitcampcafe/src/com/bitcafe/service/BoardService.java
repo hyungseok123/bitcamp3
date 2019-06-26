@@ -57,5 +57,44 @@ public class BoardService {
 		return list;
 
 	}
+	
+	
+	public void BoardInsertService(String title, String content) {
+		Connection conn = null;
+		try {
+			conn = DBConnection.gettb().getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao = new BoardDAO();
+			int result = dao.BoardInsertData(conn, title, content);
 
+			conn.commit();
+
+		} catch (SQLException e) {
+			System.out.println(e);
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+			}
+		} catch (NamingException e) {
+			System.out.println(e);
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+			}
+		} catch (RuntimeException e) {
+			System.out.println(e);
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+			}
+		} finally {
+
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+		}
+
+	}
 }

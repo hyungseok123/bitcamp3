@@ -10,32 +10,32 @@
 <body>
 	<div id="wrap" align="center"></div>
 	<h1>게시글 목록</h1>
-	<form method="post" action="insert.do">
+	<form method="post" action="boardinsert.do">
 		<input type="hidden" name="command" value="board_write">
 		<table>
 			<c:forEach var="data" items="${requestScope.list }">
 				<tr>
 					<td>번호</td>
-					<td>${data.boardno }</td>
+					<td>${data.board_no }</td>
 				</tr>
 				<tr>
 					<td>제 목</td>
 					<td><input name="title" type="text" size="70" maxlength="100"
-						value="${data.boardtitle }" /></td>
+						value="${data.board_title }" /></td>
 				</tr>
 				<tr>
 					<td>내 용</td>
 					<td><input name="title" type="text" size="70" maxlength="100"
-						value="${data.boardcontent }" /></td>
+						value="${data.board_content }" /></td>
 				</tr>
 				<tr>
 					<td>작성일</td>
 					<td><input name="title" type="text" size="70" maxlength="100"
-						value="${data.boardwritedate }" /></td>
+						value="${data.board_writedate }" /></td>
 				</tr>
 				<tr align="center" valign="middle">
-					<td colspan="5"><input type="reset" value="작성취소"> <input
-						type="submit" value="등록"> <input type="button" value="목록">
+					<td colspan="5">  <input
+						type="submit" value="글쓰기">  
 					</td>
 				</tr>
 			</c:forEach>

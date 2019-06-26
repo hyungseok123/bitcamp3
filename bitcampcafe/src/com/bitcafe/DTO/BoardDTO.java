@@ -15,9 +15,6 @@ public class BoardDTO {
 	private String member_nickname;
 	
 	
-	
-	
-	
 	public BoardDTO() {
 		super();
 	}
@@ -34,60 +31,64 @@ public class BoardDTO {
 		this.member_no = member_no;
 		this.member_nickname = member_nickname;
 	}
-	public int getBoardNo() {
+	public int getBoard_no() {
 		return board_no;
 	}
-	public void setBoardNo(int board_no) {
+	public void setBoard_no(int board_no) {
 		this.board_no = board_no;
 	}
-	public String getBoardTitle() {
+	public String getBoard_title() {
 		return board_title;
 	}
-	public void setBoardTitle(String board_title) {
+	public void setBoard_title(String board_title) {
 		this.board_title = board_title;
 	}
-	public String getBoardContent() {
+	public String getBoard_content() {
 		return board_content;
 	}
-	public void setBoardContent(String board_content) {
+	public void setBoard_content(String board_content) {
 		this.board_content = board_content;
 	}
-	public Date getBoardWritedate() {
+	public Date getBoard_writedate() {
 		return board_writedate;
 	}
-	public void setBoardWritedate(Date board_writedate) {
+	public void setBoard_writedate(Date board_writedate) {
 		this.board_writedate = board_writedate;
 	}
-	public int getBoardViewcount() {
+	public int getBoard_viewcount() {
 		return board_viewcount;
 	}
-	public void setBoardViewcount(int board_viewcount) {
+	public void setBoard_viewcount(int board_viewcount) {
 		this.board_viewcount = board_viewcount;
 	}
-	public int getBoardFavcount() {
+	public int getBoard_favcount() {
 		return board_favcount;
 	}
-	public void setBoardFavcount(int board_favcount) {
+	public void setBoard_favcount(int board_favcount) {
 		this.board_favcount = board_favcount;
 	}
-	public int getCategoryNo() {
+	public int getCategory_no() {
 		return category_no;
 	}
-	public void setCategoryNo(int category_no) {
+	public void setCategory_no(int category_no) {
 		this.category_no = category_no;
 	}
-	public int getMemberNo() {
+	public int getMember_no() {
 		return member_no;
 	}
-	public void setMemberNo(int member_no) {
+	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
-	public String getMemberNickname() {
+	public String getMember_nickname() {
 		return member_nickname;
 	}
-	public void setMemberNickname(String member_nickname) {
+	public void setMember_nickname(String member_nickname) {
 		this.member_nickname = member_nickname;
 	}
-
+	
+	
+	
+	
+	 
 	 
 }
