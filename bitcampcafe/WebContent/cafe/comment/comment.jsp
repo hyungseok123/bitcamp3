@@ -28,8 +28,10 @@
 	  	  </div>
 	  	    <div id="comment_btn_wrap">
 	    	<a class="re" href="commentlist.do?rno=${list.comment_no }"><button id="reply">댓글</button></a>
+	  	  	<c:if test="${loginNo == list.member_no }">
 	    	<a class="up" href="#"><span>${list.comment_no }</span><button id="modify">수정</button></a>
 	    	<a class="de" href="commentdelete.do?dno=${list.comment_no }"><button id="delete">삭제</button></a>
+	  	    </c:if>
 	  	    </div>
 	  	  </li>
 	  	</ul>
@@ -46,8 +48,10 @@
 	  	    </div>
 	  	    <div id="comment_btn_wrap">
 	          <a class="re" href="commentlist.do?rno=${list.comment_no }"><button id="reply">댓글</button></a>
+	  	  	<c:if test="${loginNo == list.member_no }">
 	          <a class="up" href="#"><span>${list.comment_no }</span><button id="modify">수정</button></a>
 	          <a class="de" href="commentdelete.do?dno=${list.comment_no }"><button id="delete">삭제</button></a>
+	  	    </c:if>
 	        </div>
 	      </div>
 		</c:otherwise>
@@ -59,7 +63,7 @@
     	  <input type="hidden" name="parent" value="${list.comment_parent }">
       	  <input type="hidden" name="depth" value="1">
       	  <input type="hidden" name="board_no" value="${list.board_no }">		<!-- 게시판 번호 :: 수정 필요 -->
-    	  <input type="hidden" name="member_no" value="${list.member_no }">	<!-- 회원번호    :: 수정 필요 -->
+    	  <input type="hidden" name="member_no" value="${loginNo }">			<!-- 회원번호    :: 수정 필요 -->
     	  <input id="submitbutton" type="submit" value="등록">
 	    </form>
 	  </c:if>
@@ -68,13 +72,14 @@
 	<div class="updatecomment"></div>
 </c:forEach>
 </ul>
+${loginNo }
   <div>
     <form method="post" action="commentinsert.do">
    	  <textarea name="content" cols="100" rows="5"></textarea>
    	  <input type="hidden" name="parent" value="0">
    	  <input type="hidden" name="depth" value="0">
    	  <input type="hidden" name="board_no" value="1">							<!-- 게시판 번호 :: 수정 필요 -->
-   	  <input type="hidden" name="member_no" value="1">						<!-- 회원 번호   :: 수정 필요 -->
+   	  <input type="hidden" name="member_no" value="9">				<!-- 회원 번호   :: 수정 필요 -->
    	  <input id="submitbutton" type="submit" value="등록">
     </form>
   </div>
