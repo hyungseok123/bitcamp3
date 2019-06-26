@@ -16,8 +16,8 @@ public class MemberLoginSuccessAction implements Action {
 			throws ServletException, IOException {
 		
 		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(true);
-		forward.setPath("/bitcampcafe/login/logintest.jsp");
+		forward.setRedirect(false);
+		forward.setPath("/login/logtest.jsp");
 		return forward;
 	}
 
