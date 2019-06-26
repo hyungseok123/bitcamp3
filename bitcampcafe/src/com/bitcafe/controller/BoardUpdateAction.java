@@ -20,8 +20,11 @@ public class BoardUpdateAction implements Action {
 		BoardService service =BoardService.getInstance();
 		BoardDTO dto =service.BoardDetailService(no);
 		request.setAttribute("dto", dto);
+		ForwardAction forward = new ForwardAction();
+		forward.setRedirect(false);
+		forward.setPath("/cafe/board/boardupdate.jsp");
 		
-		return "modify.jsp";
+		return forward;
 	}
 
 }
