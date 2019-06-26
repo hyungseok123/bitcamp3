@@ -23,7 +23,7 @@ public class BoardInsertResultAction implements Action {
 		service.BoardInsertService(title, content);
 		ForwardAction forward=new ForwardAction();
 		forward.setRedirect(true);
-		forward.setPath("cafe/board/boarddetail.jsp");
+		forward.setPath("/cafe/board/boarddetail.jsp");
 		
 		return forward;
 	}

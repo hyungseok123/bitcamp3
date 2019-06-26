@@ -12,16 +12,16 @@
 
 		<table>
 			<tr>
-				<td id="title">작성자</td>
+				<td>작성자</td>
 				<td>${board.member_no}</td>
 			</tr>
 			<tr>
-				<td id="title">제 목</td>
-				<td><input name="board_subject" type="text" size="70"
+				<td>제 목</td>
+				<td><input name="board_title" type="text" size="70"
 					maxlength="100" value="${board.board_subject}" /></td>
 			</tr>
 			<tr>
-				<td id="title">내 용</td>
+				<td>내 용</td>
 				<td><textarea name="board_content" cols="72" rows="20">
 					${board.board_content}
 				</textarea></td>

@@ -15,20 +15,20 @@
 
 	<table >
 		<tr>
-			<td id="title">작성자</td>
+			<td>작성자</td>
 			<td>${board.member_no}</td>
 		</tr>
 			<tr>
-			<td id="title">
+			<td>
 				제 목
 			</td>
 			<td>
-				<input name="board_subject" type="text" size="70" maxlength="100" 
-					value="${board.board_subject}"/>
+				<input name="board_title" type="text" size="70" maxlength="100" 
+					value="${board.board_title}"/>
 			</td>		
 		</tr>
 		<tr>
-			<td id="title">
+			<td>
 				내 용
 			</td>
 			<td>
