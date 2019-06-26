@@ -1,4 +1,4 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.comment;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bitcafe.DTO.CommentDTO;
+import com.bitcafe.controller.Action;
 import com.bitcafe.service.CommentService;
 import com.bitcafe.util.ForwardAction;
 

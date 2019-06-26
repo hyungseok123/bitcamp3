@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+import com.bitcafe.controller.JsonAction;
+
 public class MemberLoginJsonAction implements JsonAction {
 
 	@Override

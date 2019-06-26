@@ -137,4 +137,79 @@ public class CommentDAO {
 		}  
 		return result;
 	}
+	public int commentDelete(Connection conn, int comment_no) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" delete from comment  ");
+		sql.append(" where comment_no = ? ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, comment_no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}
+	public CommentDTO commentDetail(Connection conn, int comment_no) throws SQLException {
+		CommentDTO result = new CommentDTO();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select   comment_no             ");
+		sql.append(" 		, comment_content        ");
+		sql.append(" 		, comment_writedate      ");
+		sql.append(" 		, comment_parent         ");
+		sql.append(" 		, comment_depth          ");
+		sql.append(" 		, comment_order          ");
+		sql.append(" 		, board_no               ");
+		sql.append(" 		, m.member_no            ");
+		sql.append(" 		, m.member_nickname      ");
+		sql.append(" from comment c join member m    ");
+		sql.append(" on c.member_no = m.member_no    ");
+		sql.append(" where comment_no = ?            ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, comment_no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				result.setComment_no(rs.getInt("comment_no"));
+				result.setComment_content(rs.getString("comment_content"));
+				result.setComment_writedate(rs.getDate("comment_writedate"));
+				result.setComment_parent(rs.getInt("comment_parent"));
+				result.setComment_depth(rs.getInt("comment_depth"));
+				result.setComment_order(rs.getInt("comment_order"));
+				result.setBoard_no(rs.getInt("board_no"));
+				result.setMember_no(rs.getInt("member_no"));
+				result.setMember_nickname(rs.getString("member_nickname"));
+			}
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}
+	public int commentUpdating(Connection conn, int comment_no, String content) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update comment          ");
+		sql.append(" set comment_content = ? ");
+		sql.append(" where comment_no = ?    ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, content);
+			pstmt.setInt(2, comment_no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}
 }

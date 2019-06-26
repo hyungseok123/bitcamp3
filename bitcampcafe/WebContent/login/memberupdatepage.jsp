@@ -20,7 +20,7 @@
 				var currentval = $(this).val();
 				var textposition = $(this).next();
 				$.ajax({
-					url:"../memberidcheck.json"
+					url:"http://localhost:8080/bitcampcafe/memberidcheck.json"
 					,data: {member_id:currentval}
 					,type: "post"
 					,dataType:"json"
@@ -89,7 +89,7 @@
 				var currentval = $(this).val();
 				var textposition = $(this).next();
 				$.ajax({
-					url:"../membernicknamecheck.json"
+					url:"http://localhost:8080/bitcampcafe/membernicknamecheck.json"
 					,data: {member_nickname:currentval}
 					,type: "post"
 					,dataType:"json"
@@ -120,11 +120,12 @@
 			
 			$('form').on('submit',function(event){
 				if(memberIdCheck==true && memberPwd1Check==true && memberPwd2Check==true && memberNicknameCheck==true) {
+					alert('회원정보가 수정되었습니다. 다시 로그인 해주세요').one();
 					$('form').submit();
 				}
 				else {
 					event.preventDefault();
-					alert('잘못된 곳을 수정해주세요');
+					alert('입력하신 부분에 잘못된 부분이 있습니다.');
 				}
 			});
 		});
@@ -184,8 +185,8 @@
 <section>
 <c:set var="memberdto" value="${sessionScope.memberdto}"/>
 <c:if test="${memberdto != null }">
-	<a href="https://www.naver.com"><h1 id="title">Bit Cafe</h1></a>
-	<form method="post" action="../memberupdateresult.do">
+	<a href="login.do"><h1 id="title">Bit Cafe</h1></a>
+	<form method="post" action="memberupdateresult.do">
 		<label for="member_id">아이디 수정</label>
 		<input type="text" id="member_id" name="member_id" value="<c:out value="${memberdto.member_id }"/>" required>
 		<div class="input_undertext"></div>

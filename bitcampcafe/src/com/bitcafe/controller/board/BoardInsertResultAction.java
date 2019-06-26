@@ -1,4 +1,4 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.board;
 
 import java.io.IOException;
 
@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bitcafe.controller.Action;
 import com.bitcafe.service.BoardService;
 import com.bitcafe.util.ForwardAction;
 
@@ -23,7 +24,7 @@ public class BoardInsertResultAction implements Action {
 		service.BoardInsertService(title, content);
 		ForwardAction forward=new ForwardAction();
 		forward.setRedirect(true);
-		forward.setPath("cafe/board/boarddetail.jsp");
+		forward.setPath("boardinsertresult.do");
 		
 		return forward;
 	}

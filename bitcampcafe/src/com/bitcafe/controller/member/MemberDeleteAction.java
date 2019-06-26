@@ -1,6 +1,7 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,30 +9,32 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bitcafe.DTO.MemberDTO;
+import com.bitcafe.controller.Action;
 import com.bitcafe.service.MemberService;
 import com.bitcafe.util.ForwardAction;
 
-public class MemberUpdateAction implements Action {
+public class MemberDeleteAction implements Action {
 
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String tmp_member_no = request.getParameter("member_no");
+		HttpSession session = request.getSession();
+		Object obj = session.getAttribute("memberInfo");
 		ForwardAction forward = new ForwardAction();
-		MemberDTO memberdto = null;
-		if(tmp_member_no == null) { //로그인이 안되어 잇을시 로그인페이지로 이동
+		if(obj == null) {
 			forward.setRedirect(true);
-			forward.setPath("/bitcampcafe/login/loginpage.jsp");
+			forward.setPath("login.do");
 		}
 		else {
-			int member_no = Integer.parseInt(tmp_member_no);
+			MemberDTO memberdto = (MemberDTO)obj;
+			int member_no = memberdto.getMember_no();
 			MemberService memberservice = MemberService.getInstance();
-			memberdto = memberservice.memberDetail(member_no);
-			HttpSession session = request.getSession();
-			session.setAttribute("memberdto", memberdto);
-			forward.setRedirect(true);
-			forward.setPath("/bitcampcafe/login/memberupdatepage.jsp");
+			memberservice.memberDelete(member_no);
+			session.removeAttribute("memberInfo"); //세션삭제
+			forward.setRedirect(false);
+			forward.setPath("/login/memberdrop.jsp");
 		}
+
 		return forward;
 	}
 

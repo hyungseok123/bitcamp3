@@ -15,7 +15,7 @@
 			var member_pwd = document.getElementById("member_pwd").value;
 			console.log("test :"+member_id);
 			$.ajax({
-				url:"../memberlogin.json"
+				url:"http://localhost:8080/bitcampcafe/memberloginresult.json"
 				,data: {member_id:member_id,member_pwd:member_pwd}
 				,type: "post"
 				,dataType:"json"
@@ -32,7 +32,7 @@
 						position.css('color','red');
 					}
 					else { //로그인 성공하면 이동하는 페이지
-						location.href="logintest.jsp";
+						window.location.href="http://localhost:8080/bitcampcafe/login/logintest.jsp";
 					}
 				}
 				,error:function(data){
@@ -120,7 +120,7 @@
 <header>
 </header>
 <section>
-	<a href="https://www.naver.com"><h1 id="title">Bit Cafe</h1></a>
+	<a href="login.do"><h1 id="title">Bit Cafe</h1></a>
 	<form id="frm" name="frm" method="post">
 		<input type="text" id="member_id" name="member_id" required placeholder="아이디">
 		<input type="password" id="member_pwd" name="member_pwd" required placeholder="비밀번호">
@@ -129,7 +129,7 @@
 	</form>
 	<div class="line"></div>
 	<div id="undertext">
-		<a href="../memberinsert.do" id="loginsert">회원가입</a>
+		<a href="memberinsert.do" id="loginsert">회원가입</a>
 	</div>
 </section>
 </body>

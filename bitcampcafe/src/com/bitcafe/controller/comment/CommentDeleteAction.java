@@ -1,27 +1,26 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.comment;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bitcafe.DTO.CommentDTO;
+import com.bitcafe.controller.Action;
 import com.bitcafe.service.CommentService;
 import com.bitcafe.util.ForwardAction;
 
-public class CommentListAction implements Action {
+public class CommentDeleteAction implements Action {
 
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		CommentService service = CommentService.getService();
-		List<CommentDTO> list = service.commentList();
-		request.setAttribute("list", list);
+		int comment_no = Integer.parseInt(request.getParameter("dno"));
+		int result = service.commentDelete(comment_no);
 		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(false);
-		forward.setPath("/cafe/comment/comment.jsp");
+		forward.setRedirect(true);
+		forward.setPath("commentlist.do");
 		return forward;
 	}
 
