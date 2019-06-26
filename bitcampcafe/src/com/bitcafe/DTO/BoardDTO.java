@@ -12,15 +12,18 @@ public class BoardDTO {
 	private int board_favcount;
 	private int category_no;
 	private int member_no;
-
+	private String member_nickname;
+	
+	
+	
+	
+	
 	public BoardDTO() {
 		super();
 	}
-
-	public BoardDTO(int board_no, String board_title, String board_content, Date board_writedate,
-			int board_viewcount, int board_favcount, int category_no, int member_no) {
+	public BoardDTO(int board_no, String board_title, String board_content, Date board_writedate, int board_viewcount,
+			int board_favcount, int category_no, int member_no, String member_nickname) {
 		super();
-		
 		this.board_no = board_no;
 		this.board_title = board_title;
 		this.board_content = board_content;
@@ -29,72 +32,62 @@ public class BoardDTO {
 		this.board_favcount = board_favcount;
 		this.category_no = category_no;
 		this.member_no = member_no;
+		this.member_nickname = member_nickname;
 	}
-
 	public int getBoardNo() {
 		return board_no;
 	}
-
 	public void setBoardNo(int board_no) {
 		this.board_no = board_no;
 	}
-
 	public String getBoardTitle() {
 		return board_title;
 	}
-
 	public void setBoardTitle(String board_title) {
 		this.board_title = board_title;
 	}
-
 	public String getBoardContent() {
 		return board_content;
 	}
-
 	public void setBoardContent(String board_content) {
 		this.board_content = board_content;
 	}
-
-
 	public Date getBoardWritedate() {
 		return board_writedate;
 	}
-
 	public void setBoardWritedate(Date board_writedate) {
 		this.board_writedate = board_writedate;
 	}
-
 	public int getBoardViewcount() {
 		return board_viewcount;
 	}
-
 	public void setBoardViewcount(int board_viewcount) {
 		this.board_viewcount = board_viewcount;
 	}
-
 	public int getBoardFavcount() {
 		return board_favcount;
 	}
-
 	public void setBoardFavcount(int board_favcount) {
 		this.board_favcount = board_favcount;
 	}
-
 	public int getCategoryNo() {
 		return category_no;
 	}
-
 	public void setCategoryNo(int category_no) {
 		this.category_no = category_no;
 	}
-
 	public int getMemberNo() {
 		return member_no;
 	}
-
 	public void setMemberNo(int member_no) {
 		this.member_no = member_no;
 	}
-	
+	public String getMemberNickname() {
+		return member_nickname;
+	}
+	public void setMemberNickname(String member_nickname) {
+		this.member_nickname = member_nickname;
+	}
 
+	 
 }
