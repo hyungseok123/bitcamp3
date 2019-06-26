@@ -10,9 +10,6 @@
 </head>
 
 <form method="post" action="boarddetail.do" >
-
-	 
-
 	<table >
 		<tr>
 			<td>작성자</td>
@@ -41,10 +38,8 @@
 			<td colspan="5">
 				<input type="reset" value="수정" >
 				<input type="submit" value="확인">
-
 			</td>
 		</tr>
-		  
 	</table>	
 	</form> 
 

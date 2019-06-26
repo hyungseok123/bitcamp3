@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>제 목</td>
-				<td><input name="boardtitle" type="text" size="70"
+				<td><input name="board_title" type="text" size="70"
 					maxlength="100" value="${board.board_title}" /></td>
 			</tr>
 			<tr>
