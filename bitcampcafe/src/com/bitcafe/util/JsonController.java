@@ -1,6 +1,7 @@
 package com.bitcafe.util;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONObject;
 
 import com.bitcafe.controller.JsonAction;
-import com.bitcafe.controller.MemberIdOverlapCheckJsonAction;
-import com.bitcafe.controller.MemberLoginJsonAction;
-import com.bitcafe.controller.MemberNicknameOverlapCheckJsonAction;
+import com.bitcafe.controller.member.MemberIdOverlapCheckJsonAction;
+import com.bitcafe.controller.member.MemberLoginResultJsonAction;
+import com.bitcafe.controller.member.MemberNicknameOverlapCheckJsonAction;
 
 @WebServlet("*.json")
 public class JsonController extends HttpServlet {
@@ -33,13 +34,13 @@ public class JsonController extends HttpServlet {
 	private void req(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getServletPath();
 		JsonAction jact = null;
-		
+		System.out.println("path : "+path);
 		if(path.equals("/memberidcheck.json")) {
 			jact = new MemberIdOverlapCheckJsonAction();
 		} else if(path.equals("/membernicknamecheck.json")) {
 			jact = new MemberNicknameOverlapCheckJsonAction();
-		} else if(path.equals("/memberlogin.json")) {
-			jact = new MemberLoginJsonAction();
+		} else if(path.equals("/memberloginresult.json")) {
+			jact = new MemberLoginResultJsonAction();
 		}
 		
 		JSONObject json = jact.execute(request, response);

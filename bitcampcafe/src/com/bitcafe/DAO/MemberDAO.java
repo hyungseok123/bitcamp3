@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.bitcafe.DTO.MemberDTO;
+import com.mysql.cj.protocol.Resultset;
 
 public class MemberDAO {
 	private static MemberDAO memberdao = new MemberDAO();
@@ -16,44 +17,56 @@ public class MemberDAO {
 		return memberdao;
 	}
 	
-	public boolean memberIdOverlapCheck(Connection conn, String member_id) throws SQLException{
+	public boolean memberIdOverlapCheck(Connection conn, String member_id, String session_member_id) throws SQLException{
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select member_id from member");
 		sql.append(" where member_id = ? ");
 		boolean result = false;
 		ResultSet rs = null;
-		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, member_id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				String tmp_member_id = rs.getString(1);
-				if(tmp_member_id != null) {
+				if(tmp_member_id != null && tmp_member_id.equals(session_member_id)) {
+					result = false;
+				}
+				else {
 					result = true;
 				}
 			}
 		} finally {
-			if(rs != null) try { rs.close(); } catch(SQLException e) {}
+			autoClose(rs);
+			autoClose(pstmt);
 		}
 		return result;
 	}
 	
-	public boolean memberNicknameOverlapCheck(Connection conn, String member_nickname) throws SQLException {
+	public boolean memberNicknameOverlapCheck(Connection conn, String member_nickname, String session_member_nickname) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select member_nickname from member");
 		sql.append(" where member_nickname = ? ");
 		boolean result = false;
 		ResultSet rs = null;
-		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, member_nickname);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				String tmp_member_nickname = rs.getString(1);
-				if(tmp_member_nickname != null) {
+				if(tmp_member_nickname != null && tmp_member_nickname.equals(session_member_nickname)) {
+						result = false;
+				}
+				else {
 					result = true;
 				}
 			}
 		} finally {
-			if(rs != null) try { rs.close(); } catch(SQLException e) {}
+			autoClose(rs);
+			autoClose(pstmt);
 		}
 		return result;
 	}
@@ -75,8 +88,10 @@ public class MemberDAO {
 		sql.append(" select member_no, member_nickname, member_joindate from member ");
 		sql.append(" where member_id = ? and member_pwd = ? ");
 		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		MemberDTO memberdto = new MemberDTO();
-		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, member_id);
 			pstmt.setString(2, member_pwd);
 			rs = pstmt.executeQuery();
@@ -86,7 +101,8 @@ public class MemberDAO {
 				memberdto.setMember_joindate(rs.getDate("member_joindate"));
 			}
 		} finally {
-			if(rs != null) try { rs.close(); } catch(SQLException e) {}
+			autoClose(rs);
+			autoClose(pstmt);
 		}
 		return memberdto;
 	}
@@ -97,8 +113,10 @@ public class MemberDAO {
 		sql.append(" from member ");
 		sql.append(" where member_no = ? ");
 		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		MemberDTO memberdto = new MemberDTO();
-		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, member_no);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -107,8 +125,29 @@ public class MemberDAO {
 				memberdto.setMember_nickname(rs.getString("member_nickname"));
 			}
 		} finally {
-			if(rs != null) try { rs.close(); } catch(SQLException e) {}
+			autoClose(rs);
+			autoClose(pstmt);
 		}
 		return memberdto;
+	}
+	
+	public void memberUpdate(Connection conn, MemberDTO memberdto) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update member set");
+		sql.append(" member_id = ? ");
+		sql.append(" ,member_pwd = ? ");
+		sql.append(" ,member_nickname = ? ");
+		sql.append(" where member_no = ? ");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+			pstmt.setString(1, memberdto.getMember_id());
+			pstmt.setString(2, memberdto.getMember_pwd());
+			pstmt.setString(3, memberdto.getMember_nickname());
+			pstmt.setInt(4, memberdto.getMember_no());
+			pstmt.executeUpdate();
+		}
+	}
+	
+	private void autoClose(AutoCloseable ac) {
+		if(ac != null) try { ac.close(); } catch(Exception e) {}
 	}
 }

@@ -15,7 +15,7 @@
 			var member_pwd = document.getElementById("member_pwd").value;
 			console.log("test :"+member_id);
 			$.ajax({
-				url:"../memberlogin.json"
+				url:"../memberloginresult.json"
 				,data: {member_id:member_id,member_pwd:member_pwd}
 				,type: "post"
 				,dataType:"json"
