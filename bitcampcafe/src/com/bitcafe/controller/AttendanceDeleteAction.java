@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bitcafe.DTO.AttendanceDTO;
 import com.bitcafe.service.AttendanceService;
 import com.bitcafe.util.ForwardAction;
 
@@ -17,7 +18,8 @@ public class AttendanceDeleteAction implements Action {
 		// TODO Auto-generated method stub
 		int no = Integer.parseInt(request.getParameter("no"));
 		AttendanceService service = AttendanceService.getService();
-		int result = service.AttendanceDelete(no);
+		AttendanceDTO dto = new AttendanceDTO();
+		int result = service.AttendanceDelete(dto);
 		request.setAttribute("result", result);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
