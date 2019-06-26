@@ -17,5 +17,6 @@
 </c:if>
 <a href="memberupdate.do">회원수정</a>
 <a href="memberdelete.do">회원탈퇴</a>
+<a href="logout.do">로그아웃</a>
 </body>
 </html>
