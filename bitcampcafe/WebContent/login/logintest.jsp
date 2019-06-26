@@ -15,7 +15,7 @@
 	닉네임 : <c:out value="${dto.member_nickname }"/><br>
 	가입날짜 : <c:out value="${dto.member_joindate }"/><br>
 </c:if>
-<a href="../memberupdate.do?member_no=${dto.member_no}">회원수정</a>
+<a href="../memberupdate.do">회원수정</a>
 <a href="#">회원탈퇴</a>
 </body>
 </html>

@@ -18,22 +18,22 @@ public class MemberService {
 		return memberservice;
 	}
 	
-	public boolean memberIdOverlapCheck(String member_id) {
+	public boolean memberIdOverlapCheck(String member_id, String session_member_id) {
 		boolean result = false; 
 		try(Connection conn = DBConnection.gettb().getConnection();) {
 			MemberDAO memberdao = MemberDAO.getInstance();
-			result = memberdao.memberIdOverlapCheck(conn, member_id);
+			result = memberdao.memberIdOverlapCheck(conn, member_id, session_member_id);
 		} catch(SQLException | NamingException e) {
 			System.out.println(e);
 		}
 		return result;
 	}
 	
-	public boolean memberNicknameOverlapCheck(String member_nickname) {
+	public boolean memberNicknameOverlapCheck(String member_nickname, String session_member_nickname) {
 		boolean result = false;
 		try(Connection conn = DBConnection.gettb().getConnection();) {
 			MemberDAO memberdao = MemberDAO.getInstance();
-			result = memberdao.memberNicknameOverlapCheck(conn, member_nickname);
+			result = memberdao.memberNicknameOverlapCheck(conn, member_nickname, session_member_nickname);
 		} catch(SQLException | NamingException e) {
 			System.out.println(e);
 		}
@@ -75,6 +75,21 @@ public class MemberService {
 			System.out.println(e);
 		}
 		return memberdto;
+	}
+	
+	public void memberUpdate(MemberDTO memberdto) {
+		Connection conn = null;
+		try {
+			conn = DBConnection.gettb().getConnection();
+			conn.setAutoCommit(false);
+			MemberDAO memberdao = MemberDAO.getInstance();
+			memberdao.memberUpdate(conn, memberdto);
+			conn.commit();
+		} catch(SQLException | NamingException e) {
+			try { conn.rollback(); } catch(SQLException e1) {}
+		} finally {
+			closeconn(conn);
+		}
 	}
 	
 	private void closeconn(Connection conn) {

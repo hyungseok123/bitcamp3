@@ -120,11 +120,12 @@
 			
 			$('form').on('submit',function(event){
 				if(memberIdCheck==true && memberPwd1Check==true && memberPwd2Check==true && memberNicknameCheck==true) {
+					alert('회원정보가 수정되었습니다. 다시 로그인 해주세요').one();
 					$('form').submit();
 				}
 				else {
 					event.preventDefault();
-					alert('잘못된 곳을 수정해주세요');
+					alert('입력하신 부분에 잘못된 부분이 있습니다.');
 				}
 			});
 		});
