@@ -17,6 +17,7 @@ public class CommentInsertAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("??");
 		CommentService service = CommentService.getService();
 		CommentDTO dto = new CommentDTO();
 	// 댓글 내용
@@ -43,6 +44,7 @@ public class CommentInsertAction implements Action {
 		dto.setBoard_no(board_no);
 	// 회원 번호
 		int member_no  = Integer.parseInt(request.getParameter("member_no"));
+		System.out.println(member_no);
 		dto.setMember_no(member_no);
 	// DB 추가	
 		int result = service.commentInsert(dto);
