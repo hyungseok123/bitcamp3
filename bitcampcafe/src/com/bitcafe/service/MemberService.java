@@ -92,6 +92,21 @@ public class MemberService {
 		}
 	}
 	
+	public void memberDelete(int member_no) {
+		Connection conn = null;
+		try {
+			conn = DBConnection.gettb().getConnection();
+			conn.setAutoCommit(false);
+			MemberDAO memberdao = MemberDAO.getInstance();
+			memberdao.memberDelete(conn, member_no);
+			conn.commit();
+		} catch(SQLException | NamingException e) {
+			try { conn.rollback(); } catch(SQLException e1) {}
+		} finally {
+			closeconn(conn);
+		}
+	}
+	
 	
 	private void closeconn(Connection conn) {
 		if(conn != null) try {conn.close();} catch(SQLException e) {}

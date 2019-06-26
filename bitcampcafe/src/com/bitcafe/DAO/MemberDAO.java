@@ -169,6 +169,16 @@ public class MemberDAO {
 		return member_id; 
 	}
 	
+	public void memberDelete(Connection conn, int member_no) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" delete from member ");
+		sql.append(" where member_no = ? ");
+		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+			pstmt.setInt(1, member_no);
+			pstmt.executeUpdate();
+		}
+	}
+	
  	private void autoClose(AutoCloseable ac) {
 		if(ac != null) try { ac.close(); } catch(Exception e) {}
 	}
