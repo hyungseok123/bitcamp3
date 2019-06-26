@@ -1,4 +1,4 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.member;
 
 import java.io.IOException;
 
@@ -10,27 +10,27 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONObject;
 
 import com.bitcafe.DTO.MemberDTO;
+import com.bitcafe.controller.JsonAction;
 import com.bitcafe.service.MemberService;
 
-public class MemberLoginJsonAction implements JsonAction {
+public class MemberNicknameOverlapCheckJsonAction implements JsonAction {
 
 	@Override
 	public JSONObject execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String member_id = request.getParameter("member_id");
-		String member_pwd = request.getParameter("member_pwd");
-		
-		MemberService memberservice = MemberService.getInstance();
-		MemberDTO memberInfo = memberservice.memberLogin(member_id, member_pwd);
-		boolean result = false;
-		if(memberInfo.getMember_nickname()!=null) { //로그인 정보가 맞으면
-			result = true;
-			HttpSession session = request.getSession(true);
-			session.setAttribute("memberInfo", memberInfo);
+		HttpSession session = request.getSession();
+		Object obj = session.getAttribute("memberInfo");
+		String session_member_nickname = null;
+		if(obj != null) {
+			MemberDTO memberdto = (MemberDTO)obj;
+			session_member_nickname = memberdto.getMember_nickname();
 		}
+		
+		String member_nickname = request.getParameter("member_nickname");
+		MemberService memberservice = MemberService.getInstance();
+		boolean result = memberservice.memberNicknameOverlapCheck(member_nickname, session_member_nickname);
 		JSONObject json = new JSONObject();
 		json.put("result", result);
-		
 		return json;
 	}
 

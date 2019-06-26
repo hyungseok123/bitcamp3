@@ -130,8 +130,8 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select                        ");
-		sql.append("            ,board_no          ");
-		sql.append("         board_title           ");
+		sql.append("            board_no          ");
+		sql.append("         ,board_title           ");
 		sql.append("         ,board_content        ");
 		sql.append(" from board                    ");
 		sql.append(" where                         ");
