@@ -10,7 +10,7 @@
 <body>
 	<div id="wrap" align="center"></div>
 	<h1>게시글 목록</h1>
-	<form method="post" action="insert.do">
+	<form method="post" action="boardinsert.do">
 		<input type="hidden" name="command" value="board_write">
 		<table>
 			<c:forEach var="data" items="${requestScope.list }">
@@ -35,7 +35,7 @@
 				</tr>
 				<tr align="center" valign="middle">
 					<td colspan="5">  <input
-						type="submit" value="등록">  
+						type="submit" value="글쓰기">  
 					</td>
 				</tr>
 			</c:forEach>

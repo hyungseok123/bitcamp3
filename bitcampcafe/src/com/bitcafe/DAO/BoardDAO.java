@@ -63,4 +63,33 @@ public class BoardDAO {
 		return arr;
 
 	}
+
+	public int BoardInsertData(Connection conn, String title, String content) {
+
+		PreparedStatement pstmt = null;
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" insert into board               ");
+		sql.append("     (board_title , board_content) ");
+		sql.append(" values ( ?,? )                  ");
+		int result = 0;
+
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+		}
+
+		return result;
+	}
+
 }
