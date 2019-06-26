@@ -6,9 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>테스트 페이지</title>
 </head>
 <body>
+<h1>테스트 페이지(main연결하면 삭제할것)</h1>
 <c:set var="dto" value="${sessionScope.memberInfo }"/>
 <c:if test="${dto != null}">
 	번호 : <c:out value="${dto.member_no }"/><br>
