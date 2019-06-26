@@ -20,19 +20,21 @@ public class MemberDeleteAction implements Action {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("memberInfo");
-		
-		if(obj != null){
+		ForwardAction forward = new ForwardAction();
+		if(obj == null) {
+			forward.setRedirect(true);
+			forward.setPath("login.do");
+		}
+		else {
 			MemberDTO memberdto = (MemberDTO)obj;
 			int member_no = memberdto.getMember_no();
 			MemberService memberservice = MemberService.getInstance();
 			memberservice.memberDelete(member_no);
 			session.removeAttribute("memberInfo"); //세션삭제
+			forward.setRedirect(false);
+			forward.setPath("/login/memberdrop.jsp");
 		}
-		
-		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(true);
-		forward.setPath("login.do");
-		
+
 		return forward;
 	}
 
