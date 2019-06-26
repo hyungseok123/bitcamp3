@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bitcafe.controller.Action;
+import com.bitcafe.service.CommentService;
 import com.bitcafe.util.ForwardAction;
 
 public class CommentDeleteAction implements Action {
@@ -14,7 +15,9 @@ public class CommentDeleteAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		CommentService service = CommentService.getService();
+		int comment_no = Integer.parseInt(request.getParameter("dno"));
+		int result = service.commentDelete(comment_no);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(true);
 		forward.setPath("commentlist.do");
