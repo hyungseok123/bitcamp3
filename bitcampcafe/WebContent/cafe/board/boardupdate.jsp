@@ -39,7 +39,7 @@
 		 
 		 
 		
-		<tr>
+		<tr align="center" valign="middle">
 			<td colspan="5">
 				<input type="reset" value="작성취소" >
 				<input type="submit" value="수정" >
