@@ -1,12 +1,14 @@
+<%@page import="com.bitcafe.DTO.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>회원가입</title>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script>
+<meta charset="UTF-8">
+<title>회원수정</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
 	var memberIdCheck = false;
 	var memberPwd1Check = false;
 	var memberPwd2Check = false;
@@ -126,8 +128,8 @@
 				}
 			});
 		});
-	</script>
-	<style>
+</script>
+<style>
 		section {
 			width: 460px;
 			margin: 0 auto;
@@ -180,22 +182,28 @@
 </head>
 <body>
 <section>
+<c:set var="memberdto" value="${sessionScope.memberdto}"/>
+<c:if test="${memberdto != null }">
 	<a href="https://www.naver.com"><h1 id="title">Bit Cafe</h1></a>
-	<form method="post" action="../memberinsertresult.do">
-		<label for="member_id">아이디</label>
-		<input type="text" id="member_id" name="member_id" required >
+	<form method="post" action="../memberupdateresult.do">
+		<label for="member_id">아이디 수정</label>
+		<input type="text" id="member_id" name="member_id" value="<c:out value="${memberdto.member_id }"/>" required>
 		<div class="input_undertext"></div>
-		<label for="member_pwd1">비밀번호</label>
+		<label for="member_pwd1">비밀번호 수정</label>
 		<input type="password" id="member_pwd1" name="member_pwd1" required >
 		<div class="input_undertext"></div>
 		<label for="member_pwd2">비밀번호 확인</label>
 		<input type="password" id="member_pwd2" name="member_pwd2" required >
 		<div class="input_undertext"></div>
-		<label for="member_nickname">닉네임</label>
-		<input type="text" id="member_nickname" name="member_nickname" required>
+		<label for="member_nickname">닉네임 수정</label>
+		<input type="text" id="member_nickname" name="member_nickname" value="<c:out value="${memberdto.member_nickname }"/>" required>
 		<div class="input_undertext"></div>
-		<input type="submit" value="회원가입" id="submit">
+		<input type="submit" value="수정완료" id="submit">
 	</form>
+</c:if>
+<c:if test="${memberdto == null }"> <!-- 로그인을 하지 않으면 이동 -->
+	<jsp:include page="loginpage.jsp"/>
+</c:if>
 </section>
 </body>
 </html>

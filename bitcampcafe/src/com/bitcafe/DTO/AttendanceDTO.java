@@ -2,7 +2,7 @@ package com.bitcafe.DTO;
 
 import java.sql.Date;
 
-public class attendanceDTO {
+public class AttendanceDTO {
 	
 	private int attendance_no;
 	private String attendance_content;
@@ -32,14 +32,14 @@ public class attendanceDTO {
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
-	public attendanceDTO(int attendance_no, String attendance_content, Date attendance_writedate, int member_no) {
+	public AttendanceDTO(int attendance_no, String attendance_content, Date attendance_writedate, int member_no) {
 		super();
 		this.attendance_no = attendance_no;
 		this.attendance_content = attendance_content;
 		this.attendance_writedate = attendance_writedate;
 		this.member_no = member_no;
 	}
-	public attendanceDTO() {
+	public AttendanceDTO() {
 		super();
 	}
 	

@@ -6,26 +6,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bitcafe.service.AttendanceService;
+import com.bitcafe.DTO.BoardDTO;
+import com.bitcafe.service.BoardService;
 import com.bitcafe.util.ForwardAction;
 
-public class AttendanceDeleteAction implements Action {
-//수정요망 !!!
+public class BoardDetailAction implements Action {
+
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		int no = Integer.parseInt(request.getParameter("no"));
-		AttendanceService service = AttendanceService.getService();
-		int result = service.AttendanceDelete(no);
-		request.setAttribute("result", result);
+		String num = request.getParameter("num");
+		int boardnum = 1;
+		if (num != null && !num.equals(""))
+			boardnum = Integer.parseInt(num);
+
+		BoardService service = BoardService.getInstance();
+		BoardDTO data = service.BoardDetailService(boardnum);
+		request.setAttribute("data", data);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/delete.do");
-		
-		
-		
-		
+		forward.setPath("/cafe/board/boarddetail.jsp");
+
 		return forward;
 	}
 

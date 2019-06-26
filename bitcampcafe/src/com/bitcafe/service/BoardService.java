@@ -93,9 +93,9 @@ public class BoardService {
 			conn.setAutoCommit(false);
 			BoardDAO dao = BoardDAO.getDAO();
 			int result = dao.BoardInsertData(conn, title, content);
-			
+
 			conn.commit();
-			
+
 		} catch (SQLException e) {
 			System.out.println(e);
 			try {
@@ -123,5 +123,31 @@ public class BoardService {
 
 		}
 	}
+	
 
+public BoardDTO BoardDetailService(int no) {
+		
+		//db연결해서 db연결 객체를 dao에 넘겨준다
+		//처리 결과는 return시킴
+		
+		DBConnection db=DBConnection.gettb();
+		Connection conn=null;
+		BoardDTO dto=null;
+		
+		try  
+		{ 
+			conn=db.getConnection();
+			BoardDAO dao=BoardDAO.getDAO();
+			dto=dao.BoardDetail(conn,no);
+			 
+	 
+		}catch(SQLException |NamingException e) {
+			
+			System.out.println(e);
+	  
+		}finally {
+			if(conn!=null) try {conn.close();}catch(SQLException e) {}
+		}
+		return dto;
+	}
 }

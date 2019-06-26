@@ -101,9 +101,9 @@ public class BoardDAO {
 	public int BoardInsertData(Connection conn, String title, String content) {
 		PreparedStatement pstmt = null;
 		StringBuilder sb = new StringBuilder();
-		sb.append("  insert   into   board 							      ");
-		sb.append("      (board_no, board_title, board_content)  ");
-		sb.append(" values (b1seq.nextval, ? ,? )                   ");
+		sb.append("  insert   into   board 	           ");
+		sb.append("      (board_title, board_content)  ");
+		sb.append(" values ( ? ,? )                    ");
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sb.toString());
@@ -123,5 +123,49 @@ public class BoardDAO {
 		}
 		return result;
 	}
+
+	public BoardDTO BoardDetail(Connection conn, int no) throws SQLException {
+
+		// preparedStatement Resultset .. select
+		PreparedStatement pstmt = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select                        ");
+		sql.append("            ,board_no          ");
+		sql.append("         board_title           ");
+		sql.append("         ,board_content        ");
+		sql.append(" from board                    ");
+		sql.append(" where                         ");
+		sql.append("          board_no= ?          ");
+		ResultSet rs = null;
+		BoardDTO dto = new BoardDTO();
+
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery(); // select는 Query
+
+			if (rs.next()) {
+				dto.setBoardNo(rs.getInt("board_no")); 
+				dto.setBoardTitle(rs.getString("board_title"));
+				dto.setBoardContent(rs.getString("board_content"));
+			
+			}
+
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+		}
+
+		return dto;
+	}
+
 
 }

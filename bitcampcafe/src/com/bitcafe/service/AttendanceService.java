@@ -6,29 +6,29 @@ import java.util.List;
 
 import javax.naming.NamingException;
 
-import com.bitcafe.DAO.attendanceDAO;
-import com.bitcafe.DTO.attendanceDTO;
+import com.bitcafe.DAO.AttendanceDAO;
+import com.bitcafe.DTO.AttendanceDTO;
 import com.bitcafe.util.DBConnection;
 
-public class attendanceService {
+public class AttendanceService {
 
-	private static attendanceService service = new attendanceService();
-	public static attendanceService getService()
+	private static AttendanceService service = new AttendanceService();
+	public static AttendanceService getService()
 	{
 		return service;
 
 	}
-	private attendanceService() {}	
+	private AttendanceService() {}	
 
-	public List<attendanceDTO> list()
+	public List<AttendanceDTO> list()
 	{
 		DBConnection db=DBConnection.gettb();
 		Connection conn=null;
-		List<attendanceDTO> list=null;
+		List<AttendanceDTO> list=null;
 		try { 
 			conn=db.getConnection();
 			conn.setAutoCommit(false);
-			attendanceDAO dao = attendanceDAO.getDAO();
+			AttendanceDAO dao = AttendanceDAO.getDAO();
 			list = dao.attendanceList(conn,0,0);
 			conn.commit();
 
@@ -43,14 +43,14 @@ public class attendanceService {
 
 	}
 
-	public int AttendanceInsert(attendanceDTO dto)
+	public int AttendanceInsert(AttendanceDTO dto)
 	{
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
 		int result=0;
 		try{conn = db.getConnection();
 		conn.setAutoCommit(false);
-		attendanceDAO dao=attendanceDAO.getDAO();
+		AttendanceDAO dao=AttendanceDAO.getDAO();
 		dao.AttendanceInsert(conn, dto);
 
 		conn.commit();
@@ -72,7 +72,7 @@ public class attendanceService {
 		Connection conn = null;
 		int result =0;
 		try { conn=db.getConnection();
-		attendanceDAO dao = attendanceDAO.getDAO();
+		AttendanceDAO dao = AttendanceDAO.getDAO();
 		result = dao.AttendanceDelete(conn, no);
 
 
@@ -87,7 +87,7 @@ public class attendanceService {
 
 	}
 
-	public int AttendanceUpdate(attendanceDTO dto)
+	public int AttendanceUpdate(AttendanceDTO dto)
 	{
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
@@ -95,7 +95,7 @@ public class attendanceService {
 		try{
 
 			conn = db.getConnection();
-			attendanceDAO dao = attendanceDAO.getDAO();
+			AttendanceDAO dao = AttendanceDAO.getDAO();
 			result = dao.AttendanceUpdate(conn,dto);
 
 		}catch(SQLException|NamingException e)
