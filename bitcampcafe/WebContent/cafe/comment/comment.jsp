@@ -6,7 +6,7 @@
 <head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="http://localhost:8088/bitcampcafe/cafe/comment/tempcommentcss.css">
+<link rel="stylesheet" href="http://localhost:8080/bitcampcafe/cafe/comment/tempcommentcss.css">
 <title>Comment</title>
 </head>
 <body>
