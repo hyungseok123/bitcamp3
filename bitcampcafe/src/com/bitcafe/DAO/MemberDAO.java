@@ -21,22 +21,20 @@ public class MemberDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select member_id from member");
 		sql.append(" where member_id = ? ");
-		if(session_member_no != -1) {
-			sql.append(" and member_no = ? ");
-		}
 		boolean result = false;
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, member_id);
-			if(session_member_no != -1) {
-				pstmt.setInt(2, session_member_no);
-			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				String tmp_member_id = rs.getString(1);
-				if(tmp_member_id != null) {
+				String tmp2_member_id = memberIdSearch(conn, session_member_no);
+				if(tmp_member_id != null && tmp_member_id.equals(tmp2_member_id)) {
+					result = false;
+				}
+				else {
 					result = true;
 				}
 			}
@@ -150,16 +148,16 @@ public class MemberDAO {
 		}
 	}
 	
-	public String memberIdSearch(Connection conn, int Member_no) throws SQLException{
+	private String memberIdSearch(Connection conn,int member_no) throws SQLException{
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select member_id from member ");
 		sql.append(" where member_no = ? ");
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String member_id = null; 
+		String member_id = null;
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, Member_no);
+			pstmt.setInt(1, member_no);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				member_id = rs.getString("member_id");
@@ -168,10 +166,10 @@ public class MemberDAO {
 			autoClose(rs);
 			autoClose(pstmt);
 		}
-		return member_id;
+		return member_id; 
 	}
 	
-	private void autoClose(AutoCloseable ac) {
+ 	private void autoClose(AutoCloseable ac) {
 		if(ac != null) try { ac.close(); } catch(Exception e) {}
 	}
 }
