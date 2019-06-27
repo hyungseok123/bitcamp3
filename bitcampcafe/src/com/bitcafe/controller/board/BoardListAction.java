@@ -23,7 +23,7 @@ public class BoardListAction implements Action {
 		request.setAttribute("list", list);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/template/content.jsp?page=/cafe/board/boardlist.jsp");
+		forward.setPath("/cafe/template/main.jsp?page=/cafe/board/boardlist.jsp");
 		return forward;
 	}
 

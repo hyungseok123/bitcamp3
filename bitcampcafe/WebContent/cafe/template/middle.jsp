@@ -7,30 +7,20 @@
 <title>Insert title here</title>
 <style>
 #mid{
-width: 800px;
+	height: auto;
+	width: 100%;
 }
 #aside {
 	float: left;
-	background-color: white;
-	width: 20%;
-	height: 100px;
-	position:relative;
-	left:494px;
-	top:239px;
-	
+	width: 200px;
 }
-
 #content {
-	background-color: green;
-	width: 100%;
-	height:620px;
-	
-    position:relative;
-    left:690px;
-    top:220px;
-    
-
-
+	float: right;
+	border: 1px solid silver;
+	width: 860px;
+	height: auto;
+	padding-bottom: 30px;
+	margin-bottom: 10px;
 }
 </style>
 </head>
