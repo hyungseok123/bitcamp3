@@ -53,16 +53,9 @@ public class BoardService {
 			result = dao.BoardInsertData(conn, dto);
 			conn.commit();
 		} catch (SQLException | NamingException e) {
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-			}
+			try {conn.rollback();} catch (SQLException e1) {}
 		} finally {
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
+			if (conn != null) try {conn.close();} catch (SQLException e) {}
 		}
 		return result;
 	}

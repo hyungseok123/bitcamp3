@@ -79,7 +79,7 @@ public class BoardDAO {
 		sql.append("        ,category_no                 ");
 		sql.append("        ,member_no                   ");
 		sql.append("                                  )  ");
-		sql.append("  values (?, ?, now(), 0, 0, 1,1 )  ");
+		sql.append("  values (?, ?, now(), 0, 0, ?, ? )  ");
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
