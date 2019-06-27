@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>검색결과</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
 	#searchmainpage{
 		width: 800px;
@@ -76,7 +75,7 @@
 <section id="searchmainpage">
 	<div id="searchsubbox">
 		<form method="get" action="searchmain.do" id="searchsubform" name="searchsubform" >
-			<select name="searchcselect1">
+			<select name="searchselect1">
 				<option value="전체게시판">전체게시판</option>
 				<option value="게시판추가">게시판추가</option>
 			</select>
@@ -104,13 +103,13 @@
 			<tbody id="searchsubresult">
 				<c:set var="list" value="${requestScope.list }"/>
 					<c:if test="${list == null }">
-						<tr><td colspan="5">등록된 게시글이 없습니다.</td><tr>
+						<tr><td colspan="4">등록된 게시글이 없습니다.</td><tr>
 					</c:if>
 					<c:if test="${list != null }">
 						<c:forEach var="index" items="${list }">
 							<tr>
 								<td>${index.board_no }</td>
-								<td>${index.board_title }</td>
+								<td><a href="boarddetail.do?no=${index.board_no }">${index.board_title }</a></td>
 								<td>${index.member_nickname }</td>
 								<td>${index.board_writedate }</td>
 								<td>${index.board_viewcount }</td>
