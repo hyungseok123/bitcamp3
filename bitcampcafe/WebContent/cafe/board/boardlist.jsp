@@ -10,36 +10,23 @@
 <body>
 	<div id="wrap" align="center"></div>
 	<h1>게시글 목록</h1>
-	<form method="post" action="boardinsert.do">
-		<input type="hidden" name="command" value="board_write">
 		<table>
 			<c:forEach var="data" items="${requestScope.list }">
 				<tr>
-					<td>번호</td>
-					<td>${data.board_no }</td>
+				  <td>${data.board_no }</td>
+				  <td><a href="boarddetail.do?no=${data.board_no }"><c:out default="null" value="${data.board_title }"></c:out></a></td>
+				  <td><c:out default="null" value="${data.member_nickname }"></c:out></td>
+				  <td><c:out default="null" value="${data.board_writedate }"></c:out></td>
+				  <td><c:out default="null" value="${data.board_viewcount }"></c:out></td>
 				</tr>
-				<tr>
-					<td>제 목</td>
-					<td><input name="title" type="text" size="70" maxlength="100"
-						value="${data.board_title }" /></td>
-				</tr>
-				<tr>
-					<td>내 용</td>
-					<td><input name="title" type="text" size="70" maxlength="100"
-						value="${data.board_content }" /></td>
-				</tr>
-				<tr>
-					<td>작성일</td>
-					<td><input name="title" type="text" size="70" maxlength="100"
-						value="${data.board_writedate }" /></td>
-				</tr>
-				<tr align="center" valign="middle">
-					<td colspan="5">  <input
-						type="submit" value="글쓰기">  
-					</td>
+				<tr align="center" valign="baseline">
+				  <td colspan="4">
+				  </td>
+				  <td colspan="1"> 
+					 <a href="boardinsert.do"><button>글쓰기</button></a>  
+				  </td>
 				</tr>
 			</c:forEach>
 		</table>
-	</form>
 </body>
 </html>

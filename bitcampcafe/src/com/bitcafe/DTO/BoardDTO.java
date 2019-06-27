@@ -13,8 +13,6 @@ public class BoardDTO {
 	private int category_no;
 	private int member_no;
 	private String member_nickname;
-	
-	
 	public BoardDTO() {
 		super();
 	}

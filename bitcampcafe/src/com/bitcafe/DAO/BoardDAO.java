@@ -14,21 +14,21 @@ public class BoardDAO {
 	public List<BoardDTO> BoardgetList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-
 		StringBuilder sql = new StringBuilder();
 		ArrayList<BoardDTO> arr = new ArrayList<>();
-
-		sql.append(" select                   ");
-		sql.append("        board_no           ");
-		sql.append("        ,board_title       ");
-		sql.append("        ,board_content     ");
-		sql.append("        ,board_writedate  ");
-		sql.append("        ,board_viewcount   ");
-		sql.append("        ,board_favcount    ");
-		sql.append("        ,category_no        ");
-		sql.append("        ,member_no          ");
-		sql.append(" from  board                ");
-
+		sql.append(" select                        ");
+		sql.append("        board_no               ");
+		sql.append("        ,board_title           ");
+		sql.append("        ,board_content         ");
+		sql.append("        ,board_writedate       ");
+		sql.append("        ,board_viewcount       ");
+		sql.append("        ,board_favcount        ");
+		sql.append("        ,category_no           ");
+		sql.append("        ,m.member_no           ");
+		sql.append(" 		,m.member_nickname     ");
+		sql.append(" from board b join member m    ");
+		sql.append(" on b.member_no = m.member_no  ");
+		sql.append(" order by board_writedate desc ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
@@ -42,23 +42,14 @@ public class BoardDAO {
 				data.setBoard_favcount(rs.getInt("board_favcount"));
 				data.setCategory_no(rs.getInt("category_no"));
 				data.setMember_no(rs.getInt("member_no"));
+				data.setMember_nickname(rs.getString("member_nickname"));
 				arr.add(data);
 			}
-
 		} catch (SQLException e) {
 			System.out.println(e);
-
 		} finally {
-			if (rs != null)
-				try {
-					rs.close();
-				} catch (SQLException e) {
-				}
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (SQLException e) {
-				}
+			if (rs != null) try {rs.close();} catch (SQLException e) {}
+			if (pstmt != null) try {pstmt.close();} catch (SQLException e) {}
 		}
 		return arr;
 
@@ -90,6 +81,11 @@ public class BoardDAO {
 		}
 
 		return result;
+	}
+
+	public BoardDTO BoardGetDetail(Connection conn) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
