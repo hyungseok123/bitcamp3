@@ -24,7 +24,6 @@ public class BoardInsertAction implements Action {
 		ForwardAction act = new ForwardAction();
 		act.setRedirect(false);
 		act.setPath("/cafe/board/boardinsert.jsp");
-		
 		return act;
 	}
 

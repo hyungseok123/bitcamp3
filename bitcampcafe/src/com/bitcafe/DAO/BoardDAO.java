@@ -146,5 +146,21 @@ public class BoardDAO {
 		}
 		return result;
 	}
-
+	public int BoardDeleteData(Connection conn, int board_no) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" delete from board  ");
+		sql.append(" where board_no = ? ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, board_no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}
 }
