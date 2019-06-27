@@ -38,7 +38,7 @@ public class BoardDAO {
 		sql.append(" on b.member_no = m.member_no     ");
 		sql.append("              join category c     ");
 		sql.append(" on b.category_no = c.category_no ");
-		sql.append(" order by board_writedate desc    ");
+		sql.append(" order by b.board_no desc         ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();

@@ -31,11 +31,10 @@
 .board_list_tr td {
 	padding: 5px;
 }
-.board_list_table_btn a {
-	position: relative;
-	left: 110px;
+.board_list_btn {
+	margin-left: 780px;
 }
-.board_list_table_btn a button {
+.board_list_btn button {
 	margin-top: 10px;
 	width: 70px;
 	height: 30px;
@@ -55,16 +54,10 @@
 				  <td><c:out default="null" value="${data.board_writedate }"></c:out></td>
 				  <td><c:out default="null" value="${data.board_viewcount }"></c:out></td>
 				</tr>
-			</c:forEach>
-				<tr align="center" valign="baseline">
-				  <td colspan="3">
-				  </td>
-				  <td class="board_list_table_btn" colspan="2"> 
-					 <a href="boardinsert.do"><button>글쓰기</button></a>  
-				  </td>
-				</tr>
+			</c:forEach>  
 		  </tbody>
 		</table>
+	  <a class="board_list_btn" href="boardinsert.do"><button>글쓰기</button></a>
 	</div>
 </body>
 </html>
