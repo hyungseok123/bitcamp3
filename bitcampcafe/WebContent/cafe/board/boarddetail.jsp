@@ -9,18 +9,23 @@
 <link rel="stylesheet" href="http://localhost:8080/bitcampcafe/cafe/comment/tempcommentcss.css">
 <title>Detail</title>
 <style>
+.detail_all_wrap {
+	padding: 10px;
+}
 #board_detail_wrap {
-	width: 860px;
+	width: 840px;
 }
 .detail_ul li {
-	border-bottom: 1px solid blue;
+	border-bottom: 1px solid silver;
 }
 .detail_content {
 	margin: 10px 0px;
 	height: 500px;
 }
 .detail_comment_views {
-	padding: 0 10px;
+	padding: 10px 0;
+	border-bottom: 1px solid silver;
+	margin-bottom: 10px;
 }
 .detail_subcontent_wrap {
 	width: 100%;
@@ -39,6 +44,7 @@
 </style>
 </head>
 <body>
+<div class="detail_all_wrap">
   <div id="board_detail_wrap">
     <ul class="detail_ul">
       <li>
@@ -68,6 +74,7 @@
   </div>
   <div class="load_comment"></div>
   <span class="post_board_no">${dto.board_no }</span>
+</div>
   <script>
  $('.post_board_no').hide();
 	$.ajax({
