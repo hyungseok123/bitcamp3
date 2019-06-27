@@ -11,7 +11,8 @@
 </head>
 <body>
 <h1>COMMENT</h1>
-<div id="comment_wrap_all"><ul>
+<div id="comment_wrap_all">
+<!-- 댓글 "전체 댓글 수" | 등록순, 최신순 | 조회수 --><ul>
 <c:forEach var="list" items="${list }">
 	<li class="commentlist">
 	  <c:choose>
@@ -57,7 +58,7 @@
 	        <c:choose>
 	  	  	<c:when test="${loginNo == list.member_no }">
 	          <a class="up" href="#"><span>${list.comment_no }</span><button id="modify">수정</button></a>
-	          <a class="de" href="commentdelete.do?dno=${list.comment_no }"><button id="delete">삭제</button></a>
+	          <a class="de" href="commentdelete.do?dno=${list.comment_no }&bno=${list.board_no }"><button id="delete">삭제</button></a>
 	  	    </c:when>
 	  	    <c:otherwise>
 	          <a class="up"></a>

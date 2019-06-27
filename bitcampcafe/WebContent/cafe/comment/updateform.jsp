@@ -12,6 +12,7 @@
   <form id="updateform" method="post" action="commentupdateresult.do">
    	<textarea name="content" cols="100" rows="5">${dto.comment_content }</textarea>
    	<input type="hidden" name="comment_no" value="${dto.comment_no }">
+   	<input type="hidden" name="board_no" value="${dto.board_no }">
    	<input id="submitbutton" type="submit" value="등록">
   </form>
 </body>
