@@ -38,7 +38,7 @@ public class BoardDetailAction implements Action {
 			request.setAttribute("commentTotalCount", commentTotalCount);
 			request.setAttribute("loginNo", loginInfo);
 			forward.setRedirect(false);
-			forward.setPath("/cafe/template/content.jsp?page=/cafe/board/boarddetail.jsp");
+			forward.setPath("/cafe/template/main.jsp?page=/cafe/board/boarddetail.jsp");
 		}
 		return forward;
 	}

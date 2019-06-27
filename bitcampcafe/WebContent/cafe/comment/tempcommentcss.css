@@ -1,4 +1,4 @@
-* {
+/* * {
 	margin: 0;
 	padding: 0;
 }
@@ -8,10 +8,7 @@ ul li {
 }
 
 #comment_wrap_all {
-	margin: 10px;
-	padding: 10px;
 	width: 860px;
-	border: 1px solid black;
 }
 
 #comment_wrap {
@@ -57,4 +54,4 @@ textarea {
 
 .comment_level {
 	padding-left: 30px;
-}
+} */

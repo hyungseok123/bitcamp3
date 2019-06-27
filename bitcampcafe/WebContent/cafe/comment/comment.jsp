@@ -6,11 +6,68 @@
 <head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="http://localhost:8080/bitcampcafe/cafe/comment/tempcommentcss.css">
 <title>Comment</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+ul li {
+	list-style: none;
+}
+
+#comment_wrap_all {
+	width: 860px;
+}
+
+#comment_wrap {
+	margin: 5px 0;
+	padding-bottom: 8px;
+	border-bottom: 1px solid blue;
+	width: 100%;
+	display: inline-block;
+}
+
+#comment_content_wrap {
+	float: left;
+}
+
+#comment_btn_wrap {
+	float: right;
+}
+
+form {
+	height: 80px;
+	width: 100%;
+	display: inline-block;
+}
+
+form {
+	display: inline-block;
+}
+
+textarea {
+	float: left;
+	height: 80px;
+	width: 750px;
+	vertical-align: top;
+}
+
+#submitbutton {
+	float: right;
+	height: 83px;
+	width: 100px;
+	border: 1px solid red;
+	vertical-align: top;
+}
+
+.comment_level {
+	padding-left: 30px;
+}
+</style>
 </head>
 <body>
-<h1>COMMENT</h1>
 <div id="comment_wrap_all"><ul>
 <c:forEach var="list" items="${list }">
 	<li class="commentlist">

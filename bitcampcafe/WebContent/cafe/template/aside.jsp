@@ -6,16 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-#information{
-border: 1px solid;
-height: 175%;
-
+#information {
+	border: 1px solid silver;
+	height: 20%;
+	margin-bottom: 5%
 }
-#category{
-border: 1px solid;
-height: 420%;
+#category {
+	border: 1px solid silver;
+	height: 75%;
+		margin-bottom: 10px;
 }
-
 </style>
 </head>
 <body>

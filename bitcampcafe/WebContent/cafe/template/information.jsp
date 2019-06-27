@@ -5,8 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
+<style>
+	.aside_information {
+		height: 200px;
+	}
+</style>
 </head>
 <body>
-<div>여기는 나의 활동입니다.</div>
+<div class="aside_information">여기는 나의 활동입니다.</div>
 </body>
 </html>
