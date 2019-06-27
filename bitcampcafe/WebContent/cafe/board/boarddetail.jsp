@@ -8,39 +8,30 @@
 <title>Insert title here</title>
 <c:set var="data" value="${requestScope.data}" />
 </head>
-
-<form method="post" action="boarddetail.do" >
-	<table >
-		<tr>
-			<td>작성자</td>
-			<td>${board.member_no}</td>
-		</tr>
-			<tr>
-			<td>
-				제 목
-			</td>
-			<td>
-				<input name="board_title" type="text" size="70" maxlength="100" 
-					value="${board.board_title}"/>
-			</td>		
-		</tr>
-		<tr>
-			<td>
-				내 용
-			</td>
-			<td>
-				<textarea name="board_content" cols="72" rows="20">
-					${board.board_content}
-				</textarea>			
-			</td>		
-		</tr>
-		 <tr align="center" valign="middle">
-			<td colspan="5">
-				<input type="reset" value="수정" >
-				<input type="submit" value="확인">
-			</td>
-		</tr>
-	</table>	
-	</form> 
-
+<body>
+<div id="board_detail_wrap">
+    <ul>
+      <li>
+        <c:out default="null" value="${dto.board_title }"></c:out>
+		<c:out default="null" value="${dto.category_name }"></c:out>     
+		<c:out default="null" value="${dto.board_writedate }"></c:out> 
+      </li>
+      <li> 
+		<c:out default="null" value="${dto.member_nickname }"></c:out> 
+      </li>
+      <li>
+		<c:out default="null" value="${dto.board_content }"></c:out> 
+      </li>
+    </ul>
+  </div>
+  <div>
+	<c:set var="page" value="${param.comment }"></c:set>
+	<c:if test="${comment!=null}">
+		<jsp:include page="${comment }"></jsp:include>
+	</c:if>
+	<c:if test="${comment==null }">
+		<jsp:include page="/cafe/template/nopage.jsp"></jsp:include>
+	</c:if>
+  </div>
+</body>
 </html>

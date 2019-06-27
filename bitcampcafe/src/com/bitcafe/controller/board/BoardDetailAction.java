@@ -20,13 +20,11 @@ public class BoardDetailAction implements Action {
 		int board_no = 0;
 		String no = request.getParameter("no");
 		if (no != null && !no.equals("")) board_no = Integer.parseInt(no);
-		BoardDTO data = service.BoardDetailService(board_no);
-		request.setAttribute("data", data);
-		
-		
+		BoardDTO dto = service.BoardDetailService(board_no);
+		request.setAttribute("dto", dto);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/board/boarddetail.jsp");
+		forward.setPath("/cafe/template/content.jsp?page=/cafe/board/boarddetail.jsp");
 		return forward;
 	}
 

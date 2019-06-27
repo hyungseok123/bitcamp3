@@ -20,15 +20,20 @@ public class CommentListAction implements Action {
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		MemberDTO loginInfo = (MemberDTO) session.getAttribute("memberInfo");
-		int member_no = loginInfo.getMember_no();
 		CommentService service = CommentService.getService();
-		List<CommentDTO> list = service.commentList();
-		request.setAttribute("list", list);
-		request.setAttribute("loginNo", member_no);
 		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(false);
-		forward.setPath("/cafe/comment/comment.jsp");
+		MemberDTO loginInfo = (MemberDTO) session.getAttribute("memberInfo");
+		if (loginInfo == null) {
+			forward.setRedirect(true);
+			forward.setPath("login.do");
+		} else {
+			int member_no = loginInfo.getMember_no();
+			List<CommentDTO> list = service.commentList();
+			request.setAttribute("list", list);
+			request.setAttribute("loginNo", member_no);
+			forward.setRedirect(false);
+			forward.setPath("/cafe/comment/comment.jsp");
+		}
 		return forward;
 	}
 

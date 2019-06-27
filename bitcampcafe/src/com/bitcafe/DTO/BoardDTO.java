@@ -13,6 +13,7 @@ public class BoardDTO {
 	private int category_no;
 	private int member_no;
 	private String member_nickname;
+	private String category_name;
 	public BoardDTO() {
 		super();
 	}
@@ -28,6 +29,12 @@ public class BoardDTO {
 		this.category_no = category_no;
 		this.member_no = member_no;
 		this.member_nickname = member_nickname;
+	}
+	public String getCategory_name() {
+		return category_name;
+	}
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
 	}
 	public int getBoard_no() {
 		return board_no;
