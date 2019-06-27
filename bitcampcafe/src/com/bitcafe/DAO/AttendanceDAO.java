@@ -215,13 +215,13 @@ public class AttendanceDAO {
 		
 		
 	}
-	public int AttendanceUpdate(Connection conn, AttendanceDTO dto) throws SQLException
+	public int AttendanceUpdate(Connection conn, int attendance_no, String attendance_content) throws SQLException
     {
     	StringBuilder sql = new StringBuilder();
     	sql.append("  update attendance                                ");
     	sql.append("      set                                           ");
     	sql.append("      attendance_no=?                               ");
-    	sql.append("     ,attendanco_content=?, attendance_writedate=?   ");
+    	sql.append("     ,attendanco_content=?  ");
     	sql.append("       where member_no=?        ");
     	int result=0;
     	try(
@@ -229,10 +229,9 @@ public class AttendanceDAO {
     			PreparedStatement pstmt = conn.prepareStatement(sql.toString());)
     	{
     		
-    		pstmt.setInt(1, dto.getAttendance_no());
-    		pstmt.setString(2, dto.getAttendance_content());
-    		pstmt.setDate(3, dto.getAttendance_writedate());
-    	   pstmt.setInt(4, dto.getMember_no());
+    		pstmt.setInt(1, attendance_no);
+    		pstmt.setString(2, attendance_content);
+    		
     	   result = pstmt.executeUpdate();
     	   
     	}

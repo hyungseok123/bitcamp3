@@ -128,7 +128,7 @@ public class AttendanceService {
 
 	}
 
-	public int AttendanceUpdate(AttendanceDTO dto)
+	public int AttendanceUpdate(int attendance_no, String attendance_content)
 	{
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
@@ -137,7 +137,7 @@ public class AttendanceService {
 
 			conn = db.getConnection();
 			AttendanceDAO dao = AttendanceDAO.getDAO();
-			result = dao.AttendanceUpdate(conn,dto);
+			result = dao.AttendanceUpdate(conn,attendance_no,attendance_content);
 
 		}catch(SQLException|NamingException e)
 		{

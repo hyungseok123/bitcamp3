@@ -16,14 +16,15 @@ public class AttendanceUpdateAction implements Action {
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int no = Integer.parseInt(request.getParameter("no"));
+		int attendance_no = Integer.parseInt(request.getParameter("attendance_no"));
+		System.out.println(attendance_no);
 		AttendanceService service = AttendanceService.getService();
-		AttendanceDTO dto = (AttendanceDTO)service.list(startrow, endrow);
+		AttendanceDTO dto = (AttendanceDTO)service.list();
 		request.setAttribute("dto", dto);
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("cafe/attendance/attendanceupdate.do");
+		forward.setPath("/cafe/attendance/attendanceupdate.do");
 		
 		
 
