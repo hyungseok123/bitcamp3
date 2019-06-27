@@ -75,7 +75,7 @@ public class BoardService {
 			DBConnection db = DBConnection.gettb();
 			conn = db.getConnection();
 			conn.setAutoCommit(false);
-			BoardDAO dao = new BoardDAO();
+			BoardDAO dao = BoardDAO.getDao();
 			dto = dao.BoardGetDetail(conn, board_no);
 			conn.commit();
 		} catch (SQLException | NamingException e) {
