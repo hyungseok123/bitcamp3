@@ -10,7 +10,16 @@ import java.util.List;
 import com.bitcafe.DTO.BoardDTO;
 
 public class BoardDAO {
+	
+	private static BoardDAO dao = new BoardDAO();
 
+	public static BoardDAO getDao() {
+		return dao;
+	}
+
+	private BoardDAO() {
+	}
+	
 	public List<BoardDTO> BoardgetList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -59,21 +68,27 @@ public class BoardDAO {
 
 	}
 
-	public int BoardInsertData(Connection conn, String title, String content) {
+	public int BoardInsertData(Connection conn, BoardDTO dto) {
 
 		PreparedStatement pstmt = null;
 
 		StringBuilder sql = new StringBuilder();
-		sql.append(" insert into board               ");
-		sql.append("     (board_title , board_content) ");
-		sql.append(" values ( ?,? )                  ");
+		sql.append(" insert into board             ");
+		sql.append("  (                                ");
+		sql.append("         board_title                ");
+		sql.append("        ,board_content              ");
+		sql.append("        ,board_writedate            ");
+		sql.append("                             )     ");
+		sql.append("  values (?, ?, now() )            ");
+
 		int result = 0;
 
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, title);
-			pstmt.setString(2, content);
+			pstmt.setString(1, dto.getBoard_title());
+			pstmt.setString(2, dto.getBoard_content());
 			result = pstmt.executeUpdate();
+
 		} catch (SQLException e) {
 			System.out.println(e);
 		} finally {

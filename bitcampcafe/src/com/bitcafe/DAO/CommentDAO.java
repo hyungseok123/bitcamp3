@@ -15,15 +15,17 @@ public class CommentDAO {
 	public static CommentDAO getDAO() {
 		return dao;
 	}
-	public int commentTotalCount(Connection conn) throws SQLException {
+	public int commentTotalCount(Connection conn, int board_no) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select count(*) ");
-		sql.append(" from comment    ");
+		sql.append(" select count(*)    ");
+		sql.append(" from comment       ");
+		sql.append(" where board_no = ? ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, board_no);
 			rs = pstmt.executeQuery();
 			if (rs.next()) result = rs.getInt(1);
 		} catch (SQLException e) {
@@ -34,7 +36,7 @@ public class CommentDAO {
 		}
 		return result;
 	}
-	public List<CommentDTO> commentList(Connection conn) throws SQLException {
+	public List<CommentDTO> commentList(Connection conn, int board_no) throws SQLException {
 		List<CommentDTO> result = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -50,10 +52,12 @@ public class CommentDAO {
 		sql.append(" 		, m.member_nickname      ");
 		sql.append(" from comment c join member m    ");
 		sql.append(" on c.member_no = m.member_no    ");
+		sql.append(" where c.board_no = ?            ");
 		sql.append(" order by comment_parent asc     ");
 		sql.append(" 		, comment_order asc      ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, board_no);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				CommentDTO dto = new CommentDTO();
