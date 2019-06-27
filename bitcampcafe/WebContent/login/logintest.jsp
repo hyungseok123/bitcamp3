@@ -7,6 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>테스트 페이지</title>
+<style>
+	a{
+		font-size: 20px;
+		margin: 20px;
+		display: block;
+	}
+</style>
 </head>
 <body>
 <h1>테스트 페이지(main연결하면 삭제할것)</h1>
@@ -19,5 +26,7 @@
 <a href="memberupdate.do">회원수정</a>
 <a href="memberdelete.do">회원탈퇴</a>
 <a href="logout.do">로그아웃</a>
+<a href="searchmain.do">검색페이지</a>
+<a href="boardlist.do">게시판 리스트페이지</a>
 </body>
 </html>

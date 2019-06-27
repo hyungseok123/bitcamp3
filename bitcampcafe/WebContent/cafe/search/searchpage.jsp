@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>검색결과</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <style>
 	#searchmainpage{
 		width: 800px;
@@ -104,7 +103,7 @@
 			<tbody id="searchsubresult">
 				<c:set var="list" value="${requestScope.list }"/>
 					<c:if test="${list == null }">
-						<tr><td colspan="5">등록된 게시글이 없습니다.</td><tr>
+						<tr><td colspan="4">등록된 게시글이 없습니다.</td><tr>
 					</c:if>
 					<c:if test="${list != null }">
 						<c:forEach var="index" items="${list }">
