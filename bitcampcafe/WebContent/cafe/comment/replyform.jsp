@@ -14,8 +14,8 @@
     	  <textarea name="content" cols="100" rows="5"></textarea>
     	  <input type="hidden" name="parent" value="${dto.comment_parent }">
       	  <input type="hidden" name="depth" value="1">
-      	  <input type="hidden" name="board_no" value="${dto.board_no }">			<!-- 게시판 번호 :: 수정 필요 -->
-    	  <input type="hidden" name="member_no" value="${loginNo.member_no }">		<!-- 회원번호    :: 수정 필요 -->
+      	  <input type="hidden" name="board_no" value="${dto.board_no }">
+    	  <input type="hidden" name="member_no" value="${loginNo.member_no }">
     	  <input id="submitbutton" type="submit" value="등록">
 	    </form>
 	</div>

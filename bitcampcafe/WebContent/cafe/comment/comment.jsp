@@ -11,8 +11,7 @@
 </head>
 <body>
 <h1>COMMENT</h1>
-<div id="comment_wrap_all">
-<!-- 댓글 "전체 댓글 수" | 등록순, 최신순 | 조회수 --><ul>
+<div id="comment_wrap_all"><ul>
 <c:forEach var="list" items="${list }">
 	<li class="commentlist">
 	  <c:choose>
@@ -81,8 +80,8 @@
    	  <textarea name="content" cols="100" rows="5"></textarea>
    	  <input type="hidden" name="parent" value="0">
    	  <input type="hidden" name="depth" value="0">
-   	  <input type="hidden" name="board_no" value="${board_no }">				<!-- 게시판 번호 :: 수정 필요 -->
-   	  <input type="hidden" name="member_no" value="${loginNo }">				<!-- 회원 번호   :: 수정 필요 -->
+   	  <input type="hidden" name="board_no" value="${board_no }">
+   	  <input type="hidden" name="member_no" value="${loginNo }">
    	  <input id="submitbutton" type="submit" value="등록">
     </form>
   </div>
