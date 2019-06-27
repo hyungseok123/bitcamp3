@@ -17,9 +17,23 @@ public class AttendanceInsertAction implements Action {
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(false);
-		forward.setPath("/cafe/attendance/attendanceinsert.jsp");
+		    
+		   HttpSession session=    request.getSession();
+           MemberDTO dto=(MemberDTO) session.getAttribute("memberInfo");		     
+   		ForwardAction forward = new ForwardAction();
+
+           if(dto==null)
+		  {
+              forward.setRedirect(true);
+              forward.setPath("login.do");
+		  }
+		  else
+		  {
+				forward.setRedirect(false);
+				forward.setPath("/cafe/attendance/attendanceinsert.jsp");
+		  }
+		
+		
 	return forward;	
 }
 	

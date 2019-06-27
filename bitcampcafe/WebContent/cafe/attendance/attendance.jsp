@@ -13,11 +13,24 @@
 
 <div>
 
-
-
-<c:out value="hi"></c:out>
-<a href="attendanceupdate.do">수정하기</a>
+<table>
+ <thead>
+ <tr><th>내용</th></tr>
+ </thead>
+ 
+ <tbody>
+ <c:forEach var="dto" items="${requestScope.list }">
+ 
+ <tr><td>${dto.member_no } </td></tr>
+ <tr><td>${dto.attendance_no }</td></tr>
+ <tr><td>${dto.attendance_content }</td></tr>
+ <tr><td>${dto.attendance_writedate }</td></tr>
+ </c:forEach>
+ <a href="attendanceupdate.do">수정하기</a>
 <a href="attendancedelete.do">삭제하기</a>
+ 
+ </tbody>
+ 
 
 
 </div>

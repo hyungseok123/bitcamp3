@@ -18,12 +18,12 @@ public class AttendanceUpdateAction implements Action {
 		// TODO Auto-generated method stub
 		int no = Integer.parseInt(request.getParameter("no"));
 		AttendanceService service = AttendanceService.getService();
-		AttendanceDTO dto = (AttendanceDTO)service.list();
+		AttendanceDTO dto = (AttendanceDTO)service.list(startrow, endrow);
 		request.setAttribute("dto", dto);
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("cafe/update.do");
+		forward.setPath("cafe/attendance/attendanceupdate.do");
 		
 		
 
