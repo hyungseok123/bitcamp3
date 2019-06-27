@@ -30,7 +30,7 @@ public class BoardService {
 			DBConnection db = DBConnection.gettb();
 			conn = db.getConnection();
 			conn.setAutoCommit(false);
-			BoardDAO dao = new BoardDAO();
+			BoardDAO dao = BoardDAO.getDao();
 			list = dao.BoardgetList(conn);
 			conn.commit();
 		} catch (SQLException | NamingException e) {
@@ -42,44 +42,32 @@ public class BoardService {
 		return list;
 	}
 	
-	public void BoardInsertService(String title, String content) {
+	public int BoardInsertService(BoardDTO dto) {
+
+		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
+		int result = 0;
 		try {
-			conn = DBConnection.gettb().getConnection();
+			conn = db.getConnection();
 			conn.setAutoCommit(false);
-			BoardDAO dao = new BoardDAO();
-			int result = dao.BoardInsertData(conn, title, content);
-
+			BoardDAO dao = BoardDAO.getDao();
+			result = dao.BoardInsertData(conn, dto);
 			conn.commit();
-
-		} catch (SQLException e) {
-			System.out.println(e);
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-			}
-		} catch (NamingException e) {
-			System.out.println(e);
-			try {
-				conn.rollback();
-			} catch (SQLException e1) {
-			}
-		} catch (RuntimeException e) {
-			System.out.println(e);
+		} catch (SQLException | NamingException e) {
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
 			}
 		} finally {
-
 			if (conn != null)
 				try {
 					conn.close();
 				} catch (SQLException e) {
 				}
 		}
-
+		return result;
 	}
+
 	public BoardDTO BoardDetailService(int board_no) {
 		Connection conn = null;
 		BoardDTO dto = new BoardDTO();
