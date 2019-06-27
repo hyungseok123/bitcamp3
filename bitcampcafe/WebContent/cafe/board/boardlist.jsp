@@ -19,6 +19,7 @@
 				  <td><c:out default="null" value="${data.board_writedate }"></c:out></td>
 				  <td><c:out default="null" value="${data.board_viewcount }"></c:out></td>
 				</tr>
+			</c:forEach>
 				<tr align="center" valign="baseline">
 				  <td colspan="4">
 				  </td>
@@ -26,7 +27,6 @@
 					 <a href="boardinsert.do"><button>글쓰기</button></a>  
 				  </td>
 				</tr>
-			</c:forEach>
 		</table>
 </body>
 </html>

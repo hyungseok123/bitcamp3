@@ -71,10 +71,13 @@
 	조회수(<c:out default="null" value="${dto.board_viewcount }"></c:out>)
   </div>
   <div class="load_comment"></div>
+  <span class="post_board_no">${dto.board_no }</span>
   <script>
+ $('.post_board_no').hide();
 	$.ajax({
 	    url      : "commentlist.do",
 	    type     : "GET",
+		data     : "board_no="+ $('.post_board_no').text(),
 	    dataType : "html",
 	    success  : function(data) {
 	        	       $('.load_comment').append(data);

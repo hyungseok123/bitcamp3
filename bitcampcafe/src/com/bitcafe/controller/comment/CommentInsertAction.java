@@ -26,6 +26,7 @@ public class CommentInsertAction implements Action {
 		int bno = 0;
 		String no = request.getParameter("board_no");
 		if (no != null && !no.equals("")) bno = Integer.parseInt(no);
+		System.out.println(bno);
 	// 로그인 정보 받아오기
 		HttpSession session = request.getSession();
 		MemberDTO loginInfo = (MemberDTO) session.getAttribute("memberInfo");

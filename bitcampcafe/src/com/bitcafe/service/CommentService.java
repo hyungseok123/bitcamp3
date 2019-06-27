@@ -16,7 +16,7 @@ public class CommentService {
 		return service;
 	}
 	private CommentService() {}
-	public int commentTotalCount() {
+	public int commentTotalCount(int board_no) {
 		int result = 0;
 		Connection conn = null;
 		try {
@@ -24,7 +24,7 @@ public class CommentService {
 			conn = db.getConnection();
 			conn.setAutoCommit(false);
 			CommentDAO dao = CommentDAO.getDAO();
-			result = dao.commentTotalCount(conn);
+			result = dao.commentTotalCount(conn, board_no);
 			conn.commit();
 		} catch(SQLException| NamingException e) {
 			System.out.println(e);
@@ -34,14 +34,14 @@ public class CommentService {
 		}
 		return result;
 	}
-	public List<CommentDTO> commentList() {
+	public List<CommentDTO> commentList(int board_no) {
 	    List<CommentDTO> result = null;
 		Connection conn = null;
 		try {
 			DBConnection db = DBConnection.gettb();
 			conn = db.getConnection();
 			CommentDAO dao = CommentDAO.getDAO();
-			result = dao.commentList(conn);
+			result = dao.commentList(conn, board_no);
 		} catch(SQLException| NamingException e) {
 			System.out.println(e);
 			try{ conn.rollback();} catch(SQLException e1){}

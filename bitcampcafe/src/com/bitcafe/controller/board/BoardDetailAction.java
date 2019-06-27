@@ -5,8 +5,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bitcafe.DTO.BoardDTO;
+import com.bitcafe.DTO.MemberDTO;
 import com.bitcafe.controller.Action;
 import com.bitcafe.service.BoardService;
 import com.bitcafe.service.CommentService;
@@ -22,13 +24,22 @@ public class BoardDetailAction implements Action {
 		int board_no = 0;
 		String no = request.getParameter("no");
 		if (no != null && !no.equals("")) board_no = Integer.parseInt(no);
-		BoardDTO dto = service.BoardDetailService(board_no);
-		int commentTotalCount = commentService.commentTotalCount();
-		request.setAttribute("dto", dto);
-		request.setAttribute("commentTotalCount", commentTotalCount);
+	// 로그인 정보 받아오기
+		HttpSession session = request.getSession();
 		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(false);
-		forward.setPath("/cafe/template/content.jsp?page=/cafe/board/boarddetail.jsp");
+		MemberDTO loginInfo = (MemberDTO) session.getAttribute("memberInfo");
+		if (loginInfo == null) {
+			forward.setRedirect(true);
+			forward.setPath("login.do");
+		} else {
+			BoardDTO dto = service.BoardDetailService(board_no);
+			int commentTotalCount = commentService.commentTotalCount(board_no);
+			request.setAttribute("dto", dto);
+			request.setAttribute("commentTotalCount", commentTotalCount);
+			request.setAttribute("loginNo", loginInfo);
+			forward.setRedirect(false);
+			forward.setPath("/cafe/template/content.jsp?page=/cafe/board/boarddetail.jsp");
+		}
 		return forward;
 	}
 

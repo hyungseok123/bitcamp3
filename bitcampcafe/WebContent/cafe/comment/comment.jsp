@@ -28,11 +28,11 @@
 	  	  </p>
 	  	  </div>
 	  	    <div id="comment_btn_wrap">
-	    	<a class="re" href="commentlist.do?rno=${list.comment_no }"><button id="reply">댓글</button></a>
+	    	<a class="re" href="#"><span class="comment_reply_no">${list.comment_no }</span><button id="reply">댓글</button></a>
 	        <c:choose>
 	  	  	<c:when test="${loginNo == list.member_no }">
-	    	<a class="up" href="#"><span>${list.comment_no }</span><button id="modify">수정</button></a>
-	    	<a class="de" href="commentdelete.do?dno=${list.comment_no }"><button id="delete">삭제</button></a>
+	    	<a class="up" href="#"><span class="comment_update_no">${list.comment_no }</span><button id="modify">수정</button></a>
+	    	<a class="de" href="commentdelete.do?dno=${list.comment_no }&bno=${list.board_no }"><button id="delete">삭제</button></a>
 	  	    </c:when>
 	  	    <c:otherwise>
 	          <a class="up"></a>
@@ -54,10 +54,10 @@
 	  	  	  </p>
 	  	    </div>
 	  	    <div id="comment_btn_wrap">
-	          <a class="re" href="commentlist.do?rno=${list.comment_no }"><button id="reply">댓글</button></a>
+	          <a class="re" href="#"><span class="comment_reply_no">${list.comment_no }</span><button id="reply">댓글</button></a>
 	        <c:choose>
 	  	  	<c:when test="${loginNo == list.member_no }">
-	          <a class="up" href="#"><span>${list.comment_no }</span><button id="modify">수정</button></a>
+	          <a class="up" href="#"><span class="comment_update_no">${list.comment_no }</span><button id="modify">수정</button></a>
 	          <a class="de" href="commentdelete.do?dno=${list.comment_no }&bno=${list.board_no }"><button id="delete">삭제</button></a>
 	  	    </c:when>
 	  	    <c:otherwise>
@@ -69,18 +69,9 @@
 	      </div>
 		</c:otherwise>
 	  </c:choose>
-<!-- 대댓글 기능 -->
-	  <c:if test="${param.rno == list.comment_no }">
-	    <form id="replyform" method="post" action="commentinsert.do">
-    	  <textarea name="content" cols="100" rows="5"></textarea>
-    	  <input type="hidden" name="parent" value="${list.comment_parent }">
-      	  <input type="hidden" name="depth" value="1">
-      	  <input type="hidden" name="board_no" value="${list.board_no }">		<!-- 게시판 번호 :: 수정 필요 -->
-    	  <input type="hidden" name="member_no" value="${loginNo }">			<!-- 회원번호    :: 수정 필요 -->
-    	  <input id="submitbutton" type="submit" value="등록">
-	    </form>
-	  </c:if>
 	</li>
+<!-- 대댓글 기능 -->
+	<div class="commentreply"></div>
 <!-- 수정 기능 -->
 	<div class="updatecomment"></div>
 </c:forEach>
@@ -90,15 +81,15 @@
    	  <textarea name="content" cols="100" rows="5"></textarea>
    	  <input type="hidden" name="parent" value="0">
    	  <input type="hidden" name="depth" value="0">
-   	  <input type="hidden" name="board_no" value="1">							<!-- 게시판 번호 :: 수정 필요 -->
+   	  <input type="hidden" name="board_no" value="${board_no }">				<!-- 게시판 번호 :: 수정 필요 -->
    	  <input type="hidden" name="member_no" value="${loginNo }">				<!-- 회원 번호   :: 수정 필요 -->
    	  <input id="submitbutton" type="submit" value="등록">
     </form>
   </div>
 </div>
 <script>
-	console.log($('a.up'));
 	$('a > span').hide();
+	// 수정 기능
 	$('a.up').each(function(index, item) {
 		$('a.up').eq(index).on('click', function(){
 			$('.commentlist').show();
@@ -106,12 +97,31 @@
  			$.ajax({
 			    url      : "commentupdate.do",
 			    type     : "GET",
-  			    data     : "comment_no="+ $(this).children('span').text(),
+  			    data     : "comment_no="+ $(this).children('.comment_update_no').text(),
 			    dataType : "html",
 			    success  : function(data) {
 	        	     	       $('.updatecomment').empty();
+  	     	       			   $('.commentreply').empty();
 			        	       $('.updatecomment').eq(index).append(data);
-			    		   },
+			    		   }
+			});
+		});
+	});
+	// 대댓글 기능
+	console.log($('a.re'));
+ 	$('a.re').each(function(index, item) {
+		$('a.re').eq(index).on('click', function(){
+			$('.commentlist').show();
+ 			$.ajax({
+			    url      : "commentreply.do",
+			    type     : "GET",
+   			    data     : "comment_no="+ $(this).children('.comment_reply_no').text(), 
+			    dataType : "html",
+			    success  : function(data) {
+ 	     	       			   $('.updatecomment').empty();
+  	     	       			   $('.commentreply').empty();
+			        	       $('.commentreply').eq(index).append(data); 
+			    		   }
 			});
 		});
 	});
