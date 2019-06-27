@@ -18,13 +18,13 @@ ul li {
 }
 
 #comment_wrap_all {
-	width: 860px;
+	width: 840px;
 }
 
 #comment_wrap {
 	margin: 5px 0;
 	padding-bottom: 8px;
-	border-bottom: 1px solid blue;
+	border-bottom: 1px solid silver;
 	width: 100%;
 	display: inline-block;
 }
@@ -48,9 +48,12 @@ form {
 }
 
 textarea {
+	font-family: '맑은 고딕';
+	font-size: 14px;
+	padding: 5px;
 	float: left;
-	height: 80px;
-	width: 750px;
+	height: 70px;
+	width: 710px;
 	vertical-align: top;
 }
 
@@ -58,7 +61,7 @@ textarea {
 	float: right;
 	height: 83px;
 	width: 100px;
-	border: 1px solid red;
+	border: 1px solid silver;
 	vertical-align: top;
 }
 
