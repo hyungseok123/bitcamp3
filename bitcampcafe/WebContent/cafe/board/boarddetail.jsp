@@ -73,6 +73,17 @@
 	조회수(<c:out default="null" value="${dto.board_viewcount }"></c:out>)
   </div>
   <div class="load_comment"></div>
+  
+  <!--수정 삭제 목록 만들기  -->
+  
+   <a href="boardupdate.do"><button>수정</button></a>
+  <a href="boarddelete.do"><button>삭제
+   <c:if test="${bno >=0}" >
+	</c:if></button></a>
+  	
+  <a href="boardlist.do"><button>목록</button></a>
+  
+  
   <span class="post_board_no">${dto.board_no }</span>
 </div>
   <script>
