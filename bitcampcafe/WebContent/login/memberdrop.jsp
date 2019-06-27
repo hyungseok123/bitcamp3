@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원탈퇴</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	alert('회원 탈퇴되었습니다.');

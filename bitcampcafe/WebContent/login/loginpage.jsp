@@ -32,7 +32,7 @@
 						position.css('color','red');
 					}
 					else { //로그인 성공하면 이동하는 페이지
-						window.location.href="http://localhost:8080/bitcampcafe/login/logintest.jsp";
+						location.href="loginsuccess.do";
 					}
 				}
 				,error:function(data){

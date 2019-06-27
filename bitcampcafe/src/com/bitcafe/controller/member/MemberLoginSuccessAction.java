@@ -17,7 +17,7 @@ public class MemberLoginSuccessAction implements Action {
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/login/logtest.jsp");
+		forward.setPath("/login/logintest.jsp");
 		return forward;
 	}
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>로그아웃</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	alert('로그아웃 되었습니다.');
