@@ -22,11 +22,11 @@ public class SearchService {
 	/**
 	 * 제목+내용 검색
 	 */
-	public List<BoardDTO> searchBoardTitleAndContent(String searchtext) {
+	public List<BoardDTO> searchBoardTitleAndContent(String searchtext, String searchselect1, String searchselect2) {
 		List<BoardDTO> list = null;
 		try(Connection conn = DBConnection.gettb().getConnection()) {
 			SearchDAO searchdao = SearchDAO.getInstance();
-			list = searchdao.searchBoardTitleAndContent(conn, searchtext);
+			list = searchdao.searchBoardTitleAndContent(conn, searchtext, searchselect1, searchselect2);
 		} catch(SQLException | NamingException e) {
 			System.out.println(e);
 		}

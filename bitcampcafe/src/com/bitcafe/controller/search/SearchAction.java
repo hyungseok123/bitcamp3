@@ -18,11 +18,17 @@ public class SearchAction implements Action {
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String searchtext = request.getParameter("searchinput");
-		String searchcselect1 = request.getParameter("searchcselect1");
-		String searchcselect2 = request.getParameter("searchcselect2");
+		String searchselect1 = request.getParameter("searchselect1");
+		String searchselect2 = request.getParameter("searchselect2");
 		
+		if(searchselect1 == null) {
+			searchselect1 = "전체게시판";
+		}
+		if(searchselect2 == null) {
+			searchselect2 = "제목+내용";
+		}
 		SearchService searchservice = SearchService.getInstance();
-		List<BoardDTO> list = searchservice.searchBoardTitleAndContent(searchtext);
+		List<BoardDTO> list = searchservice.searchBoardTitleAndContent(searchtext, searchselect1, searchselect2);
 		request.setAttribute("list", list);
 		request.setAttribute("searchtext", searchtext);
 		

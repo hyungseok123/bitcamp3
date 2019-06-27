@@ -76,7 +76,7 @@
 <section id="searchmainpage">
 	<div id="searchsubbox">
 		<form method="get" action="searchmain.do" id="searchsubform" name="searchsubform" >
-			<select name="searchcselect1">
+			<select name="searchselect1">
 				<option value="전체게시판">전체게시판</option>
 				<option value="게시판추가">게시판추가</option>
 			</select>
@@ -110,7 +110,7 @@
 						<c:forEach var="index" items="${list }">
 							<tr>
 								<td>${index.board_no }</td>
-								<td>${index.board_title }</td>
+								<td><a href="boarddetail.do?no=${index.board_no }">${index.board_title }</a></td>
 								<td>${index.member_nickname }</td>
 								<td>${index.board_writedate }</td>
 								<td>${index.board_viewcount }</td>
