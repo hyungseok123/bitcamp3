@@ -43,7 +43,6 @@ public class BoardService {
 	}
 	
 	public int BoardInsertService(BoardDTO dto) {
-
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
 		int result = 0;
@@ -67,7 +66,7 @@ public class BoardService {
 		}
 		return result;
 	}
-
+	
 	public BoardDTO BoardDetailService(int board_no) {
 		Connection conn = null;
 		BoardDTO dto = new BoardDTO();

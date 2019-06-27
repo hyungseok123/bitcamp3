@@ -14,11 +14,12 @@ public class BoardDTO {
 	private int member_no;
 	private String member_nickname;
 	private String category_name;
+	
 	public BoardDTO() {
 		super();
 	}
 	public BoardDTO(int board_no, String board_title, String board_content, Date board_writedate, int board_viewcount,
-			int board_favcount, int category_no, int member_no, String member_nickname) {
+			int board_favcount, int category_no, int member_no, String member_nickname, String category_name) {
 		super();
 		this.board_no = board_no;
 		this.board_title = board_title;
@@ -29,11 +30,6 @@ public class BoardDTO {
 		this.category_no = category_no;
 		this.member_no = member_no;
 		this.member_nickname = member_nickname;
-	}
-	public String getCategory_name() {
-		return category_name;
-	}
-	public void setCategory_name(String category_name) {
 		this.category_name = category_name;
 	}
 	public int getBoard_no() {
@@ -90,10 +86,12 @@ public class BoardDTO {
 	public void setMember_nickname(String member_nickname) {
 		this.member_nickname = member_nickname;
 	}
-	
-	
-	
-	
+	public String getCategory_name() {
+		return category_name;
+	}
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
+	}
 	 
 	 
 }
