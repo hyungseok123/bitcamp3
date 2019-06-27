@@ -10,10 +10,7 @@
 <title>Detail</title>
 <style>
 #board_detail_wrap {
-	margin: 10px;
-	padding: 10px;
 	width: 860px;
-	border: 1px solid black;
 }
 .detail_ul li {
 	border-bottom: 1px solid blue;
@@ -42,7 +39,6 @@
 </style>
 </head>
 <body>
-  <h1>DETAIL</h1>
   <div id="board_detail_wrap">
     <ul class="detail_ul">
       <li>
