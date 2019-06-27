@@ -70,8 +70,21 @@
 	#searchmainpage a:hover {
 		text-decoration: underline;
 	}
+	
+	#searchpaging {
+		width: 100%;
+		height: 40px;
+		padding-top: 16px;
+		margin-top: 32px;
+		background-color: #f9f9f8;
+	}
 </style>
 <body>
+<c:set var="totalpage" value="${requestScope.totalpage }"/>
+<c:set var="startblock" value="${requestScope.startblock }"/>
+<c:set var="endblock" value="${requestScope.endblock }"/>
+<c:set var="blocksize" value="${requestScope.blocksize }"/>
+<c:set var="currpage" value="${requestScope.currpage }"/>
 <section id="searchmainpage">
 	<div id="searchsubbox">
 		<form method="get" action="searchmain.do" id="searchsubform" name="searchsubform" >
@@ -102,7 +115,7 @@
 			</thead>
 			<tbody id="searchsubresult">
 				<c:set var="list" value="${requestScope.list }"/>
-					<c:if test="${list == null }">
+					<c:if test="${list == null || empty list } ">
 						<tr><td colspan="4">등록된 게시글이 없습니다.</td><tr>
 					</c:if>
 					<c:if test="${list != null }">
@@ -118,6 +131,15 @@
 					</c:if>
 			</tbody>
 		</table>
+	</div>
+	<div id="searchpaging">
+		<c:if test="${currpage != 1 }">
+			<a href="searchmain.do?currpage=${currpage-1 }">이전으로</a>
+		</c:if>
+			<c:out value="${currpage }"></c:out>
+		<c:if test="${currpage != totalpage }">
+			<a href="searchmain.do?currpage=${currpage+1 }">다음으로</a>
+		</c:if>
 	</div>
 </section>
 </body>
