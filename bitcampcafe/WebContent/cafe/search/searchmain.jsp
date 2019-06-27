@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>검색</title>
 </head>
 <style>
 	#searchmain{
@@ -37,7 +38,7 @@
 <body>
 <div id="searchmain">
 <form method="get" action="searchmain.do" id="searchmainform" name="searchmainform" >
-	<input type="text" id="searchmaininput" name="searchmaininput">
+	<input type="text" id="searchmaininput" name="searchinput">
 	<input type="submit" value="검색" id="searchmainsubmit">
 </form>
 </div>
