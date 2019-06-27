@@ -12,11 +12,9 @@ import com.bitcafe.DTO.BoardDTO;
 public class BoardDAO {
 	
 	private static BoardDAO dao = new BoardDAO();
-
 	public static BoardDAO getDao() {
 		return dao;
 	}
-
 	private BoardDAO() {
 	}
 	
@@ -69,26 +67,28 @@ public class BoardDAO {
 	}
 
 	public int BoardInsertData(Connection conn, BoardDTO dto) {
-
 		PreparedStatement pstmt = null;
-
 		StringBuilder sql = new StringBuilder();
-		sql.append(" insert into board             ");
-		sql.append("  (                                ");
-		sql.append("         board_title                ");
-		sql.append("        ,board_content              ");
-		sql.append("        ,board_writedate            ");
-		sql.append("                             )     ");
-		sql.append("  values (?, ?, now() )            ");
-
+		sql.append(" insert into board                   ");
+		sql.append("  (                                  ");
+		sql.append("         board_title                 ");
+		sql.append("        ,board_content               ");
+		sql.append("        ,board_writedate             ");
+		sql.append("        ,board_viewcount             ");
+		sql.append("        ,board_favcount              ");
+		sql.append("        ,category_no                 ");
+		sql.append("        ,member_no                   ");
+		sql.append("                                  )  ");
+		sql.append("  values (?, ?, now(), 0, 0, 1,1 )  ");
 		int result = 0;
-
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getBoard_title());
 			pstmt.setString(2, dto.getBoard_content());
+			pstmt.setInt(3, dto.getCategory_no());
+			pstmt.setInt(4, dto.getMember_no());
+			
 			result = pstmt.executeUpdate();
-
 		} catch (SQLException e) {
 			System.out.println(e);
 		} finally {
@@ -98,10 +98,9 @@ public class BoardDAO {
 				} catch (SQLException e) {
 				}
 		}
-
 		return result;
 	}
-
+	
 	public BoardDTO BoardGetDetail(Connection conn, int board_no) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
