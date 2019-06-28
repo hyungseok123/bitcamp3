@@ -48,6 +48,32 @@ public class SearchAction implements Action {
 		int blocksize = paging.getBlocksize();
 		
 		List<BoardDTO> list = searchservice.searchBoard(searchtext, searchselect1, searchselect2, startrow, endrow);
+		if(list != null) {
+			if(!"작성자".equals(searchselect2)) {
+				for(int i=0; i<list.size(); i++) { //제목 검색부분 재처리 과정
+					BoardDTO boarddto = list.get(i);
+					String board_title = boarddto.getBoard_title();
+					int searchindex = board_title.indexOf(searchtext);
+					String board_title_result = board_title.substring(0, searchindex);
+					board_title_result += "<span class=\"searchimport\">"+searchtext+"</span>";
+					board_title_result += board_title.substring(searchindex+searchtext.length(), board_title.length());
+					System.out.println("result : "+board_title_result);
+					boarddto.setBoard_title(board_title_result);
+				}
+			}
+			else {
+				for(int i=0; i<list.size(); i++) { //작성자 검색부분 재처리 과정
+					BoardDTO boarddto = list.get(i);
+					String member_nickname = boarddto.getMember_nickname();
+					int searchindex = member_nickname.indexOf(searchtext);
+					String member_nickname_result = member_nickname.substring(0, searchindex);
+					member_nickname_result += "<span class=\"searchimport\">"+searchtext+"</span>";
+					member_nickname_result += member_nickname.substring(searchindex+searchtext.length(), member_nickname.length());
+					System.out.println("result : "+member_nickname_result);
+					boarddto.setMember_nickname(member_nickname_result);
+				}
+			}
+		}
 		request.setAttribute("list", list);
 		request.setAttribute("searchtext", searchtext);
 		request.setAttribute("totalpage", totalpage);

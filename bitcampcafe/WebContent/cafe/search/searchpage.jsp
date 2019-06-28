@@ -31,6 +31,10 @@
 				event.preventDefault();
 				alert('검색어를 입력하세요').one();
 			}
+			else if(searchsubinput == "in") {
+				event.preventDefault();
+				alert('금지어 입니다.').one();
+			}
 			else {
 				$('form').submit();
 			}			
@@ -135,6 +139,10 @@
 	
 	.detaillink {
 		color: black;
+	}
+	
+	.searchimport {
+		color: #03c75a;
 	}
 </style>
 <body>
