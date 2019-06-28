@@ -120,7 +120,7 @@
 <header>
 </header>
 <section>
-	<a href="login.do"><h1 id="title">Bit Cafe</h1></a>
+	<a href="login.do"><h1 id="title">BITCAMP CAFE</h1></a>
 	<form id="frm" name="frm" method="post">
 		<input type="text" id="member_id" name="member_id" required placeholder="아이디">
 		<input type="password" id="member_pwd" name="member_pwd" required placeholder="비밀번호">

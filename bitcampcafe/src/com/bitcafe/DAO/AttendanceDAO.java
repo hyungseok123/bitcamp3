@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bitcafe.DTO.AttendanceDTO;
+import com.mysql.cj.protocol.Resultset;
 
 public class AttendanceDAO {
 	private static AttendanceDAO dao = new AttendanceDAO();
@@ -40,28 +41,29 @@ public class AttendanceDAO {
     
     
     
-    public List<AttendanceDTO> attendanceList(Connection conn, int startrow, int endrow) throws SQLException {
+    public List<AttendanceDTO> attendanceList(Connection conn, int startrow,int pagesize) throws SQLException {
 		// TODO Auto-generated method stub
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
 		List<AttendanceDTO> arr = new ArrayList<>();
 		StringBuilder sql=new StringBuilder();
-		sql.append("        select *               ");
-		sql.append(" from (                        ");
-		sql.append("    select rownum as rnum      ");
-		sql.append("         ,attendance_no        ");
-		sql.append("         ,attendance_content   ");
-		sql.append("     ,attendance_writedate     ");
-		sql.append("     ,member_no                ");	
-		sql.append("     from   attendance a       ");
-		sql.append("      where rownum<=?   )      ");
-        sql.append(" where rnum>=?                 ");		
+		sql.append("        select attendance_no         ");
+		sql.append("        ,attendance_content          ");
+		sql.append("       ,attendance_writedate         ");
+		sql.append("        ,m.member_no                    ");
+		sql.append(" from attendance a join member m     ");
+		sql.append("  on a.member_no =m.member_no        ");	
+        sql.append("  order by attendance_writedate desc ");
+        sql.append("  limit ?,?                          ");
+        
 		
 		
 		try {
 			pstmt=conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, endrow);
-			pstmt.setInt(2, startrow);
+			
+			pstmt.setInt(1, startrow);
+		
+			pstmt.setInt(2, pagesize);
 			rs = pstmt.executeQuery();
 		
 			while(rs.next())
@@ -70,7 +72,7 @@ public class AttendanceDAO {
 				dto.setAttendance_no(rs.getInt("attendance_no"));
 				dto.setAttendance_content(rs.getString("attendance_content"));
 				dto.setAttendance_writedate(rs.getDate("attendance_writedate"));
-				dto.setMember_no(rs.getInt("member_no"));
+				//dto.setMember_no(rs.getInt("member_no"));
 				arr.add(dto);
 			}
 		}catch(SQLException e)
@@ -84,18 +86,58 @@ public class AttendanceDAO {
 		
 		return arr;
 	}
-	
+
+    public List<AttendanceDTO> attendanceList(Connection conn)
+    {
+    	PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		List<AttendanceDTO> arr = new ArrayList<>();
+		StringBuilder sql=new StringBuilder();
+		sql.append("        select attendance_no         ");
+		sql.append("        ,attendance_content          ");
+		sql.append("       ,attendance_writedate         ");
+		sql.append("        ,m.member_no                    ");
+		sql.append(" from attendance a join member m     ");
+		sql.append("  on a.member_no =m.member_no        ");	
+        sql.append("  order by attendance_writedate desc ");
+      
+		try {
+			pstmt=conn.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+		   
+			while(rs.next())
+			{
+				AttendanceDTO dto = new AttendanceDTO();
+				dto.setAttendance_no(rs.getInt("attendance_no"));
+				dto.setAttendance_content(rs.getString("attendance_content"));
+				dto.setAttendance_writedate(rs.getDate("attendance_writedate"));
+				dto.setMember_no(rs.getInt("m.member_no"));
+				arr.add(dto);
+			}
+		}catch(SQLException e)
+		{
+			System.out.println(e);
+		}finally {
+			if(rs!=null) try {rs.close();} catch(SQLException e) {}
+			if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		}
+		
+		
+		return arr;
+    	
+    }
+    
      public AttendanceDTO  ReadData(Connection conn, int num)
      {
     	 PreparedStatement pstmt=null;
     	 StringBuilder sql=new StringBuilder();
     	 ResultSet rs=null;
-    	 sql.append(" select    attendance_no                  ");
-    	 sql.append("          ,attendance_content             ");
-    	 sql.append("          ,attendance_writedate           ");
-    	 sql.append("          ,member_no           ");
-    	 sql.append(" from  attendance                     ");
-    	 sql.append(" where  attendance_no=?                   ");
+    	 sql.append(" select    attendance_no         ");
+    	 sql.append("          ,attendance_content    ");
+    	 sql.append("          ,attendance_writedate  ");
+    	 sql.append("          ,member_no             ");
+    	 sql.append(" from  attendance                ");
+    	 sql.append(" where  attendance_no=?          ");
     	 AttendanceDTO data=new AttendanceDTO();
     	 try{
     		 pstmt=conn.prepareStatement(sql.toString());
@@ -108,11 +150,11 @@ public class AttendanceDAO {
     		   data.setAttendance_writedate(rs.getDate("attendance_writedate"));
     		  
     		 }
-    	 }catch(SQLException e)
+    	 } catch(SQLException e)
     	 {
     		throw  new RuntimeException();
-    	 }finally{
-    		 rsClose(rs);
+    	 } finally {
+    		rsClose(rs);
             pstmtClose(pstmt);
     		 
     	 }
@@ -142,69 +184,61 @@ public class AttendanceDAO {
     		   pstmt.setInt(1, member_no);
     		   pstmt.setString(2, attendance);
     		   
-    		   r=pstmt.executeUpdate();
+    		   r = pstmt.executeUpdate();
     		   
-    	   }catch(SQLException e)
+    	   } catch(SQLException e)
     	   {
     		   System.out.println(e);
     		   throw new RuntimeException();
-    	   }finally{
+    	   } finally{
     		   pstmtClose(pstmt);
     	   }
     	   return r;
      }
 
-	public int AttendanceDelete(Connection conn, AttendanceDTO dto) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	
+	public int AttendanceDelete(Connection conn, int no) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Resultset rs = null;
 		StringBuilder sql = new StringBuilder();
-		sql.append(" delete from attendance          ");
-		sql.append("   where member_no =?              ");
-		int result =0;
-		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-				
-				)
-		{
-			pstmt.setInt(1, dto.getMember_no());
-		   result = pstmt.executeUpdate();
+		sql.append(" delete from attendance  ");
+		sql.append(" where attendance_no = ? ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			System.out.println(e);
+			throw new RuntimeException();
+		} finally{
+			pstmtClose(pstmt);
 		}
 		return result;
-	
-		
-		
 	}
-	public int AttendanceUpdate(Connection conn, AttendanceDTO dto) throws SQLException
+	
+	public int AttendanceUpdate(Connection conn, int attendance_no, String attendance_content) throws SQLException
     {
-    	StringBuilder sql = new StringBuilder();
-    	sql.append("  update attendance                                ");
-    	sql.append("      set                                           ");
-    	sql.append("      attendance_no=?                               ");
-    	sql.append("     ,attendanco_content=?, attendance_writedate=?   ");
-    	sql.append("       where member_no=?        ");
     	int result=0;
-    	try(
-    			
-    			PreparedStatement pstmt = conn.prepareStatement(sql.toString());)
-    	{
-    		
-    		pstmt.setInt(1, dto.getAttendance_no());
-    		pstmt.setString(2, dto.getAttendance_content());
-    		pstmt.setDate(3, dto.getAttendance_writedate());
-    	   pstmt.setInt(4, dto.getMember_no());
-    	   result = pstmt.executeUpdate();
-    	   
-    	}
-    	
-    	
-    	
-    	
-    	
-    	return result;
+    	PreparedStatement pstmt= null;
+    	Resultset rs = null;
+		StringBuilder sql = new StringBuilder();
+    	sql.append("  update attendance                   ");
+    	sql.append("      set                             ");    	
+    	sql.append("     attendance_content=?            ");
+    	sql.append("       where attendance_no=?              ");
+    	try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, attendance_content);
+			pstmt.setInt(2, attendance_no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			System.out.println(e);
+			throw new RuntimeException();
+		} finally{
+			pstmtClose(pstmt);
+		}
+		return result;
     }
-	
-	
-	
 	
 	
 }

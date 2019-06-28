@@ -32,19 +32,7 @@ public class AttendanceDTO {
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
 	}
-	public AttendanceDTO(int attendance_no, String attendance_content, Date attendance_writedate, int member_no) {
-		super();
-		this.attendance_no = attendance_no;
-		this.attendance_content = attendance_content;
-		this.attendance_writedate = attendance_writedate;
-		this.member_no = member_no;
-	}
-	public AttendanceDTO() {
-		super();
-	}
-	
-	
-	
+
 	
 	
 }
