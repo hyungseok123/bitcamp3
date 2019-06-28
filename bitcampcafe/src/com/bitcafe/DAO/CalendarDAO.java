@@ -117,4 +117,33 @@ public class CalendarDAO {
 
 	}
 
+	public int modifyList(Connection conn, CalendarDTO dto) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append("    update calendar set        ");
+		sql.append("    calendar_title=  ?   ,     ");
+		sql.append("    calendar_start=  ?   ,     ");
+		sql.append("    calendar_end=    ?   ,     ");
+		sql.append("    calendar_content=    ?   ,     ");
+		//sql.append("    calendar_place=    ?   ,     ");
+		//sql.append("    calendar_color=    ?   ,     ");
+		sql.append("    where calendar_no=    ?      ");
+		int result = 0;
+		System.out.println(sql.toString());
+		System.out.println("1 :"+dto.getCalendar_title());
+		System.out.println("2 :"+dto.getCalendar_start());
+		System.out.println("3 :"+dto.getCalendar_end());
+		System.out.println("4 :"+dto.getCalendar_content());		
+		System.out.println("5 :"+dto.getCalendar_no());
+		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+			pstmt.setString(1, dto.getCalendar_title());
+			pstmt.setString(2, dto.getCalendar_start());
+			pstmt.setString(3, dto.getCalendar_end());
+			pstmt.setString(4, dto.getCalendar_content());			
+			pstmt.setInt(5, dto.getCalendar_no());
+			result = pstmt.executeUpdate();
+		}
+		System.out.println("모디 디에이오");
+		return result;
+	}
+
 }

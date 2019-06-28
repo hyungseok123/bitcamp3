@@ -42,16 +42,13 @@
 	<%
 		}
 	%>
-	<a href="calendardelete.do?no=<%=dto.getCalendar_no()%>">
-	 <input
+	<a href="calendardelete.do?no=<%=dto.getCalendar_no()%>"> <input
 		type="button" value="삭제">
 	</a>
-	<a href="calendarmodify.do?no=<%=dto.getCalendar_no()%>"> 
-	<input
+	<a href="calendarmodify.do?no=<%=dto.getCalendar_no()%>"> <input
 		type="button" value="수정">
 	</a>
-	<a href="calendarMain.jsp">
-	 <input type="button" value="달력">
+	<a href="calendarlist.do"> <input type="button" value="달력">
 	</a>
 </body>
 </html>

@@ -14,7 +14,7 @@
 
 	<script type="text/javascript">
 		alert('삭제완료!');
-		location.href = "calendarList.do";
+		location.href = "calendarlist.do";
 	</script>
 	<%
 		}

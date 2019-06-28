@@ -139,4 +139,27 @@ public class CalendarService {
 		}
 		return result;
 	}
+
+	public int ModifyService(CalendarDTO dto) {
+		DBConnection db = DBConnection.gettb();
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = db.getConnection();
+			CalendarDAO dao = CalendarDAO.getCalendarDAO();
+			result = dao.modifyList(conn, dto);
+		} catch (SQLException | NamingException | RuntimeException e) {
+			System.out.println(e);
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					System.out.println(e);
+				}
+			}
+		}
+		return result;
+	}
+
 }
