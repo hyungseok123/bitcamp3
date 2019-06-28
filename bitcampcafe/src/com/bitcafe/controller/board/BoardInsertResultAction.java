@@ -42,7 +42,9 @@ public class BoardInsertResultAction implements Action {
 			dto.setCategory_no(category_no);
 			dto.setMember_no(member_no);
 			
+			//서비스 클래스를 불러와서 메서드를 사용한다.
 			BoardService service = BoardService.getInstance();
+			//서비스 클래스 안에 있는 insertservice 메서드를 사용
 			int result = service.BoardInsertService(dto);
 			request.setAttribute("result", result);
 			forward.setRedirect(true);
