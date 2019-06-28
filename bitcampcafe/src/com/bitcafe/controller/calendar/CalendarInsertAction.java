@@ -21,6 +21,7 @@ public class CalendarInsertAction implements Action {
 		ForwardAction forward = new ForwardAction();
 		HttpSession session = request.getSession();
 		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
+		System.out.println(memberInfo.getMember_no());
 		if (memberInfo == null) {
 			forward.setRedirect(true);
 			forward.setPath("login.do");

@@ -25,6 +25,10 @@ public class CalendarInsertResultAction implements Action {
 		String content = request.getParameter("content");
 		String place = request.getParameter("place");
 		String color = request.getParameter("color");
+		HttpSession session = request.getSession();
+		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
+		int memno = memberInfo.getMember_no();
+		
 		CalendarDTO dto = new CalendarDTO();
 		dto.setCalendar_title(title);
 		dto.setCalendar_start(start);
@@ -32,13 +36,13 @@ public class CalendarInsertResultAction implements Action {
 		dto.setCalendar_content(content);
 		dto.setCalendar_place(place);
 		dto.setCalendar_color(color);
+		dto.setMember_no(memno);
 		CalendarService service = CalendarService.getCalendarService();
 		int result = service.InsertService(dto);
 		request.setAttribute("result", result);
 
 		ForwardAction forward = new ForwardAction();
-		HttpSession session = request.getSession();
-		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
+		
 		if (memberInfo == null) {
 			forward.setRedirect(true);
 			forward.setPath("login.do");
