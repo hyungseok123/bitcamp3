@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>풀캘린더</title>
+<title>캘린더</title>
 <style type="text/css">
 body {
 	margin: 40px 10px;
@@ -18,6 +18,7 @@ body {
 	margin: 0 auto;
 }
 </style>
+
 <!-- 부트스트랩 플러그인-->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -34,13 +35,6 @@ body {
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
-<!--  -->
-
-<!-- datetimepicker -->
-<script type="text/javascript"
-	src="./fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript"
-	src="./fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.css"></script>
 <!--  -->
 
 <script type="text/javascript"
@@ -66,12 +60,16 @@ body {
 		var m = date.getMonth();
 		var y = date.getFullYear();
 		getEvent();
+		$("#add").on('click', function() {
+			location.href = "add.do";
+
+		});
 	});
 
 	//list 데이터 json형식으로 받아주기
 	function getEvent() { // 제이슨으로 캘린더 이벤트 등록형식에 맞게 뿌리기
 		$.ajax({
-			url : "http://localhost:9080/bitcampcafe/json.getjson",
+			url : "/test.json",
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			type : 'post',
 			dataType : 'json',
@@ -111,11 +109,11 @@ body {
 			select : function(event) {
 				//일정없는 빈곳 누르면 insertform으로~
 
-				location.href = "calendarinsert.do";
+				location.href = "add.do";
 			},
 			eventClick : function(event) { //일정클릭하면 그일정의 디테일을 출력			
 				if (event.no) {
-					location.href = "calendardetail.do?no=" + event.no;
+					location.href = "detail.do?no=" + event.no;
 					return false;
 				}
 			}
@@ -127,7 +125,6 @@ body {
 
 
 	<div id="calendar"></div>
-
 
 
 </body>
