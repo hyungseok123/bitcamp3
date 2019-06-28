@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <title>풀캘린더</title>
 <style type="text/css">
 body {
@@ -111,11 +111,11 @@ body {
 			select : function(event) {
 				//일정없는 빈곳 누르면 insertform으로~
 
-				location.href = "calendarinsert.do";
+				location.href = "add.do";
 			},
 			eventClick : function(event) { //일정클릭하면 그일정의 디테일을 출력			
 				if (event.no) {
-					location.href = "calendardetail.do?no=" + event.no;
+					location.href = "detail.do?no=" + event.no;
 					return false;
 				}
 			}
