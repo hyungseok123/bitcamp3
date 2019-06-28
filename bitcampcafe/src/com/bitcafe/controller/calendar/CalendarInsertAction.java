@@ -14,8 +14,12 @@ public class CalendarInsertAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println("insertaction들어와땨아아아ㅏㅇ");
+		ForwardAction forward = new ForwardAction();
+		forward.setRedirect(false);
+		forward.setPath("/cafe/calendar/calendarInsertform.jsp");		
+		return forward;
+		
 	}
 
 }
