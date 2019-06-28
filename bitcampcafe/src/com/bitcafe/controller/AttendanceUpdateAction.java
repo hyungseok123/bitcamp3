@@ -27,7 +27,7 @@ public class AttendanceUpdateAction implements Action {
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/attendance/attendanceupdate.jsp");
+		forward.setPath("/cafe/template/main.jsp?page=/cafe/attendance/attendanceupdate.jsp");
 		return forward;	
 	}
 }

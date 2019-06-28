@@ -34,7 +34,7 @@ public class AttendanceInsertResultAction implements Action {
 		service.AttendanceInsert(attendance, dto.getMember_no());
 		
 		forward.setRedirect(false);
-		forward.setPath("/cafe/attendance/attendanceinsert.jsp");
+		forward.setPath("/cafe/template/main.jsp?page=/cafe/attendance/attendanceinsert.jsp");
 	    } else {
         	System.out.println("2");
         	forward.setRedirect(true);

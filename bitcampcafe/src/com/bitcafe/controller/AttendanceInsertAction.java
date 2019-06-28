@@ -30,7 +30,7 @@ public class AttendanceInsertAction implements Action {
 		  else
 		  {
 				forward.setRedirect(false);
-				forward.setPath("/cafe/attendance/attendanceinsert.jsp");
+				forward.setPath("/cafe/template/main.jsp?page=/cafe/attendance/attendanceinsert.jsp");
 		  }
 		
 		
