@@ -8,6 +8,7 @@ import javax.naming.NamingException;
 import org.json.simple.JSONArray;
 
 import com.bitcafe.DAO.CalendarDAO;
+import com.bitcafe.DTO.CalendarDTO;
 import com.bitcafe.util.DBConnection;
 
 
@@ -52,4 +53,34 @@ public class CalendarService {
 		}
 			return jsonArr;
 }
+		public int InsertService(CalendarDTO dto) {
+			DBConnection db= DBConnection.gettb();
+			Connection conn = null;
+			int result =0;
+			try {
+				conn=db.getConnection();
+				conn.setAutoCommit(false);
+				CalendarDAO dao = CalendarDAO.getCalendarDAO();
+				result=dao.insertList(conn, dto);
+				conn.commit();
+			}catch (SQLException | NamingException | RuntimeException e) {
+				System.out.println(e);
+				try {
+					conn.rollback();
+				} catch (SQLException e2) {
+					System.out.println(e2);
+				}
+			} finally {
+				if (conn != null) {
+					try {
+						conn.close();
+					} catch (SQLException e) {
+						System.out.println(e);
+					}
+				}
+			}
+			return result;
+		}
 }
+
+

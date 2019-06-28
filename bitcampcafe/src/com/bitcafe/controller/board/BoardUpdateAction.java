@@ -22,9 +22,9 @@ public class BoardUpdateAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		 
+		
+		int board_no = Integer.parseInt(request.getParameter("no"));
 		BoardService service = BoardService.getInstance();
-		int board_no = Integer.parseInt(request.getParameter("board_no"));
 		BoardDTO dto = service.BoardDetailService(board_no);
 		request.setAttribute("dto", dto);
 		ForwardAction forward = new ForwardAction();
@@ -32,5 +32,4 @@ public class BoardUpdateAction implements Action {
 		forward.setPath("/cafe/board/boardupdate.jsp");
 		return forward;
 	}
-	}
- 
+}

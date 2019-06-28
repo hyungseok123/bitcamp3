@@ -11,11 +11,6 @@
 	margin:0;
 	padding:0;
 }
-.top_nav {
-	height: 35px;
-	border: 1px solid silver;
-	margin-bottom: 10px;
-}
 #main_wrap {
 	position: relative;
 	width: 1080px;
@@ -26,11 +21,9 @@
 </head>
 <body>
 <div id="main_wrap">
-  <div class="top_nav">
-  <h2>NAVER</h2>
-  </div>
-  <jsp:include page ="header.jsp"></jsp:include>
-  <jsp:include page ="middle.jsp"></jsp:include>
+  <jsp:include page="tapnav.jsp"></jsp:include>
+  <jsp:include page="header.jsp"></jsp:include>
+  <jsp:include page="middle.jsp"></jsp:include>
   <jsp:include page="footer.jsp"></jsp:include>
 </div>
 </body>

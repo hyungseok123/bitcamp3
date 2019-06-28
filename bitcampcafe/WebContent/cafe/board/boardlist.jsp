@@ -57,7 +57,9 @@
 			</c:forEach>  
 		  </tbody>
 		</table>
-	  <a class="board_list_btn" href="boardinsert.do"><button>글쓰기</button></a>
+	  <c:if test="${param.cno != null }">
+	    <a class="board_list_btn" href="boardinsert.do?cno=${param.cno }"><button>글쓰기</button></a>
+	  </c:if>
 	</div>
 </body>
 </html>

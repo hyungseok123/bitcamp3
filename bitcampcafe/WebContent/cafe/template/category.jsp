@@ -25,15 +25,19 @@ pageEncoding="UTF-8"%>
       <li><h3>카테고리</h3></li>
     </ul>
     <ul class="category_list">
-  	  <li><a href="#">java 수업자료</a></li>
-  	  <li><a href="#">html_css수업자료</a></li>
+  	  <li><a href="boardlist.do">전체보기</a></li>
+  	  <li><a href="#">카페 캘린더</a></li>
     </ul>
     <ul class="category_list">
-  	  <li><a href="#">java 과제</a></li>
-      <li><a href="#">html_css과제</a></li>
+  	  <li><a href="boardlist.do?cno=1">java 수업자료</a></li>
+  	  <li><a href="boardlist.do?cno=2">html_css수업자료</a></li>
     </ul>
     <ul class="category_list">
-  	  <li><a href="#">자유게시판</a></li>
+  	  <li><a href="boardlist.do?cno=3">java 과제</a></li>
+      <li><a href="boardlist.do?cno=4">html_css과제</a></li>
+    </ul>
+    <ul class="category_list">
+  	  <li><a href="boardlist.do?cno=5">자유게시판</a></li>
     </ul>
   </div>
 </body>

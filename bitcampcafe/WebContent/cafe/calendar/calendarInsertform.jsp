@@ -90,9 +90,7 @@
 					</div>
 
 					<div class="modal-footer modalBtnContainer-modifyEvent">
-						<input type="submit" value="추가하기"> <a href="    .jsp">
-							<input type="button" value="뒤로가기">
-						</a>
+						<input type="submit" value="추가하기"> 
 					</div>
 
 

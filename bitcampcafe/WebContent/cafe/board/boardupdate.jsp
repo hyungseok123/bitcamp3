@@ -9,13 +9,17 @@
 <body>
 
 	<c:out value="${dto.member_nickname }"></c:out>
-	<c:out value="${dto.board_writedate }"></c:out>
+	<c:out value="${memberInfo.member_nickname}"></c:out>
+
 	<div>
 		<form id="boardupdate" method="post" action="boardupdateresult.do">
-			<textarea name="board_title" cols="100" rows="5">${dto.board_title }</textarea>
-			<input type="hidden" name="board_content" value="${dto.board_content }">
-			<input type="hidden" name="board_no" value="${dto.board_no }">
-			<input id="submitbutton" type="submit" value="등록">
+			<input type="hidden" name="board_no"
+				value="${dto.board_no }">
+			<li><input type="text" name="board_title"
+				value="${dto.board_title }"></li>
+			<li><textarea name="board_content" cols="100" rows="5">${dto.board_content }</textarea>
+			</li> <input type="submit" value="수정"> <input type="reset"
+				value="취소">
 		</form>
 	</div>
 </body>
