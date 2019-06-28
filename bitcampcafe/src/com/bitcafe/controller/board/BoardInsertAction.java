@@ -18,12 +18,18 @@ public class BoardInsertAction implements Action {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
-		if (memberInfo != null) {
-			request.setAttribute("memberInfo", memberInfo);
-		}
 		ForwardAction act = new ForwardAction();
-		act.setRedirect(false);
-		act.setPath("/cafe/board/boardinsert.jsp");
+		 System.out.println("memberInfo"+memberInfo);
+		if (memberInfo == null) {
+	        act.setRedirect(true);
+	        act.setPath("/login.do");
+		}
+		else {
+			act.setRedirect(false);
+			act.setPath("/cafe/board/boardinsert.jsp");	
+			
+		}
+		
 		return act;
 	}
 
