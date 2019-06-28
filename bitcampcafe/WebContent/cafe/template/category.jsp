@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
     </ul>
     <ul class="category_list">
   	  <li><a href="boardlist.do">전체보기</a></li>
-  	  <li><a href="#">카페 캘린더</a></li>
+  	  <li><a href="calendarlist.do">카페 캘린더</a></li>
     </ul>
     <ul class="category_list">
   	  <li><a href="boardlist.do?cno=1">java 수업자료</a></li>

@@ -5,8 +5,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bitcafe.DTO.CalendarDTO;
+import com.bitcafe.DTO.MemberDTO;
 import com.bitcafe.controller.Action;
 import com.bitcafe.service.CalendarService;
 import com.bitcafe.util.ForwardAction;
@@ -33,9 +35,20 @@ public class CalendarInsertResultAction implements Action {
 		CalendarService service = CalendarService.getCalendarService();
 		int result = service.InsertService(dto);
 		request.setAttribute("result", result);
+
 		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(false);
-		forward.setPath("/cafe/calendar/calendarMain.jsp");
+		HttpSession session = request.getSession();
+		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
+		if (memberInfo == null) {
+			forward.setRedirect(true);
+			forward.setPath("login.do");
+		} else {
+			int member_no = memberInfo.getMember_no();
+			forward.setRedirect(false);
+			forward.setPath("/cafe/template/main.jsp?page=/cafe/calendar/calendarMain.jsp");
+
+		}
+
 		return forward;
 	}
 
