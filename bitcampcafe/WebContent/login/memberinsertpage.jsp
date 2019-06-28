@@ -181,7 +181,7 @@
 </head>
 <body>
 <section>
-	<a href="login.do"><h1 id="title">Bit Cafe</h1></a>
+	<a href="login.do"><h1 id="title">BITCAMP CAFE</h1></a>
 	<form method="post" action="memberinsertresult.do">
 		<label for="member_id">아이디</label>
 		<input type="text" id="member_id" name="member_id" required >

@@ -185,7 +185,7 @@
 <section>
 <c:set var="memberdto" value="${sessionScope.memberdto}"/>
 <c:if test="${memberdto != null }">
-	<a href="login.do"><h1 id="title">Bit Cafe</h1></a>
+	<a href="login.do"><h1 id="title">BITCAMP CAFE</h1></a>
 	<form method="post" action="memberupdateresult.do">
 		<label for="member_id">아이디 수정</label>
 		<input type="text" id="member_id" name="member_id" value="<c:out value="${memberdto.member_id }"/>" required>
