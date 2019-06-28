@@ -38,26 +38,26 @@ body {
 
 <!-- datetimepicker -->
 <script type="text/javascript"
-	src="./cafe/fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.js"></script>
+	src="./fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript"
-	src="./cafe/fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.css"></script>
+	src="./fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.css"></script>
 <!--  -->
 
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<link href="./cafe/fullcalendar-3.3.1/fullcalendar.css" rel="stylesheet" />
-<link href="./cafe/fullcalendar-3.3.1/fullcalendar.print.css"
+<link href="./fullcalendar-3.3.1/fullcalendar.css" rel="stylesheet" />
+<link href="./fullcalendar-3.3.1/fullcalendar.print.css"
 	rel="stylesheet" media="print" />
 <script type="text/javascript"
-	src="./cafe/fullcalendar-3.3.1/lib/moment.min.js"></script>
+	src="./fullcalendar-3.3.1/lib/moment.min.js"></script>
 <script type="text/javascript"
-	src="./cafe/fullcalendar-3.3.1/lib/jquery.min.js"></script>
+	src="./fullcalendar-3.3.1/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="./cafe/fullcalendar-3.3.1/fullcalendar.js"></script>
-<script type="text/javascript" src="./cafe/fullcalendar-3.3.1/locale/ko.js"></script>
-<script type="text/javascript" src="./cafe/fullcalendar-3.3.1/gcal.js"></script>
+	src="./fullcalendar-3.3.1/fullcalendar.js"></script>
+<script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
+<script type="text/javascript" src="./fullcalendar-3.3.1/gcal.js"></script>
 <script type="text/javascript"
-	src="./cafe/fullcalendar-3.3.1/lib/bootstrap.min.js"></script>
+	src="./fullcalendar-3.3.1/lib/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var date = new Date();
@@ -73,31 +73,31 @@ body {
 
 	//list 데이터 json형식으로 받아주기
 	function getEvent() { // 제이슨으로 캘린더 이벤트 등록형식에 맞게 뿌리기
-		$.ajax({
-			url : "http://localhost:9080/bitcampcafe/cafe/calendar/json.json",
-			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-			type : 'post',
-			dataType : 'json',
-			success : function(data) {
-				console.log("getevent성공");
-				eventData = [];
-				$.each(data, function(index, element) {
-					eventData.push({
-						title : element.calendar_title,
-						start : element.calendar_start,
-						end : element.calendar_end,
-						no : element.calendar_no,
-						color : 'skyblue'
-					});
+		$
+				.ajax({
+					url : "http://localhost:9080/bitcampcafe/cafe/calendar/json.getjson",
+					contentType : "application/x-www-form-urlencoded; charset=UTF-8",
+					type : 'post',
+					dataType : 'json',
+					success : function(data) {
+						console.log("getevent성공");
+						eventData = [];
+						$.each(data, function(index, element) {
+							eventData.push({
+								title : element.calendar_title,
+								start : element.calendar_start,
+								end : element.calendar_end,
+								no : element.calendar_no								
+							});
 
+						});
+
+						calendarEvent(eventData); //캘린더 메소드 호출		
+					},
+					error : function(data) {
+						console.log("getevent실패");
+					}
 				});
-
-				calendarEvent(eventData); //캘린더 메소드 호출		
-			},
-			error : function(data) {
-				console.log("getevent실패");
-			}
-		});
 	}
 
 	//Calendar이벤트!!!!!! 본격 시작

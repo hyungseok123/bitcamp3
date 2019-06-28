@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 
-@WebServlet("*.json")
+@WebServlet("*.getjson")
 public class CalendarJsonController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -32,7 +32,7 @@ public class CalendarJsonController extends HttpServlet {
 		System.out.println("path : "+path);
 		GetJsonAction jact = null;
 		
-		if(path.equals("/json.json")) {
+		if(path.equals("/json.getjson")) {
 			jact = new CalendarJsonAction();
 		}
 		
