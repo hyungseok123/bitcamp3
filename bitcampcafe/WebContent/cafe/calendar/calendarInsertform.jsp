@@ -17,13 +17,20 @@
 
 
 		<div class="col-xs-12">
-			<label for="content">내용</label> <input type="text" id="content"
-				name="content"> <label for="place">장소</label> <input
-				type="text" id="place" name="place"> <label for="color">색상</label>
-			<input type="text" id="color" name="color"> <label
-				for="start">시작</label> <input type="text" id="start" name="start"
-				placeholder="YYYY-MM-DD"> <label for="end">끝</label> <input
-				type="text" id="end"> <input type="submit" value="추가하기">
+			<label for="content">내용</label>
+			 <input type="text" id="content"
+				name="content"> 
+				<label for="place">장소</label> <input
+				type="text" id="place" name="place">
+				 <label for="color">색상</label>
+			<input type="text" id="color" name="color"> 
+			<label
+				for="start">시작</label>
+				 <input type="text" id="start" name="start"
+				placeholder="YYYY-MM-DD"> 
+				<label for="end">끝</label> 
+				<input
+				type="text" id="end" name="end"> <input type="submit" value="추가하기">
 	</form>
 </body>
 </html>

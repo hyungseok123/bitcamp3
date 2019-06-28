@@ -63,8 +63,9 @@ public class CalendarDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
 				" insert into calendar (  calendar_title, calendar_start, calendar_end , calendar_content, calendar_place, calendar_color   )");
-		sql.append("    values  (    ?    ,    ?      ,     ?   , ?   , ?   , ? )        ");
+		sql.append("    values  (    ?  ,  ?  ,  ?  , ?  , ?  ,  ?  )        ");
 		int result = 0;
+		System.out.println("end : " + dto.getCalendar_end());
 		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
 			pstmt.setString(1, dto.getCalendar_title());
 			pstmt.setString(2, dto.getCalendar_start());
@@ -81,7 +82,7 @@ public class CalendarDAO {
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
 		sql.append("   select     *         ");
-		sql.append(" from calendar  ");
+		sql.append(" from calendar          ");
 		sql.append("  where calendar_no  =    ?");
 
 		CalendarDTO dto = new CalendarDTO();
@@ -123,22 +124,22 @@ public class CalendarDAO {
 		sql.append("    calendar_title=  ?   ,     ");
 		sql.append("    calendar_start=  ?   ,     ");
 		sql.append("    calendar_end=    ?   ,     ");
-		sql.append("    calendar_content=    ?   ,     ");
-		//sql.append("    calendar_place=    ?   ,     ");
-		//sql.append("    calendar_color=    ?   ,     ");
+		sql.append("    calendar_content=    ?        ");
+		// sql.append(" calendar_place= ? ");
+		// sql.append(" calendar_color= ? , ");
 		sql.append("    where calendar_no=    ?      ");
 		int result = 0;
 		System.out.println(sql.toString());
-		System.out.println("1 :"+dto.getCalendar_title());
-		System.out.println("2 :"+dto.getCalendar_start());
-		System.out.println("3 :"+dto.getCalendar_end());
-		System.out.println("4 :"+dto.getCalendar_content());		
-		System.out.println("5 :"+dto.getCalendar_no());
+		System.out.println("1 :" + dto.getCalendar_title());
+		System.out.println("2 :" + dto.getCalendar_start());
+		System.out.println("3 :" + dto.getCalendar_end());
+		System.out.println("4 :" + dto.getCalendar_content());
+		System.out.println("5 :" + dto.getCalendar_no());
 		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
 			pstmt.setString(1, dto.getCalendar_title());
 			pstmt.setString(2, dto.getCalendar_start());
 			pstmt.setString(3, dto.getCalendar_end());
-			pstmt.setString(4, dto.getCalendar_content());			
+			pstmt.setString(4, dto.getCalendar_content());
 			pstmt.setInt(5, dto.getCalendar_no());
 			result = pstmt.executeUpdate();
 		}
