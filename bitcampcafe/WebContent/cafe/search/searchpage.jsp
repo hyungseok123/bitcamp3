@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	$(document).ready(function() {
+		$('.trsearchselect3').hide();
 		var searchselect1 = '<%=request.getAttribute("searchselect1")%>'
 		var searchselect2 = '<%=request.getAttribute("searchselect2")%>'
 		if(searchselect1 != null ) {
@@ -39,6 +40,16 @@
 				$('form').submit();
 			}			
 		});
+ 		
+ 		$('#searchselect3').on('click',function(){
+ 			var searchselect3 = $('#searchselect3').val();
+ 			if(searchselect3 == "제목만 보기") {
+ 				$('.trsearchselect3').hide();		
+ 			}
+ 			else {
+ 				$('.trsearchselect3').show();
+ 			}
+ 		});
 	});
 </script>
 <style>
@@ -82,21 +93,26 @@
 	}
 	#searchtable table{
 		border-top: 1px solid black;
+		border-bottom: 1px solid silver;
 		font-size: 13px;
 	}
 	
 	#searchtable th {
 		height: 40px;
 		padding: 2px;
-		border-bottom: 1px solid silver;
 	}
 	
-	#searchtable td {
+	.tddefault td {
 		padding: 4px 18px 4px 12px;
 		height: 28px;
-		text-align: center;
-		border-bottom: 1px solid silver;
 		color: black;
+		border-top: 1px solid silver;
+		text-align: center;
+	}
+	
+	.trsearchselect3 {
+		color: silver;
+		text-align: center;
 	}
 	
 	#searchmainpage a {
@@ -148,6 +164,7 @@
 	.searchimport {
 		color: #03c75a;
 	}
+	
 </style>
 <body>
 <c:set var="totalpage" value="${requestScope.totalpage }"/>
@@ -173,6 +190,10 @@
 				<option value="제목만">제목만</option>
 				<option value="작성자">작성자</option>
 			</select>
+			<select id="searchselect3">
+				<option value="제목만 보기">제목만 보기</option>
+				<option value="제목+내용 보기">제목+내용 보기</option>
+			</select>
 			<c:set var="searchinput" value="${requestScope.searchtext }"/>
 			<input type="text" id="searchsubinput" name="searchinput" value="${searchinput }">
 			<input type="submit" value="검색" id="searchsubsubmit">
@@ -182,8 +203,8 @@
 		<table>
 			<colgroup>
 				<col width="10%">
-				<col width="50%">
-				<col width="10%">
+				<col width="40%">
+				<col width="20%">
 				<col width="20%">
 				<col width="10%">
 			</colgroup>
@@ -192,17 +213,22 @@
 			</thead>
 			<tbody id="searchsubresult">
 				<c:set var="list" value="${requestScope.list }"/>
-					<c:if test="${list == null || empty list } ">
-						<tr><td colspan="4">등록된 게시글이 없습니다.</td><tr>
+					<c:if test="${list eq null || list eq requestScope.null2 }">
+						<tr><td colspan="5">등록된 게시글이 없습니다.</td><tr>
 					</c:if>
 					<c:if test="${list != null }">
 						<c:forEach var="index" items="${list }">
-							<tr>
+							<tr class="tddefault">
 								<td>${index.board_no }</td>
 								<td><a href="boarddetail.do?no=${index.board_no }" class="detaillink">${index.board_title }</a></td>
 								<td>${index.member_nickname }</td>
 								<td>${index.board_writedate }</td>
 								<td>${index.board_viewcount }</td>
+							</tr>
+							<tr class="trsearchselect3">
+								<td></td>
+								<td><a href="boarddetail.do?no=${index.board_no }" class="detaillink">${index.board_content }</a></td>
+								<td></td><td></td><td></td>
 							</tr>
 						</c:forEach>
 					</c:if>
