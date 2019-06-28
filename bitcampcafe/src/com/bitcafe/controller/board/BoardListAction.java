@@ -20,7 +20,6 @@ public class BoardListAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-<<<<<<< HEAD
 		BoardService service=BoardService.getInstance();
 		int category_no = 0;
 		String cno = request.getParameter("cno");
@@ -38,10 +37,6 @@ public class BoardListAction implements Action {
 			request.setAttribute("mycomment", mycomment);
 		}
 		List<BoardDTO> list= service.BoardListService(category_no);
-=======
-		BoardService service = BoardService.getInstance();
-		List<BoardDTO> list = service.BoardListService();
->>>>>>> branch 'master' of https://github.com/hyungseok123/bitcamp3.git
 		request.setAttribute("list", list);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
