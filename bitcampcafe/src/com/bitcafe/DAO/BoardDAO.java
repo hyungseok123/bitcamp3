@@ -172,11 +172,14 @@ public class BoardDAO {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" update board          ");
 		sql.append(" set board_content = ? ");
+		sql.append("     ,board_title = ?  ");
 		sql.append(" where board_no = ?    ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, dto.getBoard_content());
-			pstmt.setInt(2, dto.getBoard_no());
+			pstmt.setString(2, dto.getBoard_title());
+			pstmt.setInt(3, dto.getBoard_no());
+			
 			result = pstmt.executeUpdate();
 		} catch(SQLException e) {
 			throw e;

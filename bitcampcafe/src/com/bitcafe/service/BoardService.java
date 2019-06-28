@@ -80,7 +80,6 @@ public class BoardService {
 		return dto;
 	}
 	
-	
 	public int BoardUpdateService(BoardDTO dto) {
 		int result = 0;
 		Connection conn = null;
@@ -99,14 +98,6 @@ public class BoardService {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public int BoardDeleteData(int board_no) {
 		int result = 0;
