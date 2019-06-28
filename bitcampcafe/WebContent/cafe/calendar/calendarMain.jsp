@@ -46,7 +46,8 @@ body {
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-<link href="./cafe/calendar/fullcalendar-3.3.1/fullcalendar.css" rel="stylesheet" />
+<link href="./cafe/calendar/fullcalendar-3.3.1/fullcalendar.css"
+	rel="stylesheet" />
 <link href="./cafe/calendar/fullcalendar-3.3.1/fullcalendar.print.css"
 	rel="stylesheet" media="print" />
 <script type="text/javascript"
@@ -55,8 +56,10 @@ body {
 	src="./cafe/calendar/fullcalendar-3.3.1/lib/jquery.min.js"></script>
 <script type="text/javascript"
 	src="./cafe/calendar/fullcalendar-3.3.1/fullcalendar.js"></script>
-<script type="text/javascript" src="./cafe/calendar/fullcalendar-3.3.1/locale/ko.js"></script>
-<script type="text/javascript" src="./cafe/calendar/fullcalendar-3.3.1/gcal.js"></script>
+<script type="text/javascript"
+	src="./cafe/calendar/fullcalendar-3.3.1/locale/ko.js"></script>
+<script type="text/javascript"
+	src="./cafe/calendar/fullcalendar-3.3.1/gcal.js"></script>
 <script type="text/javascript"
 	src="./cafe/calendar/fullcalendar-3.3.1/lib/bootstrap.min.js"></script>
 <script type="text/javascript">
@@ -115,14 +118,14 @@ body {
 			},
 			eventClick : function(event) { //일정클릭하면 그일정의 디테일을 출력			
 				if (event.no) {
-					location.href = "detail.do?no=" + event.no;
+					location.href = "calendarDetail.do?no=" + event.no;
 					return false;
 				}
 			}
 		});
 	}
 </script>
-<body>	
+<body>
 
 	<div id="calendar"></div>
 
