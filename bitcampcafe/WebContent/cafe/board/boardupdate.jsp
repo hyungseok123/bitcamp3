@@ -35,8 +35,6 @@
 				</textarea>			
 			</td>		
 		</tr>
-		 
-		 
 		
 		<tr align="center" valign="middle">
 			<td colspan="5">
@@ -47,6 +45,5 @@
 		</tr>
 	</table>	
 	</form>
-	
 </body>
 </html>

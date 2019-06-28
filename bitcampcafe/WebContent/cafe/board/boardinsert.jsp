@@ -10,18 +10,17 @@
 	href="http://localhost:8088/bitcampcafe/css/cafe.css" />
 </head>
 <body>
-
 	<b><font size="6" color="gray">글쓰기</font></b>
 	<br>
 
 	<form method="post" action="boardinsertresult.do">
 
-		<input type="hidden" name="member_nickname"
-			value="${sessionScope.sessionID}">
+		<input type="hidden" name="member_no" value="${memberInfo.member_no}">
+		<input type="hidden" name="category_no" value="1">     	<!-- !!!!!!!!!!!!!!! 수정해야됌 !!!!!!!!!!!!!!!!!!! -->
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
 				<td id="title">작성자</td>
-				<td>${sessionScope.sessionID}</td>
+				<td>${memberInfo.member_nickname}</td>
 			</tr>
 			<!-- <tr>
 				<td id="title">카테고리</td>
