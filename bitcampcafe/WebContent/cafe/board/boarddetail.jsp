@@ -34,7 +34,6 @@
 .detail_subcontent_left {
 	float: left;
 }
-
 .detail_subcontent_right {
 	float: right;
 }
@@ -48,7 +47,7 @@
   <div id="board_detail_wrap">
     <ul class="detail_ul">
       <li>
-       <div class="detail_subcontent_wrap">
+        <div class="detail_subcontent_wrap">
         <div class="detail_subcontent_left">
           <b class="detail_title"><c:out default="null" value="${dto.board_title }"></c:out></b>
 		   |
@@ -73,10 +72,14 @@
 	조회수(<c:out default="null" value="${dto.board_viewcount }"></c:out>)
   </div>
   <div class="load_comment"></div>
-  <!--수정 삭제 목록 만들기  -->
-  <a href="boardupdate.do"><button>수정</button></a>
-  <a href="boarddelete.do"><button>삭제</button></a>
-  <a href="boardlist.do"><button>목록</button></a>
+  <!--수정 삭제 만들기  -->
+  <a href="boardupdate.do?no=${dto.board_no }"><button>수정</button></a>
+  <a href="boarddelete.do?no=${dto.board_no }">
+  <c:if test="">
+  
+  </c:if>
+  
+    <button>삭제</button></a>
   <!-- 여기까지 -->
   <span class="post_board_no">${dto.board_no }</span>
 </div>

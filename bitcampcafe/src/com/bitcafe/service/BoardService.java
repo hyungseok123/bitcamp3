@@ -9,6 +9,7 @@ import java.util.List;
 import javax.naming.NamingException;
 
 import com.bitcafe.DAO.BoardDAO;
+import com.bitcafe.DAO.CommentDAO;
 import com.bitcafe.DTO.BoardDTO;
 import com.bitcafe.util.DBConnection;
 
@@ -78,6 +79,35 @@ public class BoardService {
 		}
 		return dto;
 	}
+	
+	
+	public int BoardUpdateService(BoardDTO dto) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			DBConnection db = DBConnection.gettb();
+			conn = db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao = BoardDAO.getDao();
+			result = dao.BoardUpdateData(conn, dto);
+			conn.commit();
+		} catch(SQLException| NamingException e) {
+			System.out.println(e);
+			try{ conn.rollback();} catch(SQLException e1){}
+		} finally {
+			if(conn!=null) try{ conn.close();} catch(SQLException e){}
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public int BoardDeleteData(int board_no) {
 		int result = 0;
 		Connection conn = null;
