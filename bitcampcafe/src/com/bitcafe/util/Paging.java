@@ -68,8 +68,8 @@ public class Paging {
 		startrow = (currpage - 1) * pagepercount + 1;											
 		endrow = startrow + pagepercount - 1;													
 		if (endrow > totalcount) endrow = totalcount;											
-		blocksize = 5;																			
-		startblock = ((currpage - 1) / blocksize) * blocksize + 1;
+		blocksize = 5;											
+		startblock = ((int)((currpage - 1) / (double)blocksize)) * blocksize + 1;
 		endblock = startblock + blocksize - 1;
 		if (totalpage < endblock) endblock = totalpage;
 	}

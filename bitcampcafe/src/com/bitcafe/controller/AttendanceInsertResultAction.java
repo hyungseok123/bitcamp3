@@ -21,9 +21,9 @@ public class AttendanceInsertResultAction implements Action {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session=request.getSession();
-        //MemberDTO dto=(MemberDTO)session.getAttribute("memberInfo");
-    	MemberDTO dto=new MemberDTO();
-    	dto.setMember_no(1);
+        MemberDTO dto=(MemberDTO)session.getAttribute("memberInfo");
+    	//MemberDTO dto=new MemberDTO();
+    	//dto.setMember_no(1);
 		//session.setAttribute("memberInfo", dto);
 		ForwardAction forward = new ForwardAction();
     	    
@@ -38,7 +38,7 @@ public class AttendanceInsertResultAction implements Action {
 		
 		
 		forward.setRedirect(false);
-		forward.setPath("/cafe/attendance/attendance.jsp");
+		forward.setPath("/cafe/attendance/attendanceinsert.jsp");
 	    }
         else 
         {

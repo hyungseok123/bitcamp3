@@ -9,12 +9,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 $(document).ready(function(){
-	$('form').on('submit', function(event){
-		event.preventDefault();
-		var d = $(this).serialize();
 	$.ajax({
-        url:'attendanceinsertresultaction.do'		
-	   ,data:d
+        url:'http://localhost:8080/bitcampcafe/attendancelist.do'		
 	   ,success:function(data)
 	   {
 		   console.log("success");
@@ -27,15 +23,15 @@ $(document).ready(function(){
 	}
 	
 	 });
-	});
+	
 });
 </script>
 </head>
 <body>
-<c:out value="${content }"></c:out>
-<form id="frm" method = "post" action="attendanceinsertresultaction.do">
+
+<form id="frm" method = "post"  action="attendanceinsertresultaction.do">
  <textarea name="attendance" cols="100" rows="8"></textarea>
-    <input type="submit" value="출석!">
+    <input type="submit" value="출석!" >
 
 
 </form>

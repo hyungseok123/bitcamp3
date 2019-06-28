@@ -31,6 +31,10 @@
 				event.preventDefault();
 				alert('검색어를 입력하세요').one();
 			}
+			else if(searchsubinput == "in") {
+				event.preventDefault();
+				alert('금지어 입니다.').one();
+			}
 			else {
 				$('form').submit();
 			}			
@@ -112,7 +116,7 @@
 		text-align: center;
 	}
 	
-	.pagingbox {
+	.pagingbox{
 		width: 24px;
 		height: 24px;
 		background-color: white;
@@ -135,6 +139,10 @@
 	
 	.detaillink {
 		color: black;
+	}
+	
+	.searchimport {
+		color: #03c75a;
 	}
 </style>
 <body>
@@ -194,12 +202,21 @@
 		</table>
 	</div>
 	<div id="searchpaging">
-		<c:if test="${currpage != 1 }">
-			<div class="pagingbox"><a href="searchmain.do?currpage=${currpage-1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">${currpage-1 }</a></div>
+		<c:if test="${currpage > blocksize }">
+			<div class="pagingbox"><a class="pagingboxatag" href="searchmain.do?currpage=${currpage-1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}"> &lt;&lt; </a></div>
 		</c:if>
-			<div class="pagingbox"><c:out value="${currpage }"/></div>
-		<c:if test="${currpage != totalpage && totalpage != 0 }">
-			<div class="pagingbox"><a href="searchmain.do?currpage=${currpage+1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">${currpage+1 }</a></div>
+		<c:forEach begin="${startblock }" end="${endblock }" varStatus="i">
+			<c:if test="${i.index == currpage }">
+				<div class="pagingbox"><c:out value="${currpage }"/></div>
+			</c:if>
+			<c:if test="${i.index != currpage }">
+				<div class="pagingbox"><a class="pagingboxatag" href="searchmain.do?currpage=${i.index }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">${i.index }</a></div>
+			</c:if>
+		</c:forEach>
+		<c:set var="endblockmin" value="${((totalpage/blocksize)-(totalpage/blocksize%1))*blocksize+1 }"/> <!-- 마지막블럭 내림계산 -->
+		<c:set var="endblockmax" value="${((totalpage/blocksize)+(1-((totalpage/blocksize)%1))%1)*blocksize }"/> <!-- 마지막블럭 올림계산 -->
+		<c:if test="${!(currpage >= endblockmin && currpage <= endblockmax) && endblock != 0 }">
+			<div class="pagingbox"><a class="pagingboxatag" href="searchmain.do?currpage=${endblock+1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}"> &gt;&gt; </a></div>
 		</c:if>
 	</div>
 </section>
