@@ -43,7 +43,7 @@
 </script>
 <style>
 	#searchmainpage{
-		width: 800px;
+		width: 860px;
 		min-height: 620px;
 	}
 	
@@ -56,9 +56,9 @@
 	}
 	
 	#searchsubbox select{
-		width: 142px;
+		width: 162px;
 		height: 34px;
-		padding: 7px 36px 7px 12px;
+		padding: 7px 16px 7px 12px;
 		vertical-align: middle;
 	}
 	
@@ -128,12 +128,16 @@
 		display: inline-block;
 	}
 	
-	.pagingbox a:hover {
+	.pagingboxatag{
+		color: black;
+	}
+	
+	.pagingboxatag:hover {
 		text-decoration: underline;
 		color: #03c75a;
 	}
 	
-	.pagingbox a:visited {
+	.pagingboxatag:visited {
 		color: black;
 	}
 	
@@ -158,7 +162,11 @@
 		<form method="get" action="searchmain.do" id="searchsubform" name="searchsubform" >
 			<select name="searchselect1" id="searchselect1">
 				<option value="전체게시판">전체게시판</option>
-				<option value="게시판추가">게시판추가</option>
+				<option value="java 수업자료">java 수업자료</option>
+				<option value="html_css수업자료">html_css수업자료</option>
+				<option value="java 과제">java 과제</option>
+				<option value="htmlcss과제">htmlcss과제</option>
+				<option value="자유게시판">자유게시판</option>
 			</select>
 			<select name="searchselect2" id="searchselect2">
 				<option value="제목+내용">제목+내용</option>

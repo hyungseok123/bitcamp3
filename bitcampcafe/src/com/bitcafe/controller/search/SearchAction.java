@@ -6,9 +6,12 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bitcafe.DTO.BoardDTO;
+import com.bitcafe.DTO.MemberDTO;
 import com.bitcafe.controller.Action;
+import com.bitcafe.service.BoardService;
 import com.bitcafe.service.SearchService;
 import com.bitcafe.util.ForwardAction;
 import com.bitcafe.util.Paging;
@@ -84,12 +87,23 @@ public class SearchAction implements Action {
 		request.setAttribute("searchselect1", searchselect1);
 		request.setAttribute("searchselect2", searchselect2);
 		
+		//나의 활동페이지 갱신 시작
+		HttpSession session = request.getSession();
+		MemberDTO memberdto = (MemberDTO)session.getAttribute("memberInfo");
+		int member_no = memberdto.getMember_no();
+		BoardService service = BoardService.getInstance();
+		int myboard = service.getMyboard(member_no);
+		int mycomment = service.getMyComment(member_no);
+		request.setAttribute("myboard", myboard);
+		request.setAttribute("mycomment", mycomment);
+		//나의 활동페이지 갱신 끝
+		
 		System.out.println("currpage : "+currpage);
 		System.out.println("startblock : "+startblock);
 		System.out.println("endblock : "+endblock);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/search/searchpage.jsp");
+		forward.setPath("/cafe/template/main.jsp?page=/cafe/search/searchpage.jsp");
 		
 		return forward;
 	}
