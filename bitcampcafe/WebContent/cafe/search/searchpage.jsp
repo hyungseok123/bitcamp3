@@ -6,6 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>검색결과</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		
+	});
+</script>
 <style>
 	#searchmainpage{
 		width: 800px;
@@ -85,6 +91,8 @@
 <c:set var="endblock" value="${requestScope.endblock }"/>
 <c:set var="blocksize" value="${requestScope.blocksize }"/>
 <c:set var="currpage" value="${requestScope.currpage }"/>
+<c:set var="searchselect1" value="${requestScope.searchselect1 }"/>
+<c:set var="searchselect2" value="${requestScope.searchselect2 }"/>
 <section id="searchmainpage">
 	<div id="searchsubbox">
 		<form method="get" action="searchmain.do" id="searchsubform" name="searchsubform" >
@@ -97,7 +105,8 @@
 				<option value="제목만">제목만</option>
 				<option value="작성자">작성자</option>
 			</select>
-			<input type="text" id="searchsubinput" name="searchinput" value="${requestScope.searchtext }">
+			<c:set var="searchinput" value="${requestScope.searchtext }"/>
+			<input type="text" id="searchsubinput" name="searchinput" value="${searchinput }">
 			<input type="submit" value="검색" id="searchsubsubmit">
 		</form>
 	</div>
@@ -134,11 +143,11 @@
 	</div>
 	<div id="searchpaging">
 		<c:if test="${currpage != 1 }">
-			<a href="searchmain.do?currpage=${currpage-1 }">이전으로</a>
+			<a href="searchmain.do?currpage=${currpage-1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">이전으로</a>
 		</c:if>
 			<c:out value="${currpage }"></c:out>
 		<c:if test="${currpage != totalpage }">
-			<a href="searchmain.do?currpage=${currpage+1 }">다음으로</a>
+			<a href="searchmain.do?currpage=${currpage+1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">다음으로</a>
 		</c:if>
 	</div>
 </section>
