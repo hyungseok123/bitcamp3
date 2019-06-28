@@ -107,25 +107,24 @@ public class AttendanceService {
 
 
 
-	public int AttendanceDelete(AttendanceDTO dto)
+	public int AttendanceDelete(int no)
 	{
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
-		int result =0;
-		try { conn=db.getConnection();
+		int result = 0;
+		try {
+		conn = db.getConnection();
 		AttendanceDAO dao = AttendanceDAO.getDAO();
-		result = dao.AttendanceDelete(conn, dto);
-
-
-		}catch(SQLException|NamingException e)
-		{
+		conn.setAutoCommit(false);
+		result = dao.AttendanceDelete(conn, no);
+		conn.commit();
+		} catch(SQLException|NamingException e) {
 			System.out.println(e);
-		}finally {
+			try {conn.rollback();} catch (SQLException e1) {System.out.println(e);}
+		} finally {
 			if(conn!=null) try {conn.close();} catch(SQLException e) {}
 		}
-
 		return result;
-
 	}
 
 	public int AttendanceUpdate(int attendance_no, String attendance_content)
@@ -133,30 +132,19 @@ public class AttendanceService {
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
 		int result=0;
-		try{
-
+		try {
 			conn = db.getConnection();
 			AttendanceDAO dao = AttendanceDAO.getDAO();
-			result = dao.AttendanceUpdate(conn,attendance_no,attendance_content);
-
-		}catch(SQLException|NamingException e)
+			conn.setAutoCommit(false);
+			result = dao.AttendanceUpdate(conn, attendance_no, attendance_content);
+			conn.commit();
+		} catch(SQLException | NamingException e)
 		{
 			System.out.println(e);
+			try {conn.rollback();} catch (SQLException e1) {}
 		}finally {
-			if(conn!=null) try {conn.close();} catch(SQLException e) {}
+			if(conn != null) try {conn.close();} catch(SQLException e) {}
 		}
-
-
 		return result;
-
-
 	}
-
-
-
-
-
-
-
-
 }

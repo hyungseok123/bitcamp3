@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bitcafe.DTO.AttendanceDTO;
+import com.mysql.cj.protocol.Resultset;
 
 public class AttendanceDAO {
 	private static AttendanceDAO dao = new AttendanceDAO();
@@ -131,12 +132,12 @@ public class AttendanceDAO {
     	 PreparedStatement pstmt=null;
     	 StringBuilder sql=new StringBuilder();
     	 ResultSet rs=null;
-    	 sql.append(" select    attendance_no                  ");
-    	 sql.append("          ,attendance_content             ");
-    	 sql.append("          ,attendance_writedate           ");
-    	 sql.append("          ,member_no           ");
-    	 sql.append(" from  attendance                     ");
-    	 sql.append(" where  attendance_no=?                   ");
+    	 sql.append(" select    attendance_no         ");
+    	 sql.append("          ,attendance_content    ");
+    	 sql.append("          ,attendance_writedate  ");
+    	 sql.append("          ,member_no             ");
+    	 sql.append(" from  attendance                ");
+    	 sql.append(" where  attendance_no=?          ");
     	 AttendanceDTO data=new AttendanceDTO();
     	 try{
     		 pstmt=conn.prepareStatement(sql.toString());
@@ -149,11 +150,11 @@ public class AttendanceDAO {
     		   data.setAttendance_writedate(rs.getDate("attendance_writedate"));
     		  
     		 }
-    	 }catch(SQLException e)
+    	 } catch(SQLException e)
     	 {
     		throw  new RuntimeException();
-    	 }finally{
-    		 rsClose(rs);
+    	 } finally {
+    		rsClose(rs);
             pstmtClose(pstmt);
     		 
     	 }
@@ -183,68 +184,61 @@ public class AttendanceDAO {
     		   pstmt.setInt(1, member_no);
     		   pstmt.setString(2, attendance);
     		   
-    		   r=pstmt.executeUpdate();
+    		   r = pstmt.executeUpdate();
     		   
-    	   }catch(SQLException e)
+    	   } catch(SQLException e)
     	   {
     		   System.out.println(e);
     		   throw new RuntimeException();
-    	   }finally{
+    	   } finally{
     		   pstmtClose(pstmt);
     	   }
     	   return r;
      }
 
-	public int AttendanceDelete(Connection conn, AttendanceDTO dto) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	
+	public int AttendanceDelete(Connection conn, int no) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		Resultset rs = null;
 		StringBuilder sql = new StringBuilder();
-		sql.append(" delete from attendance          ");
-		sql.append("   where member_no =?              ");
-		int result =0;
-		try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());
-				
-				)
-		{
-			pstmt.setInt(1, dto.getMember_no());
-		   result = pstmt.executeUpdate();
+		sql.append(" delete from attendance  ");
+		sql.append(" where attendance_no = ? ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			System.out.println(e);
+			throw new RuntimeException();
+		} finally{
+			pstmtClose(pstmt);
 		}
 		return result;
-	
-		
-		
 	}
+	
 	public int AttendanceUpdate(Connection conn, int attendance_no, String attendance_content) throws SQLException
     {
-    	StringBuilder sql = new StringBuilder();
-    	sql.append("  update attendance                                ");
-    	sql.append("      set                                           ");
-    	sql.append("      attendance_no=?                               ");
-    	sql.append("     ,attendanco_content=?  ");
-    	sql.append("       where member_no=?        ");
     	int result=0;
-    	try(
-    			
-    			PreparedStatement pstmt = conn.prepareStatement(sql.toString());)
-    	{
-    		
-    		pstmt.setInt(1, attendance_no);
-    		pstmt.setString(2, attendance_content);
-    		
-    	   result = pstmt.executeUpdate();
-    	   
-    	}
-    	
-    	
-    	
-    	
-    	
-    	return result;
+    	PreparedStatement pstmt= null;
+    	Resultset rs = null;
+		StringBuilder sql = new StringBuilder();
+    	sql.append("  update attendance                   ");
+    	sql.append("      set                             ");    	
+    	sql.append("     attendance_content=?            ");
+    	sql.append("       where attendance_no=?              ");
+    	try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, attendance_content);
+			pstmt.setInt(2, attendance_no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			System.out.println(e);
+			throw new RuntimeException();
+		} finally{
+			pstmtClose(pstmt);
+		}
+		return result;
     }
-	
-	
-	
 	
 	
 }

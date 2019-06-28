@@ -20,17 +20,18 @@
  
  <tbody>
  <c:forEach var="dto" items="${requestScope.list }">
- 
- <tr><td>${dto.member_no } </td></tr>
- <tr><td>${dto.attendance_no }</td></tr>
- <tr><td>${dto.attendance_content }</td></tr>
- <tr><td>${dto.attendance_writedate }</td></tr>
+ <tr>
+   <td>${dto.member_no } </td>
+   <td>${dto.attendance_no }</td>
+   <td>${dto.attendance_content }</td>
+   <td>${dto.attendance_writedate }</td>
+   <td><a href="attendanceupdate.do?no=${dto.attendance_no }">수정하기</a></td>
+   <td><a href="attendancedelete.do?no=${dto.attendance_no }">삭제하기</a></td>
+ </tr>
  </c:forEach>
- <a href="attendanceupdate.do">수정하기</a>
-<a href="attendancedelete.do">삭제하기</a>
  
  </tbody>
- 
+</table>
 
 
 </div>

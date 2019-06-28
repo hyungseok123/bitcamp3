@@ -15,21 +15,19 @@ public class AttendanceDeleteAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		AttendanceService service = AttendanceService.getService();
 		
+		  // 파라미터값 받아오기
 		int no = Integer.parseInt(request.getParameter("no"));
 		
-		AttendanceDTO dto = new AttendanceDTO();
-		int result = service.AttendanceDelete(dto);
+		  // 서비스 작동하고 attribute set 해주기
+		AttendanceService service = AttendanceService.getService();
+		int result = service.AttendanceDelete(no);
 		request.setAttribute("result", result);
+		
+		  // forward, sendredirect 설정하고 경로도 설정
 		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(false);
-		forward.setPath("/cafe/attendance/attendancedelete.do");
-		
-		
-		
-		
+		forward.setRedirect(true);
+		forward.setPath("attendanceinsert.do");
 		return forward;
 	}
 

@@ -22,11 +22,11 @@ public class AttendanceUpdateResultAction implements Action {
 		AttendanceService service=AttendanceService.getService();
 		
 		
-		String attendance_content=request.getParameter("attendance_content");
+		int no=Integer.parseInt(request.getParameter("no"));
+		String attendance_content = request.getParameter("attendance_content");
 		//request.setAttribute("content", content);
 		int bno = 0;
-		String no = request.getParameter("attendance_no");
-		if (no != null && !no.equals("")) bno = Integer.parseInt(no);
+		
 		
 		HttpSession session = request.getSession();
 		ForwardAction forward = new ForwardAction();
@@ -39,7 +39,7 @@ public class AttendanceUpdateResultAction implements Action {
 			String content = request.getParameter("attendance_content");
 			int result2 = service.AttendanceUpdate(attendance_no, attendance_content);
 			forward.setRedirect(true);
-			forward.setPath("/cafe/attendance/attendanceupdate.do");
+			forward.setPath("/cafe/attendance/attendanceupdate.jsp");
 		}
 		return forward;
 	
