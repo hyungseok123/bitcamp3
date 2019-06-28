@@ -1,4 +1,4 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.attendance;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bitcafe.DTO.MemberDTO;
+import com.bitcafe.controller.Action;
 import com.bitcafe.service.AttendanceService;
 import com.bitcafe.util.ForwardAction;
 
@@ -30,7 +31,7 @@ public class AttendanceInsertAction implements Action {
 		  else
 		  {
 				forward.setRedirect(false);
-				forward.setPath("/cafe/template/main.jsp?page=/cafe/attendance/attendanceinsert.jsp");
+				forward.setPath("/cafe/template/main.jsp?page=/cafe/attendance/attendancetem.jsp");
 		  }
 		
 		

@@ -1,4 +1,4 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.attendance;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bitcafe.DTO.AttendanceDTO;
 import com.bitcafe.DTO.MemberDTO;
+import com.bitcafe.controller.Action;
 import com.bitcafe.service.AttendanceService;
 import com.bitcafe.util.ForwardAction;
 
@@ -34,7 +35,7 @@ public class AttendanceUpdateResultAction implements Action {
 			String attendance_content = request.getParameter("attendance_content");
 			int result = service.AttendanceUpdate(attendance_no, attendance_content);
 			forward.setRedirect(true);
-			forward.setPath("attendanceinsert.do");
+			forward.setPath("/cafe/attendance/attendancetinsert.jsp");
 		}
 		return forward;
 	

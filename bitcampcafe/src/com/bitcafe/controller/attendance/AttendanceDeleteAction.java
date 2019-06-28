@@ -1,4 +1,4 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.attendance;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bitcafe.DTO.AttendanceDTO;
+import com.bitcafe.controller.Action;
 import com.bitcafe.service.AttendanceService;
 import com.bitcafe.util.ForwardAction;
 

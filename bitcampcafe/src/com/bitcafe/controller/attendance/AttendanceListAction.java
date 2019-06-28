@@ -1,4 +1,4 @@
-package com.bitcafe.controller;
+package com.bitcafe.controller.attendance;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bitcafe.DTO.AttendanceDTO;
+import com.bitcafe.controller.Action;
 import com.bitcafe.service.AttendanceService;
 import com.bitcafe.util.ForwardAction;
 
@@ -50,7 +51,7 @@ public class AttendanceListAction implements Action {
 	    request.setAttribute("endblock", endblock);*/
 	    ForwardAction forward = new ForwardAction();
 	    forward.setRedirect(false);
-	    forward.setPath("/cafe/template/main.jsp?page=/cafe/attendance/attendance.jsp");
+	    forward.setPath("/cafe/attendance/attendance.jsp");
 	    
 	    
 	    
