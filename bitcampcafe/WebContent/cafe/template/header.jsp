@@ -17,7 +17,7 @@
 	padding: 10px;
 	margin-bottom: 10px;
 	width: 1058px;
-	height: 130px;
+	height: 180px;
 	border: 1px solid silver;
 }
 .search_wrap {

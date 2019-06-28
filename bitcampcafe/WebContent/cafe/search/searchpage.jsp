@@ -6,6 +6,39 @@
 <head>
 <meta charset="UTF-8">
 <title>검색결과</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+	$(document).ready(function() {
+		var searchselect1 = '<%=request.getAttribute("searchselect1")%>'
+		var searchselect2 = '<%=request.getAttribute("searchselect2")%>'
+		if(searchselect1 != null ) {
+			$('#searchselect1').val(searchselect1);
+		}
+		else {
+			$('#searchselect1').val('전체게시판');
+		}
+		
+		if(searchselect2 != null) {
+			$('#searchselect2').val(searchselect2);
+		} else{
+			$('#searchselect2').val('제목+내용');
+		}
+		
+/* 		$('form').on('submit',function(event){
+			console.log(this);
+			var searchsubinput = $('#searchsubinput').val();
+			console.log("정보 : "+searchsubinput);
+			if(searchsubinput != null || searchsubinput != '') {
+				$('form').submit();
+			}
+			else {
+				event.preventDefault();
+				alert('검색어를 입력하세요').one();
+				return;
+			}
+		}); */
+	});
+</script>
 <style>
 	#searchmainpage{
 		width: 800px;
@@ -70,21 +103,58 @@
 	#searchmainpage a:hover {
 		text-decoration: underline;
 	}
+	
+	#searchpaging {
+		width: 100%;
+		height: 40px;
+		padding-top: 16px;
+		margin-top: 32px;
+		background-color: #f9f9f8;
+		text-align: center;
+	}
+	
+	.pagingbox {
+		width: 24px;
+		height: 24px;
+		background-color: white;
+		border: 1px solid silver;
+		text-align: center;
+		vertical-align: middle;
+		color: #03c75a;
+		text-decoration: none;
+		display: inline-block;
+	}
+	
+	.pagingbox:hover {
+		text-decoration: underline;
+	}
+	
+	.pagingbox:active {
+		color: #03c75a;
+	}
 </style>
 <body>
+<c:set var="totalpage" value="${requestScope.totalpage }"/>
+<c:set var="startblock" value="${requestScope.startblock }"/>
+<c:set var="endblock" value="${requestScope.endblock }"/>
+<c:set var="blocksize" value="${requestScope.blocksize }"/>
+<c:set var="currpage" value="${requestScope.currpage }"/>
+<c:set var="searchselect1" value="${requestScope.searchselect1 }"/>
+<c:set var="searchselect2" value="${requestScope.searchselect2 }"/>
 <section id="searchmainpage">
 	<div id="searchsubbox">
 		<form method="get" action="searchmain.do" id="searchsubform" name="searchsubform" >
-			<select name="searchselect1">
+			<select name="searchselect1" id="searchselect1">
 				<option value="전체게시판">전체게시판</option>
 				<option value="게시판추가">게시판추가</option>
 			</select>
-			<select name="searchselect2">
+			<select name="searchselect2" id="searchselect2">
 				<option value="제목+내용">제목+내용</option>
 				<option value="제목만">제목만</option>
 				<option value="작성자">작성자</option>
 			</select>
-			<input type="text" id="searchsubinput" name="searchinput" value="${requestScope.searchtext }">
+			<c:set var="searchinput" value="${requestScope.searchtext }"/>
+			<input type="text" id="searchsubinput" name="searchinput" value="${searchinput }">
 			<input type="submit" value="검색" id="searchsubsubmit">
 		</form>
 	</div>
@@ -102,7 +172,7 @@
 			</thead>
 			<tbody id="searchsubresult">
 				<c:set var="list" value="${requestScope.list }"/>
-					<c:if test="${list == null }">
+					<c:if test="${list == null || empty list } ">
 						<tr><td colspan="4">등록된 게시글이 없습니다.</td><tr>
 					</c:if>
 					<c:if test="${list != null }">
@@ -118,6 +188,15 @@
 					</c:if>
 			</tbody>
 		</table>
+	</div>
+	<div id="searchpaging">
+		<c:if test="${currpage != 1 }">
+			<div class="pagingbox"><a href="searchmain.do?currpage=${currpage-1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">${currpage-1 }</a></div>
+		</c:if>
+			<div class="pagingbox"><c:out value="${currpage }"/></div>
+		<c:if test="${currpage != totalpage && totalpage != 0 }">
+			<div class="pagingbox"><a href="searchmain.do?currpage=${currpage+1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">${currpage+1 }</a></div>
+		</c:if>
 	</div>
 </section>
 </body>

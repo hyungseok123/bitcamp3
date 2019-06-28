@@ -38,7 +38,7 @@ public class BoardDAO {
 		sql.append(" on b.member_no = m.member_no     ");
 		sql.append("              join category c     ");
 		sql.append(" on b.category_no = c.category_no ");
-		sql.append(" order by board_writedate desc    ");
+		sql.append(" order by b.board_no desc         ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
@@ -79,7 +79,7 @@ public class BoardDAO {
 		sql.append("        ,category_no                 ");
 		sql.append("        ,member_no                   ");
 		sql.append("                                  )  ");
-		sql.append("  values (?, ?, now(), 0, 0, 1,1 )  ");
+		sql.append("  values (?, ?, now(), 0, 0, ?, ? )  ");
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
@@ -146,5 +146,21 @@ public class BoardDAO {
 		}
 		return result;
 	}
-
+	public int BoardDeleteData(Connection conn, int board_no) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" delete from board  ");
+		sql.append(" where board_no = ? ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, board_no);
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}
 }
