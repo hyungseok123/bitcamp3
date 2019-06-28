@@ -15,13 +15,11 @@
 </thead>
 
 </table>
-<form id="frm" method = "post"  action="attendanceupdateaction.do">
-	<textarea name="attendance" cols="90" rows="8">${content }</textarea>
+<form id="frm" method = "post"  action="attendanceupdateresultaction.do">
+	<input type="hidden" name="attendance_no" value="${attendance_no }">
+	<textarea name="attendance_content" cols="90" rows="8">${content }</textarea>
     <input type="submit" value="수정하기" >
     <input type="reset" value="다시쓰기">
-</form>    
-
-
-
+</form>
 </body>
 </html>
