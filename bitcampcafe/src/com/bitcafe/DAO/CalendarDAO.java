@@ -103,4 +103,18 @@ public class CalendarDAO {
 		}
 		return dto;
 	}
+
+	public int deleteList(Connection conn, int no) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" delete   from  calendar     ");
+		sql.append("  where calendar_no=  ?       ");
+		int result = 0;
+		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		}
+		return result;
+
+	}
+
 }

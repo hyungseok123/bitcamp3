@@ -110,4 +110,33 @@ public class CalendarService {
 		}
 		return dto;
 	}
+
+	public int DeleteService(int no) {
+		DBConnection db = DBConnection.gettb();
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = db.getConnection();
+			conn.setAutoCommit(false);
+			CalendarDAO dao = CalendarDAO.getCalendarDAO();
+			result = dao.deleteList(conn, no);
+			conn.commit();
+		} catch (SQLException | NamingException | RuntimeException e) {
+			System.out.println(e);
+			try {
+				conn.rollback();
+			} catch (SQLException e2) {
+				System.out.println(e2);
+			}
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					System.out.println(e);
+				}
+			}
+		}
+		return result;
+	}
 }

@@ -107,7 +107,7 @@ body {
 			header : {
 				left : 'prev,next',
 				center : 'title',
-				right : 'today,month'
+				right : 'today'
 			},
 			editable : false,
 			events : eventData,
@@ -118,7 +118,7 @@ body {
 			},
 			eventClick : function(event) { //일정클릭하면 그일정의 디테일을 출력			
 				if (event.no) {
-					location.href = "calendarDetail.do?no=" + event.no;
+					location.href = "calendardetail.do?no=" + event.no;
 					return false;
 				}
 			}

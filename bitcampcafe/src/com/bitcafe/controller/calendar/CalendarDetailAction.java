@@ -18,23 +18,23 @@ public class CalendarDetailAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int no = Integer.parseInt(request.getParameter("no"));
-		CalendarService service = CalendarService.getCalendarService();
-		CalendarDTO dto = service.DetailService(no);
-		request.setAttribute("dto", dto);
+			int no = Integer.parseInt(request.getParameter("no"));
+			CalendarService service = CalendarService.getCalendarService();
+			CalendarDTO dto =service.DetailService(no);
+			request.setAttribute("dto", dto);
+			
+			ForwardAction forward = new ForwardAction();
+			HttpSession session = request.getSession();
+			MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
+			if (memberInfo == null) {
+				forward.setRedirect(true);
+				forward.setPath("login.do");
+			} else {
+				int member_no = memberInfo.getMember_no();
+				forward.setRedirect(false);
+				forward.setPath("/cafe/template/main.jsp?page=/cafe/calendar/calendarDetail.jsp");
 
-		ForwardAction forward = new ForwardAction();
-		HttpSession session = request.getSession();
-		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
-		if (memberInfo == null) {
-			forward.setRedirect(true);
-			forward.setPath("login.do");
-		} else {
-			int member_no = memberInfo.getMember_no();
-			forward.setRedirect(false);
-			forward.setPath("/cafe/template/main.jsp?page=/cafe/calendar/calendarDetail.jsp");
-
-		}
+			}
 
 		return forward;
 	}
