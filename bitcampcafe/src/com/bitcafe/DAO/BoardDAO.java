@@ -146,6 +146,8 @@ public class BoardDAO {
 		}
 		return result;
 	}
+	
+	
 	public int BoardDeleteData(Connection conn, int board_no) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -159,8 +161,29 @@ public class BoardDAO {
 		} catch(SQLException e) {
 			throw e;
 		} finally {
+			if(pstmt!=null) try{pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}
+	
+	public int BoardUpdateData(Connection conn, BoardDTO dto) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update board          ");
+		sql.append(" set board_content = ? ");
+		sql.append(" where board_no = ?    ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getBoard_content());
+			pstmt.setInt(2, dto.getBoard_no());
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			throw e;
+		} finally {
 			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
 		}  
 		return result;
 	}
+	
 }

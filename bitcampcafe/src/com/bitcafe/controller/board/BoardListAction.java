@@ -18,8 +18,8 @@ public class BoardListAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		BoardService service=BoardService.getInstance();
-		List<BoardDTO> list= service.BoardListService();
+		BoardService service = BoardService.getInstance();
+		List<BoardDTO> list = service.BoardListService();
 		request.setAttribute("list", list);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
