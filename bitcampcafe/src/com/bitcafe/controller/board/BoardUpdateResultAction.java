@@ -39,10 +39,10 @@ public class BoardUpdateResultAction implements Action {
 			dto.setBoard_content(board_content);
 
 			BoardService service = BoardService.getInstance();
-			int result = service.BoardInsertService(dto);
+			int result = service.BoardUpdateService(dto);
 			request.setAttribute("result", result);
 			forward.setRedirect(true);
-			forward.setPath("boardetail.do");
+			forward.setPath("boarddetail.do?no=" + board_no);
 
 		}
 

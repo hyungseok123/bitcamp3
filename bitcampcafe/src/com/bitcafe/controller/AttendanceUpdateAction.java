@@ -15,24 +15,19 @@ public class AttendanceUpdateAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		//파라미터값을 받아와보기
 		int no = Integer.parseInt(request.getParameter("no"));
-		AttendanceService service = AttendanceService.getService();
-		AttendanceDTO dto = (AttendanceDTO)service.list();
-		request.setAttribute("dto", dto);
+		String content = request.getParameter("content");
+		AttendanceDTO dto = new AttendanceDTO();
+		System.out.println(dto.getAttendance_content());
+		
+		//서비스를 작동하고 x attribute를 세팅하기
+		request.setAttribute("no", no);
+		request.setAttribute("content", content);
 		
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("cafe/update.do");
-		
-		
-
-		
-	
-
-		return forward;
-
-	
+		forward.setPath("/cafe/attendance/attendanceupdate.jsp");
+		return forward;	
 	}
-
 }

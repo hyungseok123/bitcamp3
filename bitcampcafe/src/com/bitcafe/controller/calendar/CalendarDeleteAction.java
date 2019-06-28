@@ -7,35 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bitcafe.DTO.CalendarDTO;
 import com.bitcafe.DTO.MemberDTO;
 import com.bitcafe.controller.Action;
 import com.bitcafe.service.CalendarService;
 import com.bitcafe.util.ForwardAction;
 
-public class CalendarInsertResultAction implements Action {
+public class CalendarDeleteAction implements Action {
 
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String title = request.getParameter("title");
-		String start = request.getParameter("start");
-		String end = request.getParameter("end");
-		String content = request.getParameter("content");
-		String place = request.getParameter("place");
-		String color = request.getParameter("color");
-		CalendarDTO dto = new CalendarDTO();
-		dto.setCalendar_title(title);
-		dto.setCalendar_start(start);
-		dto.setCalendar_end(end);
-		dto.setCalendar_content(content);
-		dto.setCalendar_place(place);
-		dto.setCalendar_color(color);
+		System.out.println("delete진입");
+		int no = Integer.parseInt(request.getParameter("no"));
 		CalendarService service = CalendarService.getCalendarService();
-		int result = service.InsertService(dto);
+		int result = service.DeleteService(no);
 		request.setAttribute("result", result);
-
 		ForwardAction forward = new ForwardAction();
 		HttpSession session = request.getSession();
 		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
@@ -45,7 +31,7 @@ public class CalendarInsertResultAction implements Action {
 		} else {
 			int member_no = memberInfo.getMember_no();
 			forward.setRedirect(false);
-			forward.setPath("/cafe/template/main.jsp?page=/cafe/calendar/calendarMain.jsp");
+			forward.setPath("/cafe/template/main.jsp?page=/cafe/calendar/calendarDelete.jsp");
 
 		}
 
