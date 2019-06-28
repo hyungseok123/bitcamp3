@@ -77,4 +77,44 @@ public class CalendarDAO {
 		return result;
 	}
 
+	public CalendarDTO detailList(Connection conn, int no) throws SQLException {
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append("   select     *         ");
+		sql.append(" from calendar  ");
+		sql.append("  where calendar_no  =    ?");
+
+		CalendarDTO dto = new CalendarDTO();
+		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				dto.setCalendar_no(rs.getInt("calendar_no"));
+				dto.setCalendar_title(rs.getString("calendar_title"));
+				dto.setCalendar_start(rs.getString("calendar_start"));
+				dto.setCalendar_end(rs.getString("calendar_end"));
+				dto.setCalendar_content(rs.getString("calendar_content"));
+				dto.setCalendar_place(rs.getString("calendar_place"));
+				dto.setCalendar_color(rs.getString("calendar_color"));
+			}
+		} finally {
+			rsClose(rs);
+		}
+		return dto;
+	}
+
+	public int deleteList(Connection conn, int no) throws SQLException {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" delete   from  calendar     ");
+		sql.append("  where calendar_no=  ?       ");
+		int result = 0;
+		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
+			pstmt.setInt(1, no);
+			result = pstmt.executeUpdate();
+		}
+		return result;
+
+	}
+
 }

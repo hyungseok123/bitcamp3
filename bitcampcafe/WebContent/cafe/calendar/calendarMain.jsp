@@ -38,27 +38,30 @@ body {
 
 <!-- datetimepicker -->
 <script type="text/javascript"
-	src="./fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.js"></script>
+	src="./cafe/calendar/fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript"
-	src="./fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.css"></script>
+	src="./cafe/calendar/fullcalendar-3.3.1/lib/bootstrap-datetimepicker.min.css"></script>
 <!--  -->
 
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 
-<link href="./fullcalendar-3.3.1/fullcalendar.css" rel="stylesheet" />
-<link href="./fullcalendar-3.3.1/fullcalendar.print.css"
+<link href="./cafe/calendar/fullcalendar-3.3.1/fullcalendar.css"
+	rel="stylesheet" />
+<link href="./cafe/calendar/fullcalendar-3.3.1/fullcalendar.print.css"
 	rel="stylesheet" media="print" />
 <script type="text/javascript"
-	src="./fullcalendar-3.3.1/lib/moment.min.js"></script>
+	src="./cafe/calendar/fullcalendar-3.3.1/lib/moment.min.js"></script>
 <script type="text/javascript"
-	src="./fullcalendar-3.3.1/lib/jquery.min.js"></script>
+	src="./cafe/calendar/fullcalendar-3.3.1/lib/jquery.min.js"></script>
 <script type="text/javascript"
-	src="./fullcalendar-3.3.1/fullcalendar.js"></script>
-<script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
-<script type="text/javascript" src="./fullcalendar-3.3.1/gcal.js"></script>
+	src="./cafe/calendar/fullcalendar-3.3.1/fullcalendar.js"></script>
 <script type="text/javascript"
-	src="./fullcalendar-3.3.1/lib/bootstrap.min.js"></script>
+	src="./cafe/calendar/fullcalendar-3.3.1/locale/ko.js"></script>
+<script type="text/javascript"
+	src="./cafe/calendar/fullcalendar-3.3.1/gcal.js"></script>
+<script type="text/javascript"
+	src="./cafe/calendar/fullcalendar-3.3.1/lib/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var date = new Date();
@@ -71,7 +74,7 @@ body {
 	//list 데이터 json형식으로 받아주기
 	function getEvent() { // 제이슨으로 캘린더 이벤트 등록형식에 맞게 뿌리기
 		$.ajax({
-			url : "http://localhost:9080/bitcampcafe/json.getjson",
+			url : "http://localhost:8080/bitcampcafe/json.getjson",
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			type : 'post',
 			dataType : 'json',
@@ -104,18 +107,18 @@ body {
 			header : {
 				left : 'prev,next',
 				center : 'title',
-				right : 'today,month'
+				right : 'today'
 			},
 			editable : false,
 			events : eventData,
 			select : function(event) {
 				//일정없는 빈곳 누르면 insertform으로~
 
-				location.href = "add.do";
+				location.href = "calendarinsert.do";
 			},
 			eventClick : function(event) { //일정클릭하면 그일정의 디테일을 출력			
 				if (event.no) {
-					location.href = "detail.do?no=" + event.no;
+					location.href = "calendardetail.do?no=" + event.no;
 					return false;
 				}
 			}
@@ -123,8 +126,6 @@ body {
 	}
 </script>
 <body>
-
-
 
 	<div id="calendar"></div>
 

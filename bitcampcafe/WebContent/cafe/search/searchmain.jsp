@@ -8,23 +8,23 @@
 <title>검색</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
-$(document).ready(function() {
-	$('form').on('submit',function(event){
-		console.log(this);
-		var searchmaininput = $('#searchmaininput').val();
-		if(searchmaininput == null || searchmaininput =="") {
-			event.preventDefault();
-			alert('검색어를 입력하세요').one();
-		}
-		else if(searchmaininput == "in") {
-			event.preventDefault();
-			alert('금지어 입니다.').one();
-		}
-		else {
-			$('form').submit();
-		}			
-	});
-});
+function searchsend() {
+	var searchinput = $('#searchmaininput').val();
+	var sessioncheck = '<%=session.getAttribute("memberInfo")%>';
+	if(sessioncheck == null || sessioncheck == "") {
+		alter('로그인부터 하세요').one();
+		location.href = "login.do"
+	}
+	else if(searchinput== null || searchinput == "") {
+		alert('검색어를 입력하세요').one();
+	}
+	else if(searchinput == "in") {
+		alert('금지어 입니다.').one();
+	}
+	else {
+		location.href = "searchmain.do?searchinput="+searchinput;
+	}
+}
 </script>
 </head>
 <style>
@@ -59,7 +59,7 @@ $(document).ready(function() {
 <div id="searchmain">
 <form method="get" action="searchmain.do" id="searchmainform" name="searchmainform" >
 	<input type="text" id="searchmaininput" name="searchinput">
-	<input type="submit" value="검색" id="searchmainsubmit">
+	<input type="button" value="검색" id="searchmainsubmit" onclick="searchsend()">
 </form>
 </div>
 </body>
