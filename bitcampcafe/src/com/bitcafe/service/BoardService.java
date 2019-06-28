@@ -24,7 +24,7 @@ public class BoardService {
 	}
 	private BoardService() {}
 
-	public List<BoardDTO> BoardListService() {
+	public List<BoardDTO> BoardListService(int category_no) {
 		Connection conn = null;
 		List<BoardDTO> list = null;
 		try {
@@ -32,7 +32,7 @@ public class BoardService {
 			conn = db.getConnection();
 			conn.setAutoCommit(false);
 			BoardDAO dao = BoardDAO.getDao();
-			list = dao.BoardgetList(conn);
+			list = dao.BoardgetList(conn, category_no);
 			conn.commit();
 		} catch (SQLException | NamingException e) {
 			System.out.println(e);
@@ -114,6 +114,60 @@ public class BoardService {
 			try{ conn.rollback();} catch(SQLException e1){}
 		} finally {
 			if(conn!=null) try{ conn.close();} catch(SQLException e){}
+		}
+		return result;
+	}
+	public String getCategoryName(int category_no) {
+		String result = null;
+		Connection conn = null;
+		try {
+			DBConnection db = DBConnection.gettb();
+			conn = db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao = BoardDAO.getDao();
+			result = dao.boardCategoryName(conn, category_no);
+			conn.commit();
+		} catch(SQLException| NamingException e) {
+			System.out.println(e);
+			try{ conn.rollback();} catch(SQLException e1){}
+		} finally {
+			if(conn!=null) try{ conn.close();} catch(SQLException e){}
+		}
+		return result;
+	}
+	public int getMyboard(int member_no) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			DBConnection db = DBConnection.gettb();
+			conn = db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao = BoardDAO.getDao();
+			result = dao.boardMyboard(conn, member_no);
+			conn.commit();
+		} catch (SQLException | NamingException e) {
+			System.out.println(e);
+			try {conn.rollback();} catch (SQLException e1) {}
+		} finally {
+			if (conn != null) try {conn.close();} catch (SQLException e) {}
+		}
+		return result;
+	}
+	public int getMyComment(int member_no) {
+		int result = 0;
+		Connection conn = null;
+		try {
+			DBConnection db = DBConnection.gettb();
+			conn = db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao = BoardDAO.getDao();
+			result = dao.boardMyComment(conn, member_no);
+			conn.commit();
+		} catch (SQLException | NamingException e) {
+			System.out.println(e);
+			try {conn.rollback();} catch (SQLException e1) {}
+		} finally {
+			if (conn != null) try {conn.close();} catch (SQLException e) {}
 		}
 		return result;
 	}

@@ -32,6 +32,13 @@ public class BoardDetailAction implements Action {
 			forward.setRedirect(true);
 			forward.setPath("login.do");
 		} else {
+			int member_no = loginInfo.getMember_no();
+			request.setAttribute("memberInfo", loginInfo);
+			// 나의 정보
+			int myboard = service.getMyboard(member_no);
+			int mycomment = service.getMyComment(member_no);
+			request.setAttribute("myboard", myboard);
+			request.setAttribute("mycomment", mycomment);
 			BoardDTO dto = service.BoardDetailService(board_no);
 			int commentTotalCount = commentService.commentTotalCount(board_no);
 			request.setAttribute("dto", dto);

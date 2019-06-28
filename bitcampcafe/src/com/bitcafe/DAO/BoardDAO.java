@@ -15,10 +15,9 @@ public class BoardDAO {
 	public static BoardDAO getDao() {
 		return dao;
 	}
-	private BoardDAO() {
-	}
+	private BoardDAO() {}
 	
-	public List<BoardDTO> BoardgetList(Connection conn) {
+	public List<BoardDTO> BoardgetList(Connection conn, int category_no) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
@@ -38,9 +37,12 @@ public class BoardDAO {
 		sql.append(" on b.member_no = m.member_no     ");
 		sql.append("              join category c     ");
 		sql.append(" on b.category_no = c.category_no ");
+		if (category_no != 0)
+		sql.append(" where b.category_no = ?            ");
 		sql.append(" order by b.board_no desc         ");
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
+			if (category_no != 0) pstmt.setInt(1, category_no);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				BoardDTO data = new BoardDTO();
@@ -146,8 +148,6 @@ public class BoardDAO {
 		}
 		return result;
 	}
-	
-	
 	public int BoardDeleteData(Connection conn, int board_no) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -161,11 +161,74 @@ public class BoardDAO {
 		} catch(SQLException e) {
 			throw e;
 		} finally {
-			if(pstmt!=null) try{pstmt.close();} catch(SQLException e){}
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
 		}  
 		return result;
 	}
-	
+	public String boardCategoryName(Connection conn, int category_no) throws SQLException {
+		String result = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select category_name from category ");
+		sql.append(" where category_no = ?              ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, category_no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) result = rs.getString("category_name");
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if (rs != null) try {rs.close();} catch (SQLException e) {}
+			if (pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}
+	public int boardMyboard(Connection conn, int member_no) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select count(board_no)       ");
+		sql.append(" from board b join member m   ");
+		sql.append(" on b.member_no = m.member_no ");
+		sql.append(" where m.member_no = ?        ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, member_no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) result = rs.getInt(1);
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if (rs != null) try {rs.close();} catch (SQLException e) {}
+			if (pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}
+	public int boardMyComment(Connection conn, int member_no) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select count(comment_no)     ");
+		sql.append(" from comment c join member m ");
+		sql.append(" on c.member_no = m.member_no ");
+		sql.append(" where m.member_no = ?        ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, member_no);
+			rs = pstmt.executeQuery();
+			if (rs.next()) result = rs.getInt(1);
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if (rs != null) try {rs.close();} catch (SQLException e) {}
+			if (pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
+	}	
 	public int BoardUpdateData(Connection conn, BoardDTO dto) throws SQLException {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -188,5 +251,4 @@ public class BoardDAO {
 		}  
 		return result;
 	}
-	
 }
