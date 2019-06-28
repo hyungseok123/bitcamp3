@@ -63,13 +63,13 @@ public class Paging {
 	}
 	private void makePaging() {
 /*		totalcount = service.getCount();*/
-		int pagepercount = 10;
+		int pagepercount = 3;
 		totalpage = (totalcount / pagepercount) + ((totalcount % pagepercount == 0) ? 0 : 1);	
 		startrow = (currpage - 1) * pagepercount + 1;											
 		endrow = startrow + pagepercount - 1;													
 		if (endrow > totalcount) endrow = totalcount;											
-		blocksize = 5;																			
-		startblock = ((currpage - 1) / blocksize) * blocksize + 1;
+		blocksize = 5;											
+		startblock = ((int)((currpage - 1) / (double)blocksize)) * blocksize + 1;
 		endblock = startblock + blocksize - 1;
 		if (totalpage < endblock) endblock = totalpage;
 	}
