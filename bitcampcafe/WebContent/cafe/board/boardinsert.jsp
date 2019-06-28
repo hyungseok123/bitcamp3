@@ -16,7 +16,7 @@
 	<form method="post" action="boardinsertresult.do">
 
 		<input type="hidden" name="member_no" value="${memberInfo.member_no}">
-		<input type="hidden" name="category_no" value="${param.cno }">     	<!-- !!!!!!!!!!!!!!! 수정해야됌 !!!!!!!!!!!!!!!!!!! -->
+		<input type="hidden" name="category_no" value="${param.cno }">  
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
 				<td id="title">카테고리</td>
