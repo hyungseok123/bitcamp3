@@ -125,7 +125,7 @@
 				}
 				else {
 					event.preventDefault();
-					alert('입력하신 부분에 잘못된 부분이 있습니다.');
+					alert('입력이 잘못되었거나 중복체크를 하지 않은 부분이 있습니다.');
 				}
 			});
 		});
@@ -189,7 +189,7 @@
 	<form method="post" action="memberupdateresult.do">
 		<label for="member_id">아이디 수정</label>
 		<input type="text" id="member_id" name="member_id" value="<c:out value="${memberdto.member_id }"/>" required>
-		<div class="input_undertext"></div>
+		<div class="input_undertext">클릭해서 중복체크를 해주세요</div>
 		<label for="member_pwd1">비밀번호 수정</label>
 		<input type="password" id="member_pwd1" name="member_pwd1" required >
 		<div class="input_undertext"></div>
@@ -198,7 +198,7 @@
 		<div class="input_undertext"></div>
 		<label for="member_nickname">닉네임 수정</label>
 		<input type="text" id="member_nickname" name="member_nickname" value="<c:out value="${memberdto.member_nickname }"/>" required>
-		<div class="input_undertext"></div>
+		<div class="input_undertext">클릭해서 중복체크를 해주세요</div>
 		<input type="submit" value="수정완료" id="submit">
 	</form>
 </c:if>
