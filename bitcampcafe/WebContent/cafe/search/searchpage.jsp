@@ -24,19 +24,17 @@
 			$('#searchselect2').val('제목+내용');
 		}
 		
-/* 		$('form').on('submit',function(event){
+ 		$('form').on('submit',function(event){
 			console.log(this);
 			var searchsubinput = $('#searchsubinput').val();
-			console.log("정보 : "+searchsubinput);
-			if(searchsubinput != null || searchsubinput != '') {
-				$('form').submit();
-			}
-			else {
+			if(searchsubinput == null || searchsubinput =="") {
 				event.preventDefault();
 				alert('검색어를 입력하세요').one();
-				return;
 			}
-		}); */
+			else {
+				$('form').submit();
+			}			
+		});
 	});
 </script>
 <style>
@@ -94,6 +92,7 @@
 		height: 28px;
 		text-align: center;
 		border-bottom: 1px solid silver;
+		color: black;
 	}
 	
 	#searchmainpage a {
@@ -125,12 +124,17 @@
 		display: inline-block;
 	}
 	
-	.pagingbox:hover {
+	.pagingbox a:hover {
 		text-decoration: underline;
+		color: #03c75a;
 	}
 	
-	.pagingbox:active {
-		color: #03c75a;
+	.pagingbox a:visited {
+		color: black;
+	}
+	
+	.detaillink {
+		color: black;
 	}
 </style>
 <body>
@@ -179,7 +183,7 @@
 						<c:forEach var="index" items="${list }">
 							<tr>
 								<td>${index.board_no }</td>
-								<td><a href="boarddetail.do?no=${index.board_no }">${index.board_title }</a></td>
+								<td><a href="boarddetail.do?no=${index.board_no }" class="detaillink">${index.board_title }</a></td>
 								<td>${index.member_nickname }</td>
 								<td>${index.board_writedate }</td>
 								<td>${index.board_viewcount }</td>
