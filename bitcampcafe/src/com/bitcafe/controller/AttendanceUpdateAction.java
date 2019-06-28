@@ -17,12 +17,12 @@ public class AttendanceUpdateAction implements Action {
 			throws ServletException, IOException {
 		//파라미터값을 받아와보기
 		int no = Integer.parseInt(request.getParameter("no"));
-		String content = request.getParameter("content");
-		AttendanceDTO dto = new AttendanceDTO();
-		System.out.println(dto.getAttendance_content());
+        AttendanceService service = AttendanceService.getService();
+        String content = service.AttendanceContent(no);
+        
 		
 		//서비스를 작동하고 x attribute를 세팅하기
-		request.setAttribute("no", no);
+		request.setAttribute("attendance_no", no);
 		request.setAttribute("content", content);
 		
 		ForwardAction forward = new ForwardAction();

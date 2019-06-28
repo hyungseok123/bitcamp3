@@ -131,7 +131,7 @@ public class AttendanceService {
 	{
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
-		int result=0;
+		int result = 0;
 		try {
 			conn = db.getConnection();
 			AttendanceDAO dao = AttendanceDAO.getDAO();
@@ -147,4 +147,26 @@ public class AttendanceService {
 		}
 		return result;
 	}
+	public String AttendanceContent(int attendance_no)
+	{
+		DBConnection db = DBConnection.gettb();
+		Connection conn = null;
+		String result = null;
+		try {
+			conn = db.getConnection();
+			AttendanceDAO dao = AttendanceDAO.getDAO();
+			conn.setAutoCommit(false);
+			result = dao.AttendanceContent(conn, attendance_no);
+			conn.commit();
+		}catch(SQLException |NamingException e)
+		{
+			System.out.println(e);
+			try{conn.rollback();}catch(SQLException e1) {}
+		}finally {
+			if(conn!=null) try {conn.close();}catch(SQLException e) {}
+		}
+	return  result;
+	}
+	
+	
 }

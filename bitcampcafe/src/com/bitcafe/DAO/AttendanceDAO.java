@@ -148,7 +148,6 @@ public class AttendanceDAO {
     		   data.setAttendance_no(rs.getInt("attendance_no"));
     		   data.setAttendance_content(rs.getString("attendance_content"));
     		   data.setAttendance_writedate(rs.getDate("attendance_writedate"));
-    		  
     		 }
     	 } catch(SQLException e)
     	 {
@@ -222,10 +221,10 @@ public class AttendanceDAO {
     	PreparedStatement pstmt= null;
     	Resultset rs = null;
 		StringBuilder sql = new StringBuilder();
-    	sql.append("  update attendance                   ");
-    	sql.append("      set                             ");    	
-    	sql.append("     attendance_content=?            ");
-    	sql.append("       where attendance_no=?              ");
+    	sql.append("  update attendance           ");
+    	sql.append("  set                         ");    	
+    	sql.append("      attendance_content = ?  ");
+    	sql.append("      where attendance_no = ? ");
     	try {
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, attendance_content);
@@ -239,6 +238,35 @@ public class AttendanceDAO {
 		}
 		return result;
     }
+	public String AttendanceContent(Connection conn, int attendance_no)
+	{
+		String content=null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append("  select attendance_content         ");
+		sql.append("  from attendance                   ");
+		sql.append("  where attendance_no=?             ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());				
+			pstmt.setInt(1, attendance_no);
+			rs = pstmt.executeQuery();
+            if(rs.next()) content = rs.getString("attendance_content");  
+		}catch(SQLException e)
+		{
+			System.out.println(e);
+			throw new RuntimeException();
+		}finally
+		{
+			if(rs!=null) try {rs.close();} catch(SQLException e) {}
+			if(pstmt!=null) try {pstmt.close();} catch(SQLException e) {}
+		}
+		return content;
+	}
+	
+	
+	
+	
 	
 	
 }

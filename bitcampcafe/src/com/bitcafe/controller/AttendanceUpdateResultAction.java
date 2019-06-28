@@ -18,28 +18,23 @@ public class AttendanceUpdateResultAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// 서비스 클래스 호출
 		AttendanceService service=AttendanceService.getService();
-		
-		
-		int no=Integer.parseInt(request.getParameter("no"));
-		String attendance_content = request.getParameter("attendance_content");
-		//request.setAttribute("content", content);
-		int bno = 0;
-		
-		
+		// 로그인 세션
 		HttpSession session = request.getSession();
-		ForwardAction forward = new ForwardAction();
 		MemberDTO loginInfo = (MemberDTO) session.getAttribute("memberInfo");
+		// forward, sendredirect 결정과 path 설정하기위해 forward 클래스 호출
+		ForwardAction forward = new ForwardAction();
 		if (loginInfo == null) {
 			forward.setRedirect(true);
 			forward.setPath("login.do");
 		} else {
+			// jsp에서 보낸 파라미터 호출
 			int attendance_no = Integer.parseInt(request.getParameter("attendance_no"));
-			String content = request.getParameter("attendance_content");
-			int result2 = service.AttendanceUpdate(attendance_no, attendance_content);
+			String attendance_content = request.getParameter("attendance_content");
+			int result = service.AttendanceUpdate(attendance_no, attendance_content);
 			forward.setRedirect(true);
-			forward.setPath("/cafe/attendance/attendanceupdate.jsp");
+			forward.setPath("attendanceinsert.do");
 		}
 		return forward;
 	
