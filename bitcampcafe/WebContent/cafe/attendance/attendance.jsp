@@ -14,9 +14,6 @@
 <div>
 
 <table>
- <thead>
- <tr><th>내용</th></tr>
- </thead>
  
  <tbody>
  <c:forEach var="dto" items="${requestScope.list }">
