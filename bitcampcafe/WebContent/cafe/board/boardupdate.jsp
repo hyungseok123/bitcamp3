@@ -13,7 +13,7 @@
 	<div>
 		<form id="boardupdate" method="post" action="boardupdateresult.do">
 			<textarea name="board_title" cols="100" rows="5">${dto.board_title }</textarea>
-			<input type="hidden" name="board_content" value="${dto.board_content }">
+			<input type="text" name="board_content" value="${dto.board_content }">
 			<input type="hidden" name="board_no" value="${dto.board_no }">
 			<input id="submitbutton" type="submit" value="등록">
 		</form>

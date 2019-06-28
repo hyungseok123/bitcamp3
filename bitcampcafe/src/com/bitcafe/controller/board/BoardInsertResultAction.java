@@ -47,11 +47,8 @@ public class BoardInsertResultAction implements Action {
 			request.setAttribute("result", result);
 			forward.setRedirect(true);
 			forward.setPath("boardlist.do");
-			
 		}
-		
 				return forward;
 	}
-
 
 }
