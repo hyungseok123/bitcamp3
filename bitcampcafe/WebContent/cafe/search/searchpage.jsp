@@ -9,7 +9,32 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 	$(document).ready(function() {
+		var searchselect1 = '<%=request.getAttribute("searchselect1")%>'
+		var searchselect2 = '<%=request.getAttribute("searchselect2")%>'
+		if(searchselect1 != null ) {
+			$('#searchselect1').val(searchselect1);
+		}
+		else {
+			$('#searchselect1').val('전체게시판');
+		}
 		
+		if(searchselect2 != null) {
+			$('#searchselect2').val(searchselect2);
+		} else{
+			$('#searchselect2').val('제목+내용');
+		}
+		
+ 		$('form').on('submit',function(event){
+			console.log(this);
+			var searchsubinput = $('#searchsubinput').val();
+			if(searchsubinput == null || searchsubinput =="") {
+				event.preventDefault();
+				alert('검색어를 입력하세요').one();
+			}
+			else {
+				$('form').submit();
+			}			
+		});
 	});
 </script>
 <style>
@@ -67,6 +92,7 @@
 		height: 28px;
 		text-align: center;
 		border-bottom: 1px solid silver;
+		color: black;
 	}
 	
 	#searchmainpage a {
@@ -83,6 +109,32 @@
 		padding-top: 16px;
 		margin-top: 32px;
 		background-color: #f9f9f8;
+		text-align: center;
+	}
+	
+	.pagingbox {
+		width: 24px;
+		height: 24px;
+		background-color: white;
+		border: 1px solid silver;
+		text-align: center;
+		vertical-align: middle;
+		color: #03c75a;
+		text-decoration: none;
+		display: inline-block;
+	}
+	
+	.pagingbox a:hover {
+		text-decoration: underline;
+		color: #03c75a;
+	}
+	
+	.pagingbox a:visited {
+		color: black;
+	}
+	
+	.detaillink {
+		color: black;
 	}
 </style>
 <body>
@@ -96,11 +148,11 @@
 <section id="searchmainpage">
 	<div id="searchsubbox">
 		<form method="get" action="searchmain.do" id="searchsubform" name="searchsubform" >
-			<select name="searchselect1">
+			<select name="searchselect1" id="searchselect1">
 				<option value="전체게시판">전체게시판</option>
 				<option value="게시판추가">게시판추가</option>
 			</select>
-			<select name="searchselect2">
+			<select name="searchselect2" id="searchselect2">
 				<option value="제목+내용">제목+내용</option>
 				<option value="제목만">제목만</option>
 				<option value="작성자">작성자</option>
@@ -131,7 +183,7 @@
 						<c:forEach var="index" items="${list }">
 							<tr>
 								<td>${index.board_no }</td>
-								<td><a href="boarddetail.do?no=${index.board_no }">${index.board_title }</a></td>
+								<td><a href="boarddetail.do?no=${index.board_no }" class="detaillink">${index.board_title }</a></td>
 								<td>${index.member_nickname }</td>
 								<td>${index.board_writedate }</td>
 								<td>${index.board_viewcount }</td>
@@ -143,11 +195,11 @@
 	</div>
 	<div id="searchpaging">
 		<c:if test="${currpage != 1 }">
-			<a href="searchmain.do?currpage=${currpage-1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">이전으로</a>
+			<div class="pagingbox"><a href="searchmain.do?currpage=${currpage-1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">${currpage-1 }</a></div>
 		</c:if>
-			<c:out value="${currpage }"></c:out>
-		<c:if test="${currpage != totalpage }">
-			<a href="searchmain.do?currpage=${currpage+1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">다음으로</a>
+			<div class="pagingbox"><c:out value="${currpage }"/></div>
+		<c:if test="${currpage != totalpage && totalpage != 0 }">
+			<div class="pagingbox"><a href="searchmain.do?currpage=${currpage+1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">${currpage+1 }</a></div>
 		</c:if>
 	</div>
 </section>

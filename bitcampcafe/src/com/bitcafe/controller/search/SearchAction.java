@@ -22,10 +22,12 @@ public class SearchAction implements Action {
 		String searchselect1 = request.getParameter("searchselect1");
 		String searchselect2 = request.getParameter("searchselect2");
 		String tmp_currpage = request.getParameter("currpage");
+		System.out.println("======================================"); //
 		System.out.println("searchtext : "+searchtext); //
 		System.out.println("currpage : "+tmp_currpage); //
 		System.out.println("searchselect1 : "+searchselect1); //
 		System.out.println("searchselect2 : "+searchselect2); //
+		
 		int currpage = 1;
 		if(tmp_currpage != null) { //처음들어온게 아니라면 값을 받아줌
 			currpage = Integer.parseInt(tmp_currpage);
@@ -33,25 +35,27 @@ public class SearchAction implements Action {
 		if(searchselect1 == null) { //카테고리 기본 설정값
 			searchselect1 = "전체게시판";
 		}
-		if(searchselect2 == null) { //선택 기본 설정값
+		if(searchselect2 == null || "제목 내용".equals(searchselect2)) { //선택 기본 설정값 및 글자보정
 			searchselect2 = "제목+내용";
 		}
+		
 		SearchService searchservice = SearchService.getInstance();
 		int totalcount = searchservice.searchBoardCount(searchtext, searchselect1, searchselect2);
-		System.err.println("카운트 : "+totalcount); //
+		System.out.println("totalcount : "+totalcount);
 		Paging paging = new Paging();
 		paging.setCurrpage(currpage);
 		paging.setTotalcount(totalcount);
-		System.out.println("currpage : "+currpage); //
-		System.out.println("totalcount : "+totalcount); //
 		int totalpage = paging.getTotalpage();
 		int startrow = paging.getStartrow();
 		int endrow = paging.getEndrow();
 		int startblock = paging.getStartblock();
 		int endblock = paging.getEndblock();
 		int blocksize = paging.getBlocksize();
+		
 		System.out.println("startrow : "+startrow); //
 		System.out.println("endrow : "+endrow); //
+		System.out.println("startblock : "+startblock); //
+		System.out.println("endblock : "+endblock); //
 		List<BoardDTO> list = searchservice.searchBoard(searchtext, searchselect1, searchselect2, startrow, endrow);
 		request.setAttribute("list", list);
 		request.setAttribute("searchtext", searchtext);

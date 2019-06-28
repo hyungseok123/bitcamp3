@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,43 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="">
 
-	 
-
-	<table >
-		<tr>
-			<td>작성자</td>
-			<td>${board.member_no}</td>
-		</tr>
-			<tr>
-			<td>
-				제 목
-			</td>
-			<td>
-				<input name="board_title" type="text" size="70" maxlength="100" 
-					value="${board.board_title}"/>
-			</td>		
-		</tr>
-		<tr>
-			<td>
-				내 용
-			</td>
-			<td>
-				<textarea name="board_content" cols="72" rows="20">
-					${board.board_content}
-				</textarea>			
-			</td>		
-		</tr>
-		
-		<tr align="center" valign="middle">
-			<td colspan="5">
-				<input type="reset" value="작성취소" >
-				<input type="submit" value="수정" >
-				<input type="button" value="목록"  >			
-			</td>
-		</tr>
-	</table>	
-	</form>
+	<c:out value="${dto.member_nickname }"></c:out>
+	
+	<div>
+		<form id="boardupdate" method="post" action="boardupdateresult.do">
+			<input type="text" name="board_no" value="${dto.board_no }">
+			<input type="text" name="board_title" value="${dto.board_title }">
+			<textarea name="board_content" cols="100" rows="5">${dto.board_content }</textarea>
+			<input type="submit" value="수정"> 
+			<input type="reset"  value="취소">
+		</form>
+	</div>
 </body>
 </html>

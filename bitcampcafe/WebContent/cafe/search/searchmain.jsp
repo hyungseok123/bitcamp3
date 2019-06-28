@@ -6,6 +6,22 @@
 <head>
 <meta charset="UTF-8">
 <title>검색</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+$(document).ready(function() {
+	$('form').on('submit',function(event){
+		console.log(this);
+		var searchmaininput = $('#searchmaininput').val();
+		if(searchmaininput == null || searchmaininput =="") {
+			event.preventDefault();
+			alert('검색어를 입력하세요').one();
+		}
+		else {
+			$('form').submit();
+		}			
+	});
+});
+</script>
 </head>
 <style>
 	#searchmain{

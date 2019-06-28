@@ -35,6 +35,7 @@ public class SearchDAO {
 			sql.append(" and (board_title like ? or board_content like ?) ");
 		if(!searchselect1.equals("전체게시판")) //전체게시판이 아니라면!
 			sql.append(" and category_no = ? ");
+		sql.append(" order by board_no desc "); //게시판번호 별로 내림차 정렬
 		sql.append(" limit "+(startrow-1)+","+(endrow-startrow+1)+" ");
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;

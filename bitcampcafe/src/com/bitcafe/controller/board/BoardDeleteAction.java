@@ -17,10 +17,9 @@ public class BoardDeleteAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		BoardService service = BoardService.getInstance(); 
-		int bno = 0;
-		String no = request.getParameter("bno");
-		if (no != null && !no.equals("")) bno = Integer.parseInt(no);
+		int board_no = Integer.parseInt(request.getParameter("no"));
  
 		HttpSession session = request.getSession();
 		ForwardAction forward = new ForwardAction();
@@ -29,10 +28,9 @@ public class BoardDeleteAction implements Action {
 			forward.setRedirect(true);
 			forward.setPath("login.do");
 		} else {
-			int board_no = Integer.parseInt(request.getParameter("dno"));
 			int result = service.BoardDeleteData(board_no);
 			forward.setRedirect(true);
-			forward.setPath("boarddetail.do?no=" + bno);
+			forward.setPath("boardlist.do");
 		}
 		return forward;
 	}

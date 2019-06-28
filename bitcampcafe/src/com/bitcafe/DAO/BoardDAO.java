@@ -228,5 +228,27 @@ public class BoardDAO {
 			if (pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
 		}  
 		return result;
+	}	
+	public int BoardUpdateData(Connection conn, BoardDTO dto) throws SQLException {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update board          ");
+		sql.append(" set board_content = ? ");
+		sql.append("     ,board_title = ?  ");
+		sql.append(" where board_no = ?    ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getBoard_content());
+			pstmt.setString(2, dto.getBoard_title());
+			pstmt.setInt(3, dto.getBoard_no());
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+		return result;
 	}
 }
