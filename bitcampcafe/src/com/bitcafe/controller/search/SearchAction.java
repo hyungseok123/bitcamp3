@@ -40,6 +40,7 @@ public class SearchAction implements Action {
 		SearchService searchservice = SearchService.getInstance();
 		int totalcount = searchservice.searchBoardCount(searchtext, searchselect1, searchselect2);
 		
+		//페이징 계산 시작
 		Paging paging = new Paging();
 		paging.setCurrpage(currpage);
 		paging.setTotalcount(totalcount);
@@ -49,6 +50,7 @@ public class SearchAction implements Action {
 		int startblock = paging.getStartblock();
 		int endblock = paging.getEndblock();
 		int blocksize = paging.getBlocksize();
+		//페이징 계산 끝
 		
 		List<BoardDTO> list = searchservice.searchBoard(searchtext, searchselect1, searchselect2, startrow, endrow);
 		if(list != null) {
@@ -86,6 +88,7 @@ public class SearchAction implements Action {
 		request.setAttribute("currpage", currpage);
 		request.setAttribute("searchselect1", searchselect1);
 		request.setAttribute("searchselect2", searchselect2);
+		request.setAttribute("null2", "[]"); // []를 위해서 만듬(jstl은 오류로인식함)
 		
 		//나의 활동페이지 갱신 시작
 		HttpSession session = request.getSession();
