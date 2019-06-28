@@ -72,14 +72,15 @@
 	조회수(<c:out default="null" value="${dto.board_viewcount }"></c:out>)
   </div>
   <div class="load_comment"></div>
+  
   <!--수정 삭제 만들기  -->
-  <a href="boardupdate.do?no=${dto.board_no }"><button>수정</button></a>
-  <a href="boarddelete.do?no=${dto.board_no }">
-  <c:if test="">
-  
-  </c:if>
-  
-    <button>삭제</button></a>
+   <div class="board_update_button">
+  <c:if test="${memberInfo.member_no eq dto.member_no}">
+  <a href="boardupdate.do?no=${dto.board_no }">
+   <button>수정</button></a>
+   <a href="boarddelete.do?no=${dto.board_no }"><button>삭제</button></a>
+ </c:if>
+  </div>
   <!-- 여기까지 -->
   <span class="post_board_no">${dto.board_no }</span>
 </div>
