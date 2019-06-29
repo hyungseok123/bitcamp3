@@ -6,7 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+.mobtn{
+text-decoration:none;
+border:1px solid white;
+background-color:#03c75a;
+color:white;
+border-radius:5px;
 
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
@@ -23,8 +32,8 @@
    <td>${dto.attendance_no }</td>
    <td>${dto.attendance_content }</td>
    <td>${dto.attendance_writedate }</td>
-   <td><a href="attendanceupdate.do?no=${dto.attendance_no }">수정하기</a></td>
-   <td><a href="attendancedelete.do?no=${dto.attendance_no }">삭제하기</a></td>
+   <td><a class="mobtn" href="attendanceupdate.do?no=${dto.attendance_no }">수정</a></td>
+   <td><a class="mobtn" href="attendancedelete.do?no=${dto.attendance_no }">삭제</a></td>
  </tr>
  
  

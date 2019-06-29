@@ -16,7 +16,7 @@
 
 			<input type="hidden" name="board_no" value="${dto.board_no }">
 
-			<table width="700" border="3" bordercolor="lightgray" align="center">
+			<table width="100%" border="3" bordercolor="lightgray" align="center">
 
 				<tr>
 					<td id="title">작성자</td>
