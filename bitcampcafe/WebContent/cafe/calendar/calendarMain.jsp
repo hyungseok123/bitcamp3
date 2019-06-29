@@ -105,9 +105,9 @@ body {
 		$("#calendar").fullCalendar({
 			selectable : true,
 			header : {
-				left : 'prev,next',
+				left : 'prev,next,today',
 				center : 'title',
-				right : 'today'
+				right : 'agendaWeek,month'
 			},
 			editable : false,
 			events : eventData,
@@ -117,17 +117,19 @@ body {
 				location.href = "calendarinsert.do";
 			},
 			eventClick : function(event) { //일정클릭하면 그일정의 디테일을 출력			
-				if (event.no) {
+		 	if (event.no) {
 					location.href = "calendardetail.do?no=" + event.no;
 					return false;
-				}
+				} 
+			
+				
 			}
 		});
 	}
 </script>
 <body>
 	<div id="calendar"></div>
-
+	
 
 
 </body>
