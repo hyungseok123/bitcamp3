@@ -49,14 +49,14 @@ public class SearchDAO {
 			pstmt.setInt(1, startrow-1);
 			pstmt.setInt(2, startrow-1);
 			if(searchselect2.equals("작성자")) {//작성자 검색
-				pstmt.setString(3, searchtext);
+				pstmt.setString(3, "%"+searchtext+"%");
 			}
 			else if(searchselect2.equals("제목만")) {//제목만 검색
-				pstmt.setString(3, searchtext);
+				pstmt.setString(3, "%"+searchtext+"%");
 			}
 			else {//제목+내용 검색
-				pstmt.setString(3, searchtext);
-				pstmt.setString(4, searchtext);
+				pstmt.setString(3, "%"+searchtext+"%");
+				pstmt.setString(4, "%"+searchtext+"%");
 			}
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -123,14 +123,14 @@ public class SearchDAO {
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
 			if(searchselect2.equals("작성자")) {//작성자 검색
-				pstmt.setString(1, searchtext);
+				pstmt.setString(1, "%"+searchtext+"%");
 			}
 			else if(searchselect2.equals("제목만")) {//제목만 검색
-				pstmt.setString(1, searchtext);
+				pstmt.setString(1, "%"+searchtext+"%");
 			}
 			else {//제목+내용 검색
-				pstmt.setString(1, searchtext);
-				pstmt.setString(2, searchtext);
+				pstmt.setString(1, "%"+searchtext+"%");
+				pstmt.setString(2, "%"+searchtext+"%");
 			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
