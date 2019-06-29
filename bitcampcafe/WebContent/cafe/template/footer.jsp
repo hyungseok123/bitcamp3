@@ -32,6 +32,6 @@
 	<a href="#">http://localhost:8080/bitcampcafe/boardlist.do</a>
 	
 	</div>
-	<a class="bitlink" href="http://localhost:8080/bitcampcafe/boardlist.do"><img src="img/bitcamplogo.jpg"></a>
+	<a class="bitlink" href="http://bitcamp.co.kr/index.php?main_page=home"><img src="img/bitcamplogo.jpg"></a>
 </body>
 </html>
