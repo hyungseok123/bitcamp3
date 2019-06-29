@@ -12,6 +12,7 @@
 	height: 150px;
 	border-bottom: 1px solid silver;
 	margin-bottom: 30px;
+	background-image: url("img/anothermainimg.jpg");
 }
 .detail_all_wrap {
 	padding: 0;
