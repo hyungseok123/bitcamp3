@@ -52,6 +52,18 @@ text-align: left;
 
 
 }
+
+..pagingbox{
+		width: 24px;
+		height: 24px;
+		background-color: white;
+		border: 1px solid silver;
+		text-align: center;
+		vertical-align: middle;
+		color: #03c75a;
+		text-decoration: none;
+		display: inline-block;
+	}
 </style>
 </head>
 <body>
@@ -100,18 +112,18 @@ text-align: left;
 			<c:if test="${list != null }">
 				<%-- <c:forEach var="index" items="${list }"> --%>
 					<c:if test="${startblock>1 }">
-						<a href="main.do?currpage=${startblock-1 }">이전</a>
+						<div class="pagingbox"><a href="main.do?currpage=${startblock-1 }">이전</a></div>
 					</c:if>
 					<c:forEach var="i" begin="${startblock }" end="${endblock }">
 						<c:if test="${i==currpage }">
 							<c:out value="${i }"></c:out>
 						</c:if>
 						<c:if test="${i!=currpage }">
-							<a href="main.do?currpage=${i }"><c:out value="${i }"></c:out></a>
+							<div class="pagingbox"><a href="main.do?currpage=${i }"><c:out value="${i }"></c:out></a></div>
 						</c:if>
 					<%-- </c:forEach> --%>
 					<c:if test="${endblock<totalpage }">
-						<a href="main.do?currpage=${endblock+1 }">다음</a>
+						<div class="pagingbox"><a href="main.do?currpage=${endblock+1 }">다음</a></div>
 					</c:if>
 				</c:forEach>
 			</c:if>
