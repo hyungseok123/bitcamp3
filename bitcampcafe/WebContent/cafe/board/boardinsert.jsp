@@ -8,15 +8,19 @@
 <title>Board</title>
 <link rel="stylesheet" type="text/css"
 	href="http://localhost:8088/bitcampcafe/css/cafe.css" />
+<style>
+#writeinsert {
+	margin: 0 auto;
+}
+</style>
+
 </head>
 <body>
-	<b><font size="6" color="gray">글쓰기</font></b>
+	<font size="6" color="gray" class="font">글쓰기</font>
 	<br>
-
 	<form method="post" action="boardinsertresult.do">
-
 		<input type="hidden" name="member_no" value="${memberInfo.member_no}">
-		<input type="hidden" name="category_no" value="${param.cno }">  
+		<input type="hidden" name="category_no" value="${param.cno }">
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
 				<td id="title">카테고리</td>
@@ -42,12 +46,11 @@
 				<td><textarea name="board_content" cols="72" rows="20"
 						required="required"></textarea></td>
 			</tr>
-			 
+
 			<tr align="center" valign="middle">
 				<td colspan="5"><input type="reset" value="작성취소"> <input
-					type="submit" value="등록"> 
-					<a href="boardlist.do"><input type="button" value="목록"></a>
-				</td>
+					type="submit" value="등록"> <a href="boardlist.do"><input
+						type="button" value="목록"></a></td>
 			</tr>
 		</table>
 	</form>

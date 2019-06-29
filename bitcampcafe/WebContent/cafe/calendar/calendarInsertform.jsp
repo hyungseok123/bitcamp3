@@ -17,20 +17,18 @@
 
 
 		<div class="col-xs-12">
-			<label for="content">내용</label>
-			 <input type="text" id="content"
-				name="content"> 
-				<label for="place">장소</label> <input
-				type="text" id="place" name="place">
-				 <label for="color">색상</label>
-			<input type="text" id="color" name="color"> 
-			<label
-				for="start">시작</label>
-				 <input type="text" id="start" name="start"
-				placeholder="YYYY-MM-DD"> 
-				<label for="end">끝</label> 
-				<input
-				type="text" id="end" name="end"> <input type="submit" value="추가하기">
+			<label for="content">내용</label> <input type="text" id="content"
+				name="content"> <label for="place">장소</label> <input
+				type="text" id="place" name="place"> <select name='color'>
+				<option value='' selected>-- 색상 --</option>
+				<option value='#ff6666' style='background-color: #ff6666'>시험</option>
+				<option value='#66ff8c' style='background-color: #66ff8c'>공지</option>
+				<option value='#66b3ff' style='background-color: #66b3ff'>과제</option>
+				<option value='#ffff66' style='background-color: #ffff66'>스터디</option>
+				<option value='#ffccff' style='background-color: #ffccff'>기타</option>
+			</select> <label for="start">시작</label> <input type="date" id="start"
+				name="start"> <label for="end">끝</label> <input type="date"
+				id="end" name="end"> <input type="submit" value="추가하기">
 	</form>
 </body>
 </html>
