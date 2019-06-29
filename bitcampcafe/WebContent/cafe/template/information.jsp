@@ -29,6 +29,7 @@
 	.aside_information {
 		height: 200px;
 	}
+	
 	#myactionbox1 {
 		width: 48px;
 		height: 48px;
@@ -42,11 +43,12 @@
 	}
 	
 	#myactionbox2 {
-		width: 148px;
+		width: 138px;
 		height: 50px;
 		display: inline-block;
 		vertical-align: middle;
 		font-weight: bold;
+		padding-left: 10px;
 	}
 	#myactionmodify {
 		margin-top: 8px;
@@ -61,6 +63,14 @@
 	#myactionmemberjoin {
 		font-size: 14px;
 		color: gray;
+	}
+	
+	.memberinfotext {
+		font-size: 14px;
+	}
+	
+	.aside_information h3{
+		padding-left: 10px;
 	}
 </style>
 </head>
@@ -79,8 +89,8 @@
         		</ul>
         	</div>
         </li>
-        <li>내가 쓴 게시글 : ${myboard }</li>
-        <li>내가 쓴 댓글 : ${mycomment }</li>
+        <li class="memberinfotext">내가 쓴 게시글 : ${myboard }</li>
+        <li class="memberinfotext">내가 쓴 댓글 : ${mycomment }</li>
       </ul>
       <ul id="myactionmodify">
       	<li><button onclick="logout()">로그아웃</button></li>

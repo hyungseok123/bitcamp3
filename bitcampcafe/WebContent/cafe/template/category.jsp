@@ -17,6 +17,19 @@ pageEncoding="UTF-8"%>
 	ul li {
 		list-style: none;
 	}
+	.aside_category a {
+		color: black;
+		text-decoration: none;
+	}
+	
+	.aside_category a:hover {
+		color: 	#03c75a;
+		text-decoration: underline;
+	}
+	
+	.aside_category li {
+		margin: 5px 0;
+	}
 </style>
 </head>
 <body>

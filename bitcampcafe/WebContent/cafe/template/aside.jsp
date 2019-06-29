@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 #information {
-	border: 1px solid silver;
+	border-top: 3px solid #03c75a;
 	height: 20%;
 	margin-bottom: 5%
 }
 #category {
-	border: 1px solid silver;
+	border-top: 3px solid #03c75a;
 	height: 75%;
 		margin-bottom: 10px;
 }
