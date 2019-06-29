@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <style>
 .navericon {
-	text-decoration: none;
+	text-decoration:none;
 	color: #03c75a;
 }
 
