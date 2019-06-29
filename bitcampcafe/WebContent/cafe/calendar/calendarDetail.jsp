@@ -51,7 +51,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	background-color: #e8eeef;
-	color: #b9c6b9;
+	color:  black;
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	margin-bottom: 30px;
@@ -84,26 +84,7 @@
 	border-radius: 15px 15px 15px 0px;
 }
 
-.form-style-5 input[type="submit"], .form-style-5 input[type="button"] {
-	position: relative;
-	display: inline-block;
-	padding: 19px 39px 18px 39px;
-	color: #FFF;
-	margin: 0 auto;
-	background: #03c75a;
-	font-size: 18px;
-	text-align: center;
-	font-style: normal;
-	width: 30px;
-	border: 1px solid #16a085;
-	border-width: 1px 1px 3px;
-	margin-bottom: 10px;
-}
 
-.form-style-5 input[type="submit"]:hover, .form-style-5 input[type="button"]:hover
-	{
-	background: ##03c75a;
-}
 </style>
 </head>
 <body>
@@ -119,18 +100,16 @@
 		<fieldset>
 			<legend>
 				<span class="number"></span> 일정
-			</legend>
-			<tr>
-				<td><%=dto.getCalendar_no()%></td>
-				<td><%=dto.getCalendar_title()%></td>
-				<td><%=dto.getCalendar_start()%></td>
-				<td><%=dto.getCalendar_end()%></td>
-				<td><%=dto.getCalendar_content()%></td>
-				<td><%=dto.getCalendar_place()%></td>
-				<td><%=dto.getCalendar_color()%></td>
-				<td><p>
-						작성자<%=dto.getMember_nickname()%></p></td>
-			</tr>
+			</legend>		
+				<%=dto.getCalendar_no()%>
+				<%=dto.getCalendar_title()%>
+				<%=dto.getCalendar_start()%>
+				<%=dto.getCalendar_end()%>
+				<%=dto.getCalendar_content()%>
+				<%=dto.getCalendar_place()%>
+				<%=dto.getCalendar_color()%>
+				<p>작성자<%=dto.getMember_nickname()%></p>
+			
 			<c:if test="${memberInfo.member_no eq dto.member_no }">
 				<a href="calendardelete.do?no=<%=dto.getCalendar_no()%>"> <input
 					type="button" value="삭제">

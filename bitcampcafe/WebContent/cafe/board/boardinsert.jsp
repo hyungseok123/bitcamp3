@@ -6,8 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Board</title>
-<link rel="stylesheet" type="text/css"
-	href="http://localhost:8088/bitcampcafe/css/cafe.css" />
 <style>
 #writeinsert {
 	margin: 0 auto;
@@ -16,8 +14,6 @@
 
 </head>
 <body>
-	<font size="6" color="gray" class="font">글쓰기</font>
-	<br>
 	<form method="post" action="boardinsertresult.do">
 		<input type="hidden" name="member_no" value="${memberInfo.member_no}">
 		<input type="hidden" name="category_no" value="${param.cno }">
@@ -39,12 +35,12 @@
 			<tr>
 				<td id="title">제 목</td>
 				<td><input name="board_title" type="text" size="70"
-					maxlength="100" value="" required="required" /></td>
+					maxlength="100" value="" required="required" style="background-color:transparent;border:0 solid black;" /></td>
 			</tr>
 			<tr>
 				<td id="title">내 용</td>
 				<td><textarea name="board_content" cols="72" rows="20"
-						required="required"></textarea></td>
+						required="required" style="background-color:transparent;border:0 solid black;"></textarea></td>
 			</tr>
 
 			<tr align="center" valign="middle">

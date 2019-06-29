@@ -50,7 +50,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	background-color: #e8eeef;
-	color: #b9c6b9;
+	color:  black;
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	margin-bottom: 30px;
@@ -83,26 +83,7 @@
 	border-radius: 15px 15px 15px 0px;
 }
 
-.form-style-5 input[type="submit"], .form-style-5 input[type="button"] {
-	position: relative;
-	display: inline-block;
-	padding: 19px 39px 18px 39px;
-	color: #FFF;
-	margin: 0 auto;
-	background: #03c75a;
-	font-size: 18px;
-	text-align: center;
-	font-style: normal;
-	width: 30px;
-	border: 1px solid #16a085;
-	border-width: 1px 1px 3px;
-	margin-bottom: 10px;
-}
 
-.form-style-5 input[type="submit"]:hover, .form-style-5 input[type="button"]:hover
-	{
-	background: ##03c75a;
-}
 </style>
 </head>
 <body>
