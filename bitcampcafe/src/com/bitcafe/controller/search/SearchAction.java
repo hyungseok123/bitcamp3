@@ -24,6 +24,7 @@ public class SearchAction implements Action {
 		String searchtext = request.getParameter("searchinput");
 		String searchselect1 = request.getParameter("searchselect1");
 		String searchselect2 = request.getParameter("searchselect2");
+		String searchselect3 = request.getParameter("searchselect3");
 		String tmp_currpage = request.getParameter("currpage");
 		
 		int currpage = 1;
@@ -35,6 +36,9 @@ public class SearchAction implements Action {
 		}
 		if(searchselect2 == null || "제목 내용".equals(searchselect2)) { //선택 기본 설정값 및 글자보정
 			searchselect2 = "제목+내용";
+		}
+		if(searchselect3 == null) { //보기 기본값
+			searchselect3 = "제목만 보기";
 		}
 		
 		SearchService searchservice = SearchService.getInstance();
@@ -88,6 +92,7 @@ public class SearchAction implements Action {
 		request.setAttribute("currpage", currpage);
 		request.setAttribute("searchselect1", searchselect1);
 		request.setAttribute("searchselect2", searchselect2);
+		request.setAttribute("searchselect3", searchselect3);
 		request.setAttribute("null2", "[]"); // []를 위해서 만듬(jstl은 오류로인식함)
 		
 		//나의 활동페이지 갱신 시작
@@ -101,9 +106,6 @@ public class SearchAction implements Action {
 		request.setAttribute("mycomment", mycomment);
 		//나의 활동페이지 갱신 끝
 		
-		System.out.println("currpage : "+currpage);
-		System.out.println("startblock : "+startblock);
-		System.out.println("endblock : "+endblock);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
 		forward.setPath("/cafe/template/main.jsp?page=/cafe/search/searchpage.jsp");

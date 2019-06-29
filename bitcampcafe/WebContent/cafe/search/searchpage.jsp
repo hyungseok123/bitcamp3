@@ -8,46 +8,68 @@
 <title>검색결과</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
+ 	$('form').on('submit',function(event){
+		var searchsubinput = $('#searchsubinput').val();
+		if(searchsubinput == null || searchsubinput =="") {
+			event.preventDefault();
+			alert('검색어를 입력하세요').one();
+		}
+		else if(searchsubinput == "in") {
+			event.preventDefault();
+			alert('금지어 입니다.').one();
+		}
+		else {
+			$('form').submit();
+		}			
+	});
+		
 	$(document).ready(function() {
 		$('.trsearchselect3').hide();
 		var searchselect1 = '<%=request.getAttribute("searchselect1")%>'
 		var searchselect2 = '<%=request.getAttribute("searchselect2")%>'
+		var searchselect3 = '<%=request.getAttribute("searchselect3")%>'
+		<%
+		Object obj = request.getAttribute("searchselect3");
+		String searchselect3 = "";
+		if(obj == null) {
+			searchselect3 = "제목만 보기";
+		}
+		else {
+			searchselect3 = "제목 and 내용보기";
+		}
+		%>
 		if(searchselect1 != null ) {
 			$('#searchselect1').val(searchselect1);
 		}
 		else {
 			$('#searchselect1').val('전체게시판');
 		}
-		
+	
 		if(searchselect2 != null) {
 			$('#searchselect2').val(searchselect2);
-		} else{
+		} 
+		else{
 			$('#searchselect2').val('제목+내용');
 		}
+	
+		if(searchselect3 == '제목 and 내용보기') {
+			$('#searchselect3').val(searchselect3);
+			$('.trsearchselect3').show();
+		}
+		else{
+			$('#searchselect3').val('제목만 보기');
+			$('.trsearchselect3').hide();
+		}
 		
- 		$('form').on('submit',function(event){
-			console.log(this);
-			var searchsubinput = $('#searchsubinput').val();
-			if(searchsubinput == null || searchsubinput =="") {
-				event.preventDefault();
-				alert('검색어를 입력하세요').one();
-			}
-			else if(searchsubinput == "in") {
-				event.preventDefault();
-				alert('금지어 입니다.').one();
-			}
-			else {
-				$('form').submit();
-			}			
-		});
- 		
  		$('#searchselect3').on('click',function(){
  			var searchselect3 = $('#searchselect3').val();
  			if(searchselect3 == "제목만 보기") {
- 				$('.trsearchselect3').hide();		
+ 				$('.trsearchselect3').hide();
+ 				<% searchselect3 = "제목만 보기"; %>
  			}
  			else {
  				$('.trsearchselect3').show();
+ 				<% searchselect3 = "제목 and 내용보기"; %>
  			}
  		});
 	});
@@ -71,6 +93,11 @@
 		height: 34px;
 		padding: 7px 16px 7px 12px;
 		vertical-align: middle;
+	}
+	
+	#searchselect3 {
+		background-color: #f9f9f8;
+		color: #03c75a;
 	}
 	
 	#searchsubinput{
@@ -165,6 +192,10 @@
 		color: #03c75a;
 	}
 	
+	.trsearchselect3 a{
+		color: gray;
+	}
+	
 </style>
 <body>
 <c:set var="totalpage" value="${requestScope.totalpage }"/>
@@ -190,13 +221,13 @@
 				<option value="제목만">제목만</option>
 				<option value="작성자">작성자</option>
 			</select>
-			<select id="searchselect3">
-				<option value="제목만 보기">제목만 보기</option>
-				<option value="제목+내용 보기">제목+내용 보기</option>
-			</select>
 			<c:set var="searchinput" value="${requestScope.searchtext }"/>
 			<input type="text" id="searchsubinput" name="searchinput" value="${searchinput }">
 			<input type="submit" value="검색" id="searchsubsubmit">
+			<select name="searchselect3" id="searchselect3">
+				<option value="제목만 보기">제목만 보기</option>
+				<option value="제목 and 내용보기">제목 and 내용보기</option>
+			</select>
 		</form>
 	</div>
 	<div id="searchtable">
@@ -237,20 +268,20 @@
 	</div>
 	<div id="searchpaging">
 		<c:if test="${currpage > blocksize }">
-			<div class="pagingbox"><a class="pagingboxatag" href="searchmain.do?currpage=${currpage-1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}"> &lt;&lt; </a></div>
+			<div class="pagingbox"><a class="pagingboxatag" href="searchmain.do?currpage=${currpage-1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}&searchselect3=<%=searchselect3%>"> &lt;&lt; </a></div>
 		</c:if>
 		<c:forEach begin="${startblock }" end="${endblock }" varStatus="i">
 			<c:if test="${i.index == currpage }">
 				<div class="pagingbox"><c:out value="${currpage }"/></div>
 			</c:if>
 			<c:if test="${i.index != currpage }">
-				<div class="pagingbox"><a class="pagingboxatag" href="searchmain.do?currpage=${i.index }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}">${i.index }</a></div>
+				<div class="pagingbox"><a class="pagingboxatag" href="searchmain.do?currpage=${i.index }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}&searchselect3=<%=searchselect3%>">${i.index }</a></div>
 			</c:if>
 		</c:forEach>
 		<c:set var="endblockmin" value="${((totalpage/blocksize)-(totalpage/blocksize%1))*blocksize+1 }"/> <!-- 마지막블럭 내림계산 -->
 		<c:set var="endblockmax" value="${((totalpage/blocksize)+(1-((totalpage/blocksize)%1))%1)*blocksize }"/> <!-- 마지막블럭 올림계산 -->
 		<c:if test="${!(currpage >= endblockmin && currpage <= endblockmax) && endblock != 0 }">
-			<div class="pagingbox"><a class="pagingboxatag" href="searchmain.do?currpage=${endblock+1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}"> &gt;&gt; </a></div>
+			<div class="pagingbox"><a class="pagingboxatag" href="searchmain.do?currpage=${endblock+1 }&searchinput=${searchinput }&searchselect1=${searchselect1 }&searchselect2=${searchselect2}&searchselect3=<%=searchselect3%>"> &gt;&gt; </a></div>
 		</c:if>
 	</div>
 </section>

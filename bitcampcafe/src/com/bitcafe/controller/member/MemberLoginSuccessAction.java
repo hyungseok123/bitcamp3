@@ -16,8 +16,8 @@ public class MemberLoginSuccessAction implements Action {
 			throws ServletException, IOException {
 		
 		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(false);
-		forward.setPath("/login/logintest.jsp");
+		forward.setRedirect(true);
+		forward.setPath("boardlist.do");
 		return forward;
 	}
 

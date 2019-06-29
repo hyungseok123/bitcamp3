@@ -17,6 +17,7 @@ pageEncoding="UTF-8"%>
 .top_nav_naver {
 	height: 35px;
 	float: left;
+	color: #03c75a;
 }
 .top_nav_loginInfo {
 	padding-top: 8px;
