@@ -111,7 +111,7 @@
       </ul>
     </c:when>
     <c:otherwise>
-      로그인 정보가 없습니다.
+      <a href="login.do">로그인 부터 하세요</a>
     </c:otherwise>
   </c:choose>
   </div>

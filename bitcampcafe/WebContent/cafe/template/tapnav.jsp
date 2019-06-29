@@ -28,10 +28,14 @@
 	
 }
 .top_nav_loginInfo {
-	padding-top: 8px;
-	padding-right: 5px;
-	height: 35px;
+	position: relative;
+	top:20px;
+	width:220PX;
+	height: 25px;
 	float: right;
+	border: 1px solid #03c75a;
+	border-radius:10px;	
+	text-align: center;
 }
 .top_nav_naver:link {
 	color: #03c75a;
@@ -50,8 +54,7 @@ top_nav_naver:visited {
 		</div>
 		<div class="top_nav_loginInfo">
 			<c:choose>
-				<c:when test="${memberInfo != null }">
-					<img class="chat"src="img/chat.png">
+				<c:when test="${memberInfo != null }">					
           '${memberInfo.member_nickname }'님 환영합니다.
         </c:when>
 				<c:otherwise>

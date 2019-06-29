@@ -106,8 +106,7 @@
 				<%=dto.getCalendar_start()%>
 				<%=dto.getCalendar_end()%>
 				<%=dto.getCalendar_content()%>
-				<%=dto.getCalendar_place()%>
-				<%=dto.getCalendar_color()%>
+				<%=dto.getCalendar_place()%>				
 				<%=dto.getMember_nickname()%>
 			
 			<c:if test="${memberInfo.member_no eq dto.member_no }">
