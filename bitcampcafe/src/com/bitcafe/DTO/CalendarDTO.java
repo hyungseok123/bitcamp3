@@ -9,9 +9,10 @@ public class CalendarDTO {
 	private String calendar_end;
 	private String calendar_color;
 	private int member_no;
+	private String member_nickname;
 
 	public CalendarDTO(int calendar_no, String calendar_title, String calendar_place, String calendar_content,
-			String calendar_start, String calendar_end, String calendar_color, int member_no) {
+			String calendar_start, String calendar_end, String calendar_color, int member_no, String member_nickname) {
 		super();
 		this.calendar_no = calendar_no;
 		this.calendar_title = calendar_title;
@@ -21,6 +22,7 @@ public class CalendarDTO {
 		this.calendar_end = calendar_end;
 		this.calendar_color = calendar_color;
 		this.member_no = member_no;
+		this.member_nickname = member_nickname;
 	}
 
 	public CalendarDTO() {
@@ -89,6 +91,14 @@ public class CalendarDTO {
 
 	public void setMember_no(int member_no) {
 		this.member_no = member_no;
+	}
+
+	public String getMember_nickname() {
+		return member_nickname;
+	}
+
+	public void setMember_nickname(String member_nickname) {
+		this.member_nickname = member_nickname;
 	}
 
 }

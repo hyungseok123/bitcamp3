@@ -12,8 +12,7 @@
 		if (result > 0) {
 	%>
 
-	<script type="text/javascript">
-		alert('삭제완료!');
+	<script type="text/javascript">		
 		location.href = "calendarlist.do";
 	</script>
 	<%

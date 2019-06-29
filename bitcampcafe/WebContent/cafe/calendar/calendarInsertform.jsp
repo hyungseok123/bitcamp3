@@ -14,7 +14,7 @@
 	padding: 20px;
 	background: #f4f7f8;
 	border-radius: 8px;
-	font-family: Georgia, "Times New Roman", Times, serif;
+	font-family: 'Cambria';
 }
 
 .form-style-5 fieldset {
@@ -36,7 +36,7 @@
 	.form-style-5 input[type="number"], .form-style-5 input[type="search"],
 	.form-style-5 input[type="time"], .form-style-5 input[type="url"],
 	.form-style-5 textarea, .form-style-5 select {
-	font-family: Georgia, "Times New Roman", Times, serif;
+	font-family: 'Cambria';
 	background: rgba(255, 255, 255, .1);
 	border: none;
 	border-radius: 4px;

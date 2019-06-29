@@ -50,7 +50,7 @@ public class CalendarDAO {
 				jsonObject.put("calendar_color", rs.getString("calendar_color"));
 				jsonObject.put("calendar_start", rs.getString("calendar_start"));
 				jsonObject.put("calendar_end", rs.getString("calendar_end"));
-				jsonObject.put("member_no",rs.getInt("member_no"));
+				jsonObject.put("member_no", rs.getInt("member_no"));
 				jsonArr.add(jsonObject);
 				System.out.println(jsonArr);
 			}
@@ -83,15 +83,17 @@ public class CalendarDAO {
 	public CalendarDTO detailList(Connection conn, int no) throws SQLException {
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
-		sql.append("   select     *         ");
-		sql.append(" from calendar          ");
+		sql.append(
+				"   select   calendar_no, calendar_title, calendar_start, calendar_end, calendar_content,calendar_place,calendar_color,member.member_no,member_nickname       ");
+		sql.append(" from calendar join member on calendar.member_no=member.member_no         ");
 		sql.append("  where calendar_no  =    ?");
 
 		CalendarDTO dto = new CalendarDTO();
 		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString());) {
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, no);			
 			rs = pstmt.executeQuery();
 
+			System.out.println();
 			if (rs.next()) {
 				dto.setCalendar_no(rs.getInt("calendar_no"));
 				dto.setCalendar_title(rs.getString("calendar_title"));
@@ -101,6 +103,7 @@ public class CalendarDAO {
 				dto.setCalendar_place(rs.getString("calendar_place"));
 				dto.setCalendar_color(rs.getString("calendar_color"));
 				dto.setMember_no(rs.getInt("member_no"));
+				dto.setMember_nickname(rs.getString("member_nickname"));
 			}
 		} finally {
 			rsClose(rs);
