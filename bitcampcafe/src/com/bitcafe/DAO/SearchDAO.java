@@ -27,13 +27,16 @@ public class SearchDAO {
 		sql.append(" select  @rownum:=@rownum+1 as rnum, board_no, board_title, board_content, board_writedate, board_viewcount, member_nickname");
 		sql.append(" from board inner join member ");
 		sql.append(" on board.member_no = member.member_no ");
-		sql.append(" where (@rownum:="+(startrow-1)+")="+(startrow-1)+" ");
-		if(searchselect2.equals("작성자")) //작성자 검색
-			sql.append(" and member_nickname like '%"+searchtext+"%' ");
-		else if(searchselect2.equals("제목만")) //제목만 검색
-			sql.append(" and board_title like '%"+searchtext+"%' ");
-		else //제목+내용 검색
-			sql.append(" and (board_title like '%"+searchtext+"%' or board_content like '%"+searchtext+"%') ");
+		sql.append(" where (@rownum:=?)=? ");
+		if(searchselect2.equals("작성자")) {//작성자 검색
+			sql.append("and member_nickname like ? ");
+		}
+		else if(searchselect2.equals("제목만")) {//제목만 검색
+			sql.append(" and board_title like ? ");
+		}
+		else {//제목+내용 검색
+			sql.append(" and (board_title like ? or board_content like ?) ");
+		}
 		if(!searchselect1.equals("전체게시판")) //전체게시판이 아니라면!
 			sql.append(" and category_no = "+category_no+" ");
 		sql.append(" order by board_no desc "); //게시판번호 별로 내림차 정렬
@@ -43,6 +46,18 @@ public class SearchDAO {
 		List<BoardDTO> list = new ArrayList<>();
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, startrow-1);
+			pstmt.setInt(2, startrow-1);
+			if(searchselect2.equals("작성자")) {//작성자 검색
+				pstmt.setString(3, searchtext);
+			}
+			else if(searchselect2.equals("제목만")) {//제목만 검색
+				pstmt.setString(3, searchtext);
+			}
+			else {//제목+내용 검색
+				pstmt.setString(3, searchtext);
+				pstmt.setString(4, searchtext);
+			}
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				BoardDTO boarddto = new BoardDTO();
@@ -91,12 +106,15 @@ public class SearchDAO {
 		sql.append(" select count(*) ");
 		sql.append(" from board inner join member ");
 		sql.append(" on board.member_no = member.member_no ");
-		if(searchselect2.equals("작성자")) //작성자 검색
-			sql.append(" where member_nickname like '%"+searchtext+"%' ");
-		else if(searchselect2.equals("제목만")) //제목만 검색
-			sql.append(" where board_title like '%"+searchtext+"%' ");
-		else //제목+내용 검색
-			sql.append(" where (board_title like '%"+searchtext+"%' or board_content like '%"+searchtext+"%') ");
+		if(searchselect2.equals("작성자")) {//작성자 검색
+			sql.append(" where member_nickname like ? ");
+		}
+		else if(searchselect2.equals("제목만")) {//제목만 검색
+			sql.append(" where board_title like ? ");
+		}
+		else {//제목+내용 검색
+			sql.append(" where (board_title like ? or board_content like ?) ");
+		}
 		if(!searchselect1.equals("전체게시판")) //전체게시판이 아니라면!
 			sql.append(" and category_no = "+category_no+" ");
 		ResultSet rs = null;
@@ -104,6 +122,16 @@ public class SearchDAO {
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
+			if(searchselect2.equals("작성자")) {//작성자 검색
+				pstmt.setString(1, searchtext);
+			}
+			else if(searchselect2.equals("제목만")) {//제목만 검색
+				pstmt.setString(1, searchtext);
+			}
+			else {//제목+내용 검색
+				pstmt.setString(1, searchtext);
+				pstmt.setString(2, searchtext);
+			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				result = rs.getInt(1);
