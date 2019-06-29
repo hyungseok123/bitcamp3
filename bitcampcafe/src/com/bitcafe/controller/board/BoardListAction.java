@@ -20,7 +20,40 @@ public class BoardListAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		BoardService service=BoardService.getInstance();
+		
+//		페이징처리
+		String tmp_currpage = request.getParameter("currpage");
+		int currpage = 1;
+		if (tmp_currpage != null) { // 처음들어온게 아니라면 값을 받아줌
+			currpage = Integer.parseInt(tmp_currpage);
+		}
+		BoardService service = BoardService.getInstance();
+		int totalcount = service.BoardGetCount();
+		
+		
+		// 페이징 계산 시작
+				Paging paging = new Paging();
+				paging.setCurrpage(currpage);
+				paging.setTotalcount(totalcount);
+				int totalpage = paging.getTotalpage();
+				int startrow = paging.getStartrow();
+				int endrow = paging.getEndrow();
+				int startblock = paging.getStartblock();
+				int endblock = paging.getEndblock();
+				int blocksize = paging.getBlocksize();
+				// 페이징 계산 끝
+
+				List<BoardDTO> pagelist = service.BoardPageList(startrow, endrow);
+				 request.setAttribute("list", pagelist);
+				request.setAttribute("totalpage", totalpage);
+				request.setAttribute("startblock", startblock);
+				request.setAttribute("endblock", endblock);
+				request.setAttribute("blocksize", blocksize);
+				request.setAttribute("currpage", currpage);
+				request.setAttribute("null2", "[]"); // []를 위해서 만듬(jstl은 오류로인식함)
+		
+	//여기까지	
+	 
 		int category_no = 0;
 		String cno = request.getParameter("cno");
 		if (cno != null && !cno.equals("")) category_no = Integer.parseInt(cno);

@@ -251,4 +251,65 @@ public class BoardDAO {
 		}  
 		return result;
 	}
+	
+	
+	//페이징에 필요한 카운트
+	public int BoardgetCount(Connection conn) throws SQLException {
+		 
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select count(*)                       ");
+		sql.append(" from board inner join member          ");
+		sql.append(" on board.member_no = member.member_no ");
+		int datacount = 0;
+		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString()); ResultSet rs = pstmt.executeQuery();) {
+			if (rs.next()) {
+				datacount = rs.getInt(1);
+			}
+		}
+		return datacount;
+	}// getCount
+	
+	public List<BoardDTO> BoardgetData(Connection conn, int startrow, int endrow) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select  @rownum:=@rownum+1 as rnum, board_no, board_title, board_content, board_writedate, board_viewcount, member_nickname");
+		sql.append(" from board inner join member ");
+		sql.append(" on board.member_no = member.member_no ");
+		sql.append(" where (@rownum:="+(startrow-1)+")="+(startrow-1)+" ");
+		sql.append(" limit "+(startrow-1)+","+(endrow-startrow+1)+" ");
+	 
+		List<BoardDTO> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, endrow);
+			pstmt.setInt(2, startrow);
+			rs = pstmt.executeQuery();
+				while(rs.next()) {
+					BoardDTO dto = new BoardDTO();
+					dto.setBoard_no(rs.getInt("board_no"));
+					dto.setBoard_title(rs.getString("board_title"));
+					dto.setBoard_content(rs.getString("board_content"));
+					dto.setBoard_writedate(rs.getDate("board_writedate"));
+					dto.setBoard_viewcount(rs.getInt("board_viewcount"));
+					dto.setMember_nickname(rs.getString("member_nickname"));
+					list.add(dto);
+				}
+		} catch (SQLException e) {
+			System.out.println(e);
+		} finally {
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException e) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+				}
+		}
+		return list;
+
+	}
 }

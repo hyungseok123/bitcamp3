@@ -171,4 +171,40 @@ public class BoardService {
 		}
 		return result;
 	}
+	public int BoardGetCount() {
+		DBConnection db = DBConnection.gettb();
+		Connection conn = null;
+		int datacount = 0;
+		try {
+			conn = db.getConnection();
+			BoardDAO dao = BoardDAO.getDao();
+			datacount = dao.BoardgetCount(conn);
+		} catch (SQLException | NamingException e) {
+			System.out.println(e);
+		} finally {
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException e) {
+				}
+		}
+	return datacount;
+	}
+	
+	//페이징 목록
+	public List<BoardDTO> BoardPageList(int startrow, int endrow) {
+		   DBConnection db = DBConnection.gettb();
+			Connection conn=null;
+			List<BoardDTO> list = null;
+			try {
+				conn=db.getConnection();
+				BoardDAO dao = BoardDAO.getDao();
+				 list = dao.BoardgetData(conn, startrow, endrow);
+			}catch(SQLException | NamingException e) {
+				System.out.println(e);
+			}finally {
+				if(conn!=null) try {conn.close();}catch(SQLException e) {}
+			} 
+			return list;
+		}
 }
