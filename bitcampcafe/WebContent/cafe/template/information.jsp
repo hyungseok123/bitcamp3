@@ -69,8 +69,17 @@
 		font-size: 14px;
 	}
 	
-	.aside_information h3{
+	#aside_informationh3 {
 		padding-left: 10px;
+		font-size: 1.17em;
+		font-weight: bold;
+		margin: 0;
+	}
+	ul{
+		margin-bottom: 0;
+	}
+	#aside_informationhr{
+		margin: 0;
 	}
 </style>
 </head>
@@ -79,8 +88,8 @@
   <c:choose>
     <c:when test="${memberInfo != null }">
       <ul>
-        <li><h3>나의 활동</h3></li>
-        <li><hr></li>
+        <li><h3 id="aside_informationh3">나의 활동</h3></li>
+        <li><hr id="aside_informationhr"></li>
         <li>
         	<div id="myactionbox1">${memberInfo.member_no }</div><div id="myactionbox2">
         		<ul>

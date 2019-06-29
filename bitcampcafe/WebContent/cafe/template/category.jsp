@@ -30,12 +30,21 @@ pageEncoding="UTF-8"%>
 	.aside_category li {
 		margin: 5px 0;
 	}
+	
+	#aside_categoryh3 {
+		font-size: 1.17em;
+		font-weight: bold;
+	}
+	
+	ul{
+		margin-bottom: 0;
+	}
 </style>
 </head>
 <body>
   <div class="aside_category">
     <ul class="category_list">
-      <li><h3>카테고리</h3></li>
+      <li><h3 id="aside_categoryh3">카테고리</h3></li>
     </ul>
     <ul class="category_list">
   	  <li><a href="boardlist.do">전체보기</a></li>

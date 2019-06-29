@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+section {
+	width: 460px;
+	margin: 0 auto;
+}
+
+#title {
+	color: #03c75a;
+	font-size: 50px;
+	text-align: center;
+	font-weight: 900;
+}
+
+a {
+	text-decoration: none;
+}
+
+input {
+	width: 428px;
+	height: 30px;
+	margin: 5px 0;
+	padding: 10px 15px;
+	border: 1px solid silver;
+	font-size: 30px;
+}
+
+label {
+	width: 460px;
+	height: 20px;
+	font-size: 20px;
+	font-weight: 900;
+	margin-bottom: 10px;
+}
+
+#submit {
+	width: 460px;
+	height: 70px;
+	background-color: #03c75a;
+	color: white;
+}
+
+.input_undertext {
+	width: 460px;
+	height: 15px;
+	padding: 0;
+	margin-bottom: 15px;
+	font-size: 15px;
+	color: red;
+}
