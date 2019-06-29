@@ -32,7 +32,7 @@ public class CalendarDAO {
 		}
 	}
 
-	// db값을 jsonArr로 저장
+	// db값을 jsonArr 형식으로 받아주기
 	public JSONArray getJson(Connection conn) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select      *       ");
@@ -60,6 +60,7 @@ public class CalendarDAO {
 		return jsonArr;
 	}
 
+	// 일정 추가
 	public int insertList(Connection conn, CalendarDTO dto) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
@@ -80,6 +81,7 @@ public class CalendarDAO {
 		return result;
 	}
 
+	// 일정 디테일 , 작성자 닉네임을 보여주기 위해 member, calendar join
 	public CalendarDTO detailList(Connection conn, int no) throws SQLException {
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
@@ -111,6 +113,7 @@ public class CalendarDAO {
 		return dto;
 	}
 
+	// 일정 삭제
 	public int deleteList(Connection conn, int no) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" delete   from  calendar     ");
@@ -124,6 +127,7 @@ public class CalendarDAO {
 
 	}
 
+	// 일정 수정
 	public int modifyList(Connection conn, CalendarDTO dto) throws SQLException {
 		StringBuilder sql = new StringBuilder();
 		sql.append("    update calendar set          ");

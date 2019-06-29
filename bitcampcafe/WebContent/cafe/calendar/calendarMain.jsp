@@ -63,6 +63,8 @@ body {
 <script type="text/javascript"
 	src="./cafe/calendar/fullcalendar-3.3.1/lib/bootstrap.min.js"></script>
 <script type="text/javascript">
+
+	// 창이 뜨자마자 바로 getEvent 실행할수있도록...
 	$(document).ready(function() {
 		var date = new Date();
 		var d = date.getDate();
@@ -71,28 +73,28 @@ body {
 		getEvent();
 	});
 
-	//list 데이터 json형식으로 받아주기
-	function getEvent() { // 제이슨으로 캘린더 이벤트 등록형식에 맞게 뿌리기
-		$.ajax({
-			url : "http://localhost:8080/bitcampcafe/json.getjson",
+	//jsonArr형식으로 받아둔 data를 calendarEvent에 넣어주기
+	function getEvent() { 
+		$.ajax({ // 제이슨으로 캘린더 이벤트 등록형식에 맞게 뿌리기
+			url : "http://localhost:8080/bitcampcafe/json.getjson", // jsonController
 			contentType : "application/x-www-form-urlencoded; charset=UTF-8",
 			type : 'post',
 			dataType : 'json',
 			success : function(data) {
 				console.log("getevent성공");
-				eventData = [];
-				$.each(data, function(index, element) {
+				eventData = [];		// [{title:  , start :  , end :  , no :  , color :  }] 이 형식으로 받기 위해
+				$.each(data, function(index, element) { 
 					eventData.push({
-						title : element.calendar_title,
-						start : element.calendar_start,
-						end : element.calendar_end,
-						no : element.calendar_no,
-						color : element.calendar_color
+						title : element.calendar_title, // 일정 내용
+						start : element.calendar_start, // 일정날짜 시작
+						end : element.calendar_end,     // 일정날짜 끝
+						no : element.calendar_no,		// 일정 번호
+						color : element.calendar_color	// 일정 표시 색상
 					});
 
 				});
 
-				calendarEvent(eventData); //캘린더 메소드 호출		
+				calendarEvent(eventData); //fullCalendar를 실행 시킬 calendarEvent메소드 호출!		
 			},
 			error : function(data) {
 				console.log("getevent실패");
@@ -104,33 +106,27 @@ body {
 	function calendarEvent(eventData) {
 		$("#calendar").fullCalendar({
 			selectable : true,
-			header : {
-				left : 'prev,next,today',
-				center : 'title',
-				right : 'agendaWeek,month'
+			header : {					  // 캘린더 상단에
+				left : 'prev,next,today', // 전달,다음달,오늘
+				center : 'title',		  // 201n년 n달
+				right : 'agendaWeek,month'// 일주일단위로, 월단위
 			},
-			editable : false,
-			events : eventData,
-			select : function(event) {
-				//일정없는 빈곳 누르면 insertform으로~
+			editable : false, 			  // 드래그로 수정 못함
+			events : eventData,			  // 위 ajax으로 받아온 data 넣어주기
+			select : function(event) {	  	
 
-				location.href = "calendarinsert.do";
+				location.href = "calendarinsert.do"; //일정없는 빈곳 누르면 insertform으로~
 			},
-			eventClick : function(event) { //일정클릭하면 그일정의 디테일을 출력			
+			eventClick : function(event) { 			
 		 	if (event.no) {
-					location.href = "calendardetail.do?no=" + event.no;
+					location.href = "calendardetail.do?no=" + event.no; //일정클릭하면 그일정의 디테일을 출력
 					return false;
-				} 
-			
-				
+				} 				
 			}
 		});
 	}
 </script>
 <body>
 	<div id="calendar"></div>
-	
-
-
 </body>
 </html>

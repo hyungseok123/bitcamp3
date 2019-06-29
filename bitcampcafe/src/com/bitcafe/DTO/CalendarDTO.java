@@ -1,15 +1,15 @@
 package com.bitcafe.DTO;
 
 public class CalendarDTO {
-	private int calendar_no;
-	private String calendar_title;
-	private String calendar_place;
-	private String calendar_content;
-	private String calendar_start;
-	private String calendar_end;
-	private String calendar_color;
-	private int member_no;
-	private String member_nickname;
+	private int calendar_no; // 일정 번호
+	private String calendar_title; // 일정 제목
+	private String calendar_place; // 일정 장소
+	private String calendar_content; // 일정 내용
+	private String calendar_start; // 일정날짜 시작
+	private String calendar_end; // 일정날짜 끝
+	private String calendar_color; // 일정 표시 색상
+	private int member_no; // 작성자 번호
+	private String member_nickname; // 작성자 닉네임
 
 	public CalendarDTO(int calendar_no, String calendar_title, String calendar_place, String calendar_content,
 			String calendar_start, String calendar_end, String calendar_color, int member_no, String member_nickname) {

@@ -109,7 +109,8 @@
 				<%=dto.getCalendar_place()%>				
 				<%=dto.getMember_nickname()%>
 			
-			<c:if test="${memberInfo.member_no eq dto.member_no }">
+			<!-- 그 일정의 작성자만 수정,삭제 가능, 작성자가 아니라면 조회만 가능 -->
+			<c:if test="${memberInfo.member_no eq dto.member_no }"> 
 				<a href="calendardelete.do?no=<%=dto.getCalendar_no()%>"> <input
 					type="button" value="삭제">
 				</a>
