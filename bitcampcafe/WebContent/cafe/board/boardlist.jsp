@@ -40,6 +40,10 @@
 	width: 70px;
 	height: 30px;
 }
+a{
+text-decoration: none;
+color:black;
+}
 </style>
 </head>
 <body>
