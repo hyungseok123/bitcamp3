@@ -12,6 +12,7 @@ import com.bitcafe.DTO.AttendanceDTO;
 import com.bitcafe.DTO.MemberDTO;
 import com.bitcafe.controller.Action;
 import com.bitcafe.service.AttendanceService;
+import com.bitcafe.service.BoardService;
 import com.bitcafe.util.ForwardAction;
 
 public class AttendanceUpdateResultAction implements Action {
@@ -31,6 +32,13 @@ public class AttendanceUpdateResultAction implements Action {
 			forward.setPath("login.do");
 		} else {
 			// jsp에서 보낸 파라미터 호출
+			int member_no = loginInfo.getMember_no();
+			BoardService Bservice = BoardService.getInstance();
+			int myboard = Bservice.getMyboard(member_no);
+			int mycomment = Bservice.getMyComment(member_no);
+			request.setAttribute("myboard", myboard);
+			request.setAttribute("mycomment", mycomment);
+			
 			int attendance_no = Integer.parseInt(request.getParameter("attendance_no"));
 			String attendance_content = request.getParameter("attendance_content");
 			int result = service.AttendanceUpdate(attendance_no, attendance_content);

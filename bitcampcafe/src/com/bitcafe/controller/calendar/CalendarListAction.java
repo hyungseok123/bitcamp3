@@ -24,7 +24,7 @@ public class CalendarListAction implements Action {
 			forward.setRedirect(true);
 			forward.setPath("login.do");
 		} else {
-			int member_no = memberInfo.getMember_no();
+			int member_no = memberInfo.getMember_no();			
 			forward.setRedirect(false);
 			forward.setPath("/cafe/template/main.jsp?page=/cafe/calendar/calendarMain.jsp");
 

@@ -6,6 +6,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+#modify, #reset{
+ width:90px;
+ height:50px;
+ background-color:#03c75a;
+ color:white;
+ position:relative;
+ bottom:20px;
+
+}
+
+
+
+</style>
+
+
+
 </head>
 <body>
 <table>
@@ -18,8 +35,8 @@
 <form id="frm" method = "post"  action="attendanceupdateresultaction.do">
 	<input type="hidden" name="attendance_no" value="${attendance_no }">
 	<textarea name="attendance_content" cols="90" rows="8">${content }</textarea>
-    <input type="submit" value="수정하기" >
-    <input type="reset" value="다시쓰기">
+    <input type="submit" id="modify" value="수정하기" >
+    <input type="reset" id="reset" value="다시쓰기">
 </form>
 </body>
 </html>

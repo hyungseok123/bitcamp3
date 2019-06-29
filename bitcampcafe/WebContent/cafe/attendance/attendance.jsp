@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
@@ -25,6 +26,9 @@
    <td><a href="attendanceupdate.do?no=${dto.attendance_no }">수정하기</a></td>
    <td><a href="attendancedelete.do?no=${dto.attendance_no }">삭제하기</a></td>
  </tr>
+ 
+ 
+ 
  </c:forEach>
  
  </tbody>

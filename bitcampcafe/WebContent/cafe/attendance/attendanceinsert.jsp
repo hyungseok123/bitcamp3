@@ -6,6 +6,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+
+#btn{
+   width:100px;
+   height:80px;
+   background-color:#03c75a;
+   color:white;
+   
+   position:relative;
+   bottom:35px;
+}
+.bitat{
+  font-weight:bolder;
+  font-size:20px;
+  text-align:center;
+  padding-bottom:5px;
+
+}
+
+
+
+
+
+</style>
+
+
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -28,10 +55,10 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-
+<div class="bitat">비트카페 출석하기</div>
 <form id="frm" method = "post"  action="attendanceinsertresultaction.do">
  <textarea name="attendance" cols="100" rows="8"></textarea>
-    <input type="submit" value="출석!" >
+    <input type="submit" id="btn" value="출석!" >
 
 
 </form>
