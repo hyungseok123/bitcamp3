@@ -16,7 +16,6 @@
 }
 #content {
 	float: right;
-	border: 1px solid silver;
 	width: 860px;
 	height: auto;
 	padding-bottom: 30px;

@@ -108,7 +108,7 @@
 				<%=dto.getCalendar_content()%>
 				<%=dto.getCalendar_place()%>
 				<%=dto.getCalendar_color()%>
-				<p>작성자<%=dto.getMember_nickname()%></p>
+				<%=dto.getMember_nickname()%>
 			
 			<c:if test="${memberInfo.member_no eq dto.member_no }">
 				<a href="calendardelete.do?no=<%=dto.getCalendar_no()%>"> <input

@@ -55,9 +55,12 @@
 	}
 	#myactionmodify li button{
 		width: 100%;
-		height: 25px;
-		border-top: 1px solid silver;
+		height: 25px;	
+		border:1px solid #03c75a;		
 		background-color: white;
+		font-family: 'Cambria';
+		border-radius:10px;
+		padding-bottom: 14px;
 	}
 	
 	#myactionmemberjoin {
