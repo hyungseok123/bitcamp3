@@ -29,7 +29,7 @@ public class BoardUpdateAction implements Action {
 		request.setAttribute("dto", dto);
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
-		forward.setPath("/cafe/board/boardupdate.jsp");
+		forward.setPath("/cafe/template/main.jsp?page=/cafe/board/boardupdate.jsp");
 		return forward;
 	}
 }
