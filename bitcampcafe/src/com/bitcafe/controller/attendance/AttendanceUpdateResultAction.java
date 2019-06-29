@@ -35,7 +35,8 @@ public class AttendanceUpdateResultAction implements Action {
 			String attendance_content = request.getParameter("attendance_content");
 			int result = service.AttendanceUpdate(attendance_no, attendance_content);
 			forward.setRedirect(true);
-			forward.setPath("/cafe/attendance/attendancetinsert.jsp");
+			//forward.setPath("/cafe/template/main.jsp?page=/cafe/attendance/attendancetinsert.jsp");
+			forward.setPath("attendanceinsert.do");
 		}
 		return forward;
 	
