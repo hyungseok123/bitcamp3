@@ -126,7 +126,6 @@ body {
 	}
 </script>
 <body>
-
 	<div id="calendar"></div>
 
 
