@@ -116,6 +116,8 @@ font-size: 15px;
 			</fieldset>
 			<input type="submit" class="btn" value="추가"/>
 			<input type="reset" class="btn"  value="다시쓰기"/>
+			<a href="calendarlist.do"> <input type="button" class="btn"value="달력">
+			</a>
 		</form>
 	</div>
 	</body>

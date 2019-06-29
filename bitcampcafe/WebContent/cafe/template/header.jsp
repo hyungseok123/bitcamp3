@@ -8,9 +8,10 @@
 <style>
 .main_link a {
 	text-decoration: none;
-	color: black;
+	color: #03c75a;
 	font-size: 2em;
 	font-family: 'Cambria';
+	text-shadow: 0 0 20px white;
 	font-weight: bold;
 	width: 100%;
 	height: 100%;
