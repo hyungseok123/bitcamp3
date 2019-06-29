@@ -25,12 +25,16 @@ public class CalendarModifyResultAction implements Action {
 		String start = request.getParameter("start");
 		String end = request.getParameter("end");
 		String content = request.getParameter("content");
-		CalendarDTO dto = new CalendarDTO();
+		String place =request.getParameter("place");
+		String color =request.getParameter("color");
+		CalendarDTO dto = new CalendarDTO();	
 		dto.setCalendar_no(no);
 		dto.setCalendar_title(title);
 		dto.setCalendar_start(start);
 		dto.setCalendar_end(end);
 		dto.setCalendar_content(content);
+		dto.setCalendar_place(place);
+		dto.setCalendar_color(color);
 		CalendarService service = CalendarService.getCalendarService();
 		int result = service.ModifyService(dto);
 		request.setAttribute("result", result);
