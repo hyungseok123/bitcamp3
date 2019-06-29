@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
 .top_nav {
 	width: 1078px;
 	height: 35px;
-	border: 1px solid silver;
+	
 	margin-bottom: 10px;
 	display: inline-block;
 }

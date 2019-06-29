@@ -19,7 +19,7 @@
  <tbody>
  <c:forEach var="dto" items="${requestScope.list }">
  <tr>
-   <td>${dto.member_no } </td>
+   <td>${dto.member_nickname} </td>
    <td>${dto.attendance_no }</td>
    <td>${dto.attendance_content }</td>
    <td>${dto.attendance_writedate }</td>

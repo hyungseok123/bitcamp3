@@ -96,7 +96,7 @@ public class AttendanceDAO {
 		sql.append("        select attendance_no         ");
 		sql.append("        ,attendance_content          ");
 		sql.append("       ,attendance_writedate         ");
-		sql.append("        ,m.member_no                    ");
+		sql.append("        ,m.member_nickname           ");
 		sql.append(" from attendance a join member m     ");
 		sql.append("  on a.member_no =m.member_no        ");	
         sql.append("  order by attendance_writedate desc ");
@@ -111,7 +111,7 @@ public class AttendanceDAO {
 				dto.setAttendance_no(rs.getInt("attendance_no"));
 				dto.setAttendance_content(rs.getString("attendance_content"));
 				dto.setAttendance_writedate(rs.getDate("attendance_writedate"));
-				dto.setMember_no(rs.getInt("m.member_no"));
+				dto.setMember_nickname(rs.getString("member_nickname"));
 				arr.add(dto);
 			}
 		}catch(SQLException e)

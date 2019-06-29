@@ -9,12 +9,29 @@
 .b {
 	width: 1080px;
 	height: 100px;
-	border: 1px solid silver;
+	
 	clear: both;
+	border-top:2px solid silver;
+	padding-top:20px;
 }
+.bitlink{
+ position:relative;
+ bottom:50px;
+ left:850px;
+ 
+
+ 
+ 
+}
+
 </style>
 </head>
 <body>
-	<div class="b">풋터입니다.</div>
+	<div class="b">
+	<p>Bitcamp 대표 카페</p>
+	<a href="#">http://localhost:8080/bitcampcafe/boardlist.do</a>
+	
+	</div>
+	<a class="bitlink" href="http://localhost:8080/bitcampcafe/boardlist.do"><img src="img/bitcamplogo.jpg"></a>
 </body>
 </html>
