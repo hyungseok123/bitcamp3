@@ -171,6 +171,8 @@ public class BoardService {
 		}
 		return result;
 	}
+	
+	//페이징
 	public int BoardGetCount() {
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;

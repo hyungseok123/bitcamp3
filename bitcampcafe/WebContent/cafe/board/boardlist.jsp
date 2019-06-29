@@ -51,7 +51,7 @@ color:black;
 	<div class="detail_all_wrap">
 		<table class="board_list_table">
 		  <tbody>
-			<c:forEach var="data" items="${requestScope.list }">
+			<c:forEach var="data" items="${requestScope.pagelist }">
 				<tr class="board_list_tr">
 				  <td>${data.board_no }</td>
 				  <td><a href="boarddetail.do?no=${data.board_no }"><c:out default="null" value="${data.board_title }"></c:out></a></td>
@@ -84,12 +84,6 @@ color:black;
 		</colgroup> --%>
 		
 		<tbody id="searchsubresult">
-			<c:set var="list" value="${requestScope.list }" />
-			<c:if test="${list eq null || list eq requestScope.null2 }">
-				<tr>
-					<td colspan="5">등록된 게시글이 없습니다.</td>
-				<tr>
-			</c:if>
 			<c:if test="${list != null }">
 				<%-- <c:forEach var="index" items="${list }"> --%>
 					<c:if test="${startblock>1 }">

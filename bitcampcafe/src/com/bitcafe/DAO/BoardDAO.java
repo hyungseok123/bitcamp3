@@ -269,6 +269,7 @@ public class BoardDAO {
 		return datacount;
 	}// getCount
 	
+	//페이징
 	public List<BoardDTO> BoardgetData(Connection conn, int startrow, int endrow) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -278,13 +279,11 @@ public class BoardDAO {
 		sql.append(" on board.member_no = member.member_no ");
 		sql.append(" where (@rownum:="+(startrow-1)+")="+(startrow-1)+" ");
 		sql.append(" limit "+(startrow-1)+","+(endrow-startrow+1)+" ");
-	 
 		List<BoardDTO> list = new ArrayList<>();
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, endrow);
-			pstmt.setInt(2, startrow);
 			rs = pstmt.executeQuery();
+			System.out.println("동작2"); //
 				while(rs.next()) {
 					BoardDTO dto = new BoardDTO();
 					dto.setBoard_no(rs.getInt("board_no"));
@@ -310,6 +309,5 @@ public class BoardDAO {
 				}
 		}
 		return list;
-
 	}
 }

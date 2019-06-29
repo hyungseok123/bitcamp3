@@ -40,9 +40,11 @@ public class BoardListAction implements Action {
 				int endblock = paging.getEndblock();
 				int blocksize = paging.getBlocksize();
 				// 페이징 계산 끝
-
+				
+				System.out.println("start : "+startrow); //
+				System.out.println("end : "+endrow); //
 				List<BoardDTO> pagelist = service.BoardPageList(startrow, endrow);
-				 request.setAttribute("list", pagelist);
+				 request.setAttribute("pagelist", pagelist);
 				request.setAttribute("totalpage", totalpage);
 				request.setAttribute("startblock", startblock);
 				request.setAttribute("endblock", endblock);
@@ -67,8 +69,8 @@ public class BoardListAction implements Action {
 			request.setAttribute("myboard", myboard);
 			request.setAttribute("mycomment", mycomment);
 		}
-		List<BoardDTO> list= service.BoardListService(category_no);
-		request.setAttribute("list", list);
+		List<BoardDTO> list= service.BoardListService(category_no); //
+		request.setAttribute("list", list); //
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
 		forward.setPath("/cafe/template/main.jsp?page=/cafe/board/boardlist.jsp");
