@@ -44,12 +44,30 @@ a{
 text-decoration: none;
 color:black;
 }
+
+.pagetitle{
+
+text-align: left;
+ color:#03c75a;
+
+
+}
 </style>
 </head>
 <body>
   <div class="list_main_img"></div>
 	<div class="detail_all_wrap">
 		<table class="board_list_table">
+		<colgroup>
+				<col width="10%">
+				<col width="40%">
+				<col width="20%">
+				<col width="20%">
+				<col width="10%">
+			</colgroup>
+			<thead>
+				<tr class="pagetitle"><th> </th><th>제목</th><th>작성자</th><th>작성일</th><th>조회<th></tr>
+			</thead>
 		  <tbody>
 			<c:forEach var="data" items="${requestScope.pagelist }">
 				<tr class="board_list_tr">
@@ -68,6 +86,7 @@ color:black;
 	</div>
 	
 	<!-- 페이징  -->
+	
 	<c:set var="totalpage" value="${requestScope.totalpage }" />
 	<c:set var="startblock" value="${requestScope.startblock }" />
 	<c:set var="endblock" value="${requestScope.endblock }" />
@@ -75,13 +94,7 @@ color:black;
 	<c:set var="currpage" value="${requestScope.currpage }" />
 	<table>
 	
-	<%-- 	<colgroup>
-			<col width="10%">
-			<col width="40%">
-			<col width="20%">
-			<col width="20%">
-			<col width="10%">
-		</colgroup> --%>
+	
 		
 		<tbody id="searchsubresult">
 			<c:if test="${list != null }">
