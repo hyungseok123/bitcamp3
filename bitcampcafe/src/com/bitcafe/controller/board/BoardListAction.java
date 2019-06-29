@@ -29,8 +29,6 @@ public class BoardListAction implements Action {
 		}
 		BoardService service = BoardService.getInstance();
 		int totalcount = service.BoardGetCount();
-		
-		
 		// 페이징 계산 시작
 				Paging paging = new Paging();
 				paging.setCurrpage(currpage);
