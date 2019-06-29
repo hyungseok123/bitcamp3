@@ -33,9 +33,17 @@
 	height: 35px;
 	float: right;
 }
+.top_nav_naver:link {
+	color: #03c75a;
+}
+top_nav_naver:visited {
+	top_nav_naver
+}
+.top_nav_naver
 </style>
 </head>
 <body>
+
 	<div class="top_nav">
 		<div class="top_nav_naver">
 			<a class="navericon" href="http://naver.com"><h2>NAVER</h2></a>

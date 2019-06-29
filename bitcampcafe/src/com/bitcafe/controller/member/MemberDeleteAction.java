@@ -18,6 +18,7 @@ public class MemberDeleteAction implements Action {
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("memberInfo");
 		ForwardAction forward = new ForwardAction();
