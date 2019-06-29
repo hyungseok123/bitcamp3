@@ -260,6 +260,7 @@ public class BoardDAO {
 		sql.append(" select count(*)                       ");
 		sql.append(" from board inner join member          ");
 		sql.append(" on board.member_no = member.member_no ");
+	
 		int datacount = 0;
 		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString()); ResultSet rs = pstmt.executeQuery();) {
 			if (rs.next()) {
@@ -278,6 +279,7 @@ public class BoardDAO {
 		sql.append(" from board inner join member ");
 		sql.append(" on board.member_no = member.member_no ");
 		sql.append(" where (@rownum:="+(startrow-1)+")="+(startrow-1)+" ");
+		sql.append(" order by board_no desc ");
 		sql.append(" limit "+(startrow-1)+","+(endrow-startrow+1)+" ");
 		List<BoardDTO> list = new ArrayList<>();
 		try {
