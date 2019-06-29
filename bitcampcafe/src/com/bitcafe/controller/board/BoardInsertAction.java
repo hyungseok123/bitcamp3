@@ -30,7 +30,7 @@ public class BoardInsertAction implements Action {
 			String category_name = service.getCategoryName(category_no);
 			request.setAttribute("category_name", category_name);
 			act.setRedirect(false);
-			act.setPath("/cafe/board/boardinsert.jsp");	
+			act.setPath("/cafe/template/main.jsp?page=/cafe/board/boardinsert.jsp");	
 		}
 		return act;
 	}
