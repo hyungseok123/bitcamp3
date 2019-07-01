@@ -46,6 +46,14 @@ board_detail_wrap {
 	margin-top: 10px;
 	width: 70px;
 	height: 30px;
+	border: 1px solid #03c75a;
+	background-color: white;
+	font-family: 'Cambria';
+	border-radius: 10px;
+}
+
+.board_list_btn button:hover{
+background-color: #03c75a;
 }
 
 a {
