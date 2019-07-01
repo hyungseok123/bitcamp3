@@ -325,4 +325,20 @@ public class BoardDAO {
 		}
 		return list;
 	}
+	public void BoardViewUpdate(Connection conn, int board_no) throws SQLException {
+		PreparedStatement pstmt = null;
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update board                              ");
+		sql.append(" set board_viewcount = board_viewcount + 1 ");
+		sql.append(" where board_no = ?                        ");
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, board_no);
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if(pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
+	}
 }

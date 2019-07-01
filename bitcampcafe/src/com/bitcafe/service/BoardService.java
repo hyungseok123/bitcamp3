@@ -209,4 +209,21 @@ public class BoardService {
 			} 
 			return list;
 		}
+	
+	public void boardViewCounting(int board_no) {
+		Connection conn = null;
+		try {
+			DBConnection db = DBConnection.gettb();
+			conn = db.getConnection();
+			conn.setAutoCommit(false);
+			BoardDAO dao = BoardDAO.getDao();
+			dao.BoardViewUpdate(conn, board_no);
+			conn.commit();
+		} catch(SQLException| NamingException e) {
+			System.out.println(e);
+			try{ conn.rollback();} catch(SQLException e1){}
+		} finally {
+			if(conn!=null) try{ conn.close();} catch(SQLException e){}
+		}
+	}
 }

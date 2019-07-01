@@ -44,6 +44,10 @@ public class BoardDetailAction implements Action {
 			request.setAttribute("dto", dto);
 			request.setAttribute("commentTotalCount", commentTotalCount);
 			request.setAttribute("loginNo", loginInfo);
+			// 조회 수
+			service.boardViewCounting(board_no);
+			System.out.println(board_no);
+			
 			forward.setRedirect(false);
 			forward.setPath("/cafe/template/main.jsp?page=/cafe/board/boarddetail.jsp");
 		}
