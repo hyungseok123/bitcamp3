@@ -49,11 +49,18 @@ color:black;
 
 text-align: left;
  color:#03c75a;
-
-
 }
 
-..pagingbox{
+	#pageboard {
+		width: 100%;
+		height: 40px;
+		padding-top: 16px;
+		margin-top: 32px;
+		background-color: #f9f9f8;
+		text-align: center;
+	}
+	
+	.pagingbox{
 		width: 24px;
 		height: 24px;
 		background-color: white;
@@ -64,6 +71,8 @@ text-align: left;
 		text-decoration: none;
 		display: inline-block;
 	}
+
+ 
 </style>
 </head>
 <body>
@@ -108,9 +117,8 @@ text-align: left;
 	
 	
 		
-		<tbody id="searchsubresult">
+		<div id="pageboard">
 			<c:if test="${list != null }">
-				<%-- <c:forEach var="index" items="${list }"> --%>
 					<c:if test="${startblock>1 }">
 						<div class="pagingbox"><a href="main.do?currpage=${startblock-1 }">이전</a></div>
 					</c:if>
@@ -121,13 +129,12 @@ text-align: left;
 						<c:if test="${i!=currpage }">
 							<div class="pagingbox"><a href="main.do?currpage=${i }"><c:out value="${i }"></c:out></a></div>
 						</c:if>
-					<%-- </c:forEach> --%>
+					</c:forEach>
 					<c:if test="${endblock<totalpage }">
 						<div class="pagingbox"><a href="main.do?currpage=${endblock+1 }">다음</a></div>
 					</c:if>
-				</c:forEach>
 			</c:if>
-		</tbody>
+		</div>
 	</table>
 	
 </body>
