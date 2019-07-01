@@ -10,6 +10,22 @@
 #writeinsert {
 	margin: 0 auto;
 }
+
+table, tr, td {
+	border: 2px solid #03c75a;
+	border-collapse: collapse;
+	padding: 4px;
+}
+
+.btn {
+	margin-top: 10px;
+	width: 70px;
+	height: 30px;
+	border: 1px solid #03c75a;
+	background-color: white;
+	font-family: 'Cambria';
+	border-radius: 10px;
+}
 </style>
 
 </head>
@@ -35,18 +51,20 @@
 			<tr>
 				<td id="title">제 목</td>
 				<td><input name="board_title" type="text" size="70"
-					maxlength="100" value="" required="required" style="background-color:transparent;border:0 solid black;" /></td>
+					maxlength="100" value="" required="required"
+					style="background-color: transparent; border: 0 solid black;" /></td>
 			</tr>
 			<tr>
 				<td id="title">내 용</td>
 				<td><textarea name="board_content" cols="72" rows="20"
-						required="required" style="background-color:transparent;border:0 solid black;"></textarea></td>
+						required="required"
+						style="background-color: transparent; border: 0 solid black;"></textarea></td>
 			</tr>
 
 			<tr align="center" valign="middle">
-				<td colspan="5"><input type="reset" value="작성취소"> <input
-					type="submit" value="등록"> <a href="boardlist.do"><input
-						type="button" value="목록"></a></td>
+				<td colspan="5"><input type="reset" value="작성취소" class="btn">
+					<input type="submit" value="등록" class="btn"> <a
+					href="boardlist.do"><input type="button" value="목록" class="btn"></a></td>
 			</tr>
 		</table>
 	</form>
