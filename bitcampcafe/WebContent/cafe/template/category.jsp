@@ -8,7 +8,8 @@ pageEncoding="UTF-8"%>
 <title>Insert title here</title>
 <style>
 	.aside_category {
-		padding-bottom: 80px;
+		padding-bottom: 40px;
+		border-bottom: 3px solid #03c75a;
 	}
 	ul.category_list {
 		padding: 10px;
@@ -30,7 +31,6 @@ pageEncoding="UTF-8"%>
 	.aside_category li {
 		margin: 5px 0;
 	}
-	
 	#aside_categoryh3 {
 		font-size: 1.17em;
 		font-weight: bold;

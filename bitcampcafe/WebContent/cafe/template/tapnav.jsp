@@ -8,8 +8,10 @@
 <title>Insert title here</title>
 <style>
 .navericon {
-	text-decoration:none;
+	text-decoration: none;
 	color: #03c75a;
+	font-family: 'Cambria';
+	font-size: 1.5em;
 }
 
 .top_nav {
@@ -25,16 +27,15 @@
 }
 .chat{
 	width: 37px;
-	
 }
 .top_nav_loginInfo {
 	position: relative;
-	top:20px;
-	width:220PX;
+	top: 10px;
+	width: 220PX;
 	height: 25px;
 	float: right;
 	border: 1px solid #03c75a;
-	border-radius:10px;	
+	border-radius: 10px;	
 	text-align: center;
 }
 .top_nav_naver:link {

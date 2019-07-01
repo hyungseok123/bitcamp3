@@ -20,7 +20,7 @@
 }
 .detail_content {
 	margin: 10px 0px;
-	height: 500px;
+	height: 400px;
 }
 .detail_comment_views {
 	padding: 10px 0;

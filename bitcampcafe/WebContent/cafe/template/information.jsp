@@ -27,7 +27,8 @@
 </script>
 <style>
 	.aside_information {
-		height: 200px;
+		height: 210px;
+		padding: 10px 0;
 	}
 	
 	#myactionbox1 {
@@ -77,16 +78,18 @@
 	}
 	
 	#aside_informationh3 {
+		padding-bottom: 5px;
 		padding-left: 10px;
 		font-size: 1.17em;
 		font-weight: bold;
 		margin: 0;
 	}
-	ul{
+	.myInfo_ul {
 		margin-bottom: 0;
 	}
 	#aside_informationhr{
 		margin: 0;
+		margin: 5px 0;
 	}
 </style>
 </head>
@@ -94,7 +97,7 @@
   <div class="aside_information">
   <c:choose>
     <c:when test="${memberInfo != null }">
-      <ul>
+      <ul class="myInfo_ul">
         <li><h3 id="aside_informationh3">나의 활동</h3></li>
         <li><hr id="aside_informationhr"></li>
         <li>
