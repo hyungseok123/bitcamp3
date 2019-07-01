@@ -33,11 +33,7 @@
 	margin-bottom: 8px;
 }
 
-.form-style-5 input[type="text"], .form-style-5 input[type="date"],
-	.form-style-5 input[type="datetime"], .form-style-5 input[type="email"],
-	.form-style-5 input[type="number"], .form-style-5 input[type="search"],
-	.form-style-5 input[type="time"], .form-style-5 input[type="url"],
-	.form-style-5 textarea, .form-style-5 select {
+th,td {
 	font-family: 'Cambria';
 	background: rgba(255, 255, 255, .1);
 	border: none;
@@ -51,10 +47,16 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	background-color: #e8eeef;
-	color:  black;
+	color: black;
 	-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
 	margin-bottom: 30px;
+}
+
+th{
+background-color: #03c75a;
+width: 300px;
+color:white;
 }
 
 .form-style-5 input[type="text"]:focus, .form-style-5 input[type="date"]:focus,
@@ -84,7 +86,14 @@
 	border-radius: 15px 15px 15px 0px;
 }
 
-
+.btn{
+width: 80px;
+height: 50px;
+border-radius:10px;
+background-color:#03c75a;
+font-family: 'Cambria';
+font-size: 15px;
+}
 </style>
 </head>
 <body>
@@ -100,25 +109,57 @@
 		<fieldset>
 			<legend>
 				<span class="number"></span> 일정
-			</legend>		
-				<%=dto.getCalendar_no()%>
-				<%=dto.getCalendar_title()%>
-				<%=dto.getCalendar_start()%>
-				<%=dto.getCalendar_end()%>
-				<%=dto.getCalendar_content()%>
-				<%=dto.getCalendar_place()%>				
-				<%=dto.getMember_nickname()%>
-			
+			</legend>
+
+
+			<table>
+
+				<tr>
+					<th>일정 번호</th>
+					<td><%=dto.getCalendar_no()%></td>
+				</tr>
+
+				<tr>
+					<th>일정 제목</th>
+					<td><%=dto.getCalendar_title()%></td>
+				</tr>
+
+				<tr>
+					<th>일정 시작</th>
+					<td><%=dto.getCalendar_start()%></td>
+				</tr>
+
+				<tr>
+					<th>일정 끝</th>
+					<td><%=dto.getCalendar_end()%></td>
+				</tr>
+
+				<tr>
+					<th>일정 내용</th>
+					<td><%=dto.getCalendar_content()%></td>
+				</tr>
+
+				<tr>
+					<th>일정 장소</th>
+					<td><%=dto.getCalendar_place()%></td>
+				</tr>
+
+				<tr>
+					<th>작성자</th>
+					<td><%=dto.getMember_nickname()%></td>
+				</tr>
+			</table>
+
 			<!-- 그 일정의 작성자만 수정,삭제 가능, 작성자가 아니라면 조회만 가능 -->
-			<c:if test="${memberInfo.member_no eq dto.member_no }"> 
+			<c:if test="${memberInfo.member_no eq dto.member_no }">
 				<a href="calendardelete.do?no=<%=dto.getCalendar_no()%>"> <input
-					type="button" value="삭제">
+					type="button" class="btn" value="삭제">
 				</a>
 				<a href="calendarmodify.do?no=<%=dto.getCalendar_no()%>"> <input
-					type="button" value="수정">
+					type="button" class="btn" value="수정">
 				</a>
 			</c:if>
-			<a href="calendarlist.do"> <input type="button" value="달력">
+			<a href="calendarlist.do"> <input type="button" class="btn" value="달력">
 			</a>
 		</fieldset>
 	</div>

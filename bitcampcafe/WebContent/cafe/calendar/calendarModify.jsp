@@ -82,6 +82,15 @@
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
 	border-radius: 15px 15px 15px 0px;
 }
+
+.btn{
+width: 80px;
+height: 50px;
+border-radius:10px;
+background-color:#03c75a;
+font-family: 'Cambria';
+font-size: 15px;
+}
 </style>
 </head>
 <body>
@@ -114,9 +123,10 @@
 					id="end" name="end" value="<%=dto.getCalendar_end()%>"> <input
 					type="text" id="place" name="place"
 					value="<%=dto.getCalendar_place()%>"> <input type="submit"
-					value="수정"> <input type="reset" value="취소"> <a
+					value="수정"
+					class="btn"> <input type="reset" value="원래대로" class="btn"> <a
 					href="calendarlist.do"> <input type="button" class="btn"
-					value="달력">
+					value="달력" class="btn">
 				</a>
 			</fieldset>
 		</form>
