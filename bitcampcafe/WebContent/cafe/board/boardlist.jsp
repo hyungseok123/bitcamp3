@@ -23,7 +23,7 @@
 .board_list_table {
 	padding: 10px;
 	width: 860px;
-	border-top: 1px solid silver;
+	border-top: 1px solid black;
 	border-collapse: collapse;
 }
 .board_list_tr {
@@ -46,9 +46,12 @@ color:black;
 }
 
 .pagetitle{
-
-text-align: left;
- color:#03c75a;
+	text-align: left;
+	color:#03c75a;
+}
+.pagetitle th {
+	border-bottom: 1px solid black;
+	padding-bottom: 5px;
 }
 
 	#pageboard {
@@ -117,7 +120,7 @@ text-align: left;
 	<div id="pageboard">
 		<c:if test="${pagelist != null }">
 				<c:if test="${startblock > 1 }">
-					<div class="pagingbox"><a href="boardlist.do?currpage=${startblock-1 }&cno=${param.cno }">이전</a></div>
+					<div class="pagingbox"><a href="boardlist.do?currpage=${startblock-1 }&cno=${param.cno }">◀</a></div>
 				</c:if>
 				<c:forEach var="i" begin="${startblock }" end="${endblock }">
 					<c:if test="${i==currpage }">
@@ -128,7 +131,7 @@ text-align: left;
 					</c:if>
 				</c:forEach>
 				<c:if test="${endblock < totalpage }">
-					<div class="pagingbox"><a href="boardlist.do?currpage=${endblock+1 }&cno=${param.cno }">다음</a></div>
+					<div class="pagingbox"><a href="boardlist.do?currpage=${endblock+1 }&cno=${param.cno }">▶</a></div>
 				</c:if>
 			</c:if>
 		</div>

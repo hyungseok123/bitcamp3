@@ -118,18 +118,22 @@ public class SearchAction implements Action {
 		//나의 활동페이지 갱신 시작
 		HttpSession session = request.getSession();
 		MemberDTO memberdto = (MemberDTO)session.getAttribute("memberInfo");
-		int member_no = memberdto.getMember_no();
-		BoardService service = BoardService.getInstance();
-		int myboard = service.getMyboard(member_no);
-		int mycomment = service.getMyComment(member_no);
-		request.setAttribute("myboard", myboard);
-		request.setAttribute("mycomment", mycomment);
-		//나의 활동페이지 갱신 끝
-		
 		ForwardAction forward = new ForwardAction();
-		forward.setRedirect(false);
-		forward.setPath("/cafe/template/main.jsp?page=/cafe/search/searchpage.jsp");
+		if (memberdto == null) {
+			forward.setRedirect(true);
+			forward.setPath("login.do");
+		} else {
+			int member_no = memberdto.getMember_no();
+			BoardService service = BoardService.getInstance();
+			int myboard = service.getMyboard(member_no);
+			int mycomment = service.getMyComment(member_no);
+			request.setAttribute("myboard", myboard);
+			request.setAttribute("mycomment", mycomment);
+			//나의 활동페이지 갱신 끝
 		
+			forward.setRedirect(false);
+			forward.setPath("/cafe/template/main.jsp?page=/cafe/search/searchpage.jsp");
+		}
 		return forward;
 	}
 }
