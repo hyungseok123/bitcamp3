@@ -26,7 +26,7 @@
 .board_list_table {
 	padding: 10px;
 	width: 860px;
-	border-top: 1px solid silver;
+	border-top: 1px solid black;
 	border-collapse: collapse;
 }
 
@@ -46,14 +46,31 @@
 	margin-top: 10px;
 	width: 70px;
 	height: 30px;
+<<<<<<< HEAD
 	border: 1px solid #03c75a;
 	background-color: white;
 	font-family: 'Cambria';
 	border-radius: 10px;
+=======
+}
+a {
+	text-decoration: none;
+	color:black;
+>>>>>>> branch 'master' of https://github.com/hyungseok123/bitcamp3.git
 }
 
+<<<<<<< HEAD
 .board_list_btn button:hover {
 	background-color: #03c75a;
+=======
+.pagetitle{
+	text-align: left;
+	color:#03c75a;
+}
+.pagetitle th {
+	border-bottom: 1px solid black;
+	padding: 5px 0;
+>>>>>>> branch 'master' of https://github.com/hyungseok123/bitcamp3.git
 }
 
 a {
@@ -134,6 +151,7 @@ a {
 	<c:set var="endblock" value="${requestScope.endblock }" />
 	<c:set var="blocksize" value="${requestScope.blocksize }" />
 	<c:set var="currpage" value="${requestScope.currpage }" />
+<<<<<<< HEAD
 	<table>
 
 
@@ -160,9 +178,33 @@ a {
 						<a href="main.do?currpage=${endblock+1 }">다음</a>
 					</div>
 				</c:if>
+=======
+		
+	<div id="pageboard">
+		<c:if test="${pagelist != null }">
+			<c:if test="${startblock > 1 }">
+				<div class="pagingbox"><a href="boardlist.do?currpage=${startblock-1 }&cno=${param.cno }">◀</a></div>
+>>>>>>> branch 'master' of https://github.com/hyungseok123/bitcamp3.git
 			</c:if>
+<<<<<<< HEAD
 		</div>
 	</table>
 
+=======
+			<c:forEach var="i" begin="${startblock }" end="${endblock }">
+				<c:if test="${i==currpage }">
+					<c:out value="${i }"></c:out>
+				</c:if>
+				<c:if test="${i!=currpage }">
+					<div class="pagingbox"><a href="boardlist.do?currpage=${i }&cno=${param.cno }"><c:out value="${i }"></c:out></a></div>
+				</c:if>
+			</c:forEach>
+			<c:if test="${endblock < totalpage }">
+				<div class="pagingbox"><a href="boardlist.do?currpage=${endblock+1 }&cno=${param.cno }">▶</a></div>
+			</c:if>
+		</c:if>
+	</div>
+	
+>>>>>>> branch 'master' of https://github.com/hyungseok123/bitcamp3.git
 </body>
 </html>

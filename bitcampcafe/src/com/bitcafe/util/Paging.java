@@ -62,7 +62,6 @@ public class Paging {
 		this.endblock = endblock;
 	}
 	private void makePaging() {
-/*		totalcount = service.getCount();*/
 		int pagepercount = 10;
 		totalpage = (totalcount / pagepercount) + ((totalcount % pagepercount == 0) ? 0 : 1);	
 		startrow = (currpage - 1) * pagepercount + 1;											

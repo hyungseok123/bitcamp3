@@ -254,24 +254,35 @@ public class BoardDAO {
 	
 	
 	//페이징에 필요한 카운트
-	public int BoardgetCount(Connection conn) throws SQLException {
-		 
+	public int BoardgetCount(Connection conn, int category_no) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select count(*)                       ");
 		sql.append(" from board inner join member          ");
 		sql.append(" on board.member_no = member.member_no ");
+		if (category_no != 0)
+		sql.append(" where category_no = ?                 ");
 	
 		int datacount = 0;
-		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString()); ResultSet rs = pstmt.executeQuery();) {
+		try {
+			pstmt = conn.prepareStatement(sql.toString());
+			if (category_no != 0) pstmt.setInt(1, category_no);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				datacount = rs.getInt(1);
 			}
-		}
+		} catch(SQLException e) {
+			throw e;
+		} finally {
+			if (rs != null) try {rs.close();} catch (SQLException e) {}
+			if (pstmt!=null) try{ pstmt.close();} catch(SQLException e){}
+		}  
 		return datacount;
 	}// getCount
 	
 	//페이징
-	public List<BoardDTO> BoardgetData(Connection conn, int startrow, int endrow) throws SQLException {
+	public List<BoardDTO> BoardgetData(Connection conn, int startrow, int endrow, int category_no) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StringBuilder sql = new StringBuilder();
@@ -279,11 +290,13 @@ public class BoardDAO {
 		sql.append(" from board inner join member ");
 		sql.append(" on board.member_no = member.member_no ");
 		sql.append(" where (@rownum:="+(startrow-1)+")="+(startrow-1)+" ");
+		if (category_no != 0) sql.append(" and category_no = ? ");
 		sql.append(" order by board_no desc ");
 		sql.append(" limit "+(startrow-1)+","+(endrow-startrow+1)+" ");
 		List<BoardDTO> list = new ArrayList<>();
 		try {
 			pstmt = conn.prepareStatement(sql.toString());
+			if (category_no != 0) pstmt.setInt(1, category_no);
 			rs = pstmt.executeQuery();
 			System.out.println("동작2"); //
 				while(rs.next()) {
