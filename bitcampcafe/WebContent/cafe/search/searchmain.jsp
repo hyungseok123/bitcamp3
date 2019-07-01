@@ -18,9 +18,6 @@ function searchsend() {
 	else if(searchinput== null || searchinput == "") {
 		alert('검색어를 입력하세요').one();
 	}
-	else if(searchinput == "in") {
-		alert('금지어 입니다.').one();
-	}
 	else {
 		location.href = "searchmain.do?searchinput="+searchinput;
 	}

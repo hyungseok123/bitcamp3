@@ -62,6 +62,9 @@
 		border-radius:10px;
 		padding-bottom: 14px;
 	}
+	#myactionmodify li button:hover{
+	background-color: #03c75a;
+	}
 	
 	#myactionmemberjoin {
 		font-size: 14px;
