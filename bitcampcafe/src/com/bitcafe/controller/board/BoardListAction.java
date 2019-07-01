@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import com.bitcafe.DTO.BoardDTO;
 import com.bitcafe.DTO.MemberDTO;
@@ -19,7 +20,11 @@ public class BoardListAction implements Action {
 
 	@Override
 	public ForwardAction execute(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException {	
+		 
+		int category_no = 0;
+		String cno = request.getParameter("cno");
+		if (cno != null && !cno.equals("")) category_no = Integer.parseInt(cno);
 		
 //		페이징처리
 		String tmp_currpage = request.getParameter("currpage");
@@ -28,9 +33,11 @@ public class BoardListAction implements Action {
 			currpage = Integer.parseInt(tmp_currpage);
 		}
 		BoardService service = BoardService.getInstance();
-		int totalcount = service.BoardGetCount();
+		int totalcount = service.BoardGetCount(category_no);
 		// 페이징 계산 시작
 				Paging paging = new Paging();
+				System.out.println(currpage);
+				System.out.println(totalcount);
 				paging.setCurrpage(currpage);
 				paging.setTotalcount(totalcount);
 				int totalpage = paging.getTotalpage();
@@ -41,10 +48,10 @@ public class BoardListAction implements Action {
 				int blocksize = paging.getBlocksize();
 				// 페이징 계산 끝
 				
-				System.out.println("start : "+startrow); //
-				System.out.println("end : "+endrow); //
-				List<BoardDTO> pagelist = service.BoardPageList(startrow, endrow);
-				 request.setAttribute("pagelist", pagelist);
+				System.out.println("start : " + startrow); //
+				System.out.println("end : " + endrow); //
+				List<BoardDTO> pagelist = service.BoardPageList(startrow, endrow, category_no);
+				request.setAttribute("pagelist", pagelist);
 				request.setAttribute("totalpage", totalpage);
 				request.setAttribute("startblock", startblock);
 				request.setAttribute("endblock", endblock);
@@ -52,11 +59,7 @@ public class BoardListAction implements Action {
 				request.setAttribute("currpage", currpage);
 				request.setAttribute("null2", "[]"); // []를 위해서 만듬(jstl은 오류로인식함)
 		
-	//여기까지	
-	 
-		int category_no = 0;
-		String cno = request.getParameter("cno");
-		if (cno != null && !cno.equals("")) category_no = Integer.parseInt(cno);
+	//여기까지
 		
 		HttpSession session = request.getSession();
 		MemberDTO memberInfo = (MemberDTO) session.getAttribute("memberInfo");
@@ -69,8 +72,6 @@ public class BoardListAction implements Action {
 			request.setAttribute("myboard", myboard);
 			request.setAttribute("mycomment", mycomment);
 		}
-		List<BoardDTO> list= service.BoardListService(category_no); //
-		request.setAttribute("list", list); //
 		ForwardAction forward = new ForwardAction();
 		forward.setRedirect(false);
 		forward.setPath("/cafe/template/main.jsp?page=/cafe/board/boardlist.jsp");

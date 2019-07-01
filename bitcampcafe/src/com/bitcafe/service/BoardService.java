@@ -173,14 +173,14 @@ public class BoardService {
 	}
 	
 	//페이징
-	public int BoardGetCount() {
+	public int BoardGetCount(int category_no) {
 		DBConnection db = DBConnection.gettb();
 		Connection conn = null;
 		int datacount = 0;
 		try {
 			conn = db.getConnection();
 			BoardDAO dao = BoardDAO.getDao();
-			datacount = dao.BoardgetCount(conn);
+			datacount = dao.BoardgetCount(conn, category_no);
 		} catch (SQLException | NamingException e) {
 			System.out.println(e);
 		} finally {
@@ -194,14 +194,14 @@ public class BoardService {
 	}
 	
 	//페이징 목록
-	public List<BoardDTO> BoardPageList(int startrow, int endrow) {
+	public List<BoardDTO> BoardPageList(int startrow, int endrow, int category_no) {
 		   DBConnection db = DBConnection.gettb();
 			Connection conn=null;
 			List<BoardDTO> list = null;
 			try {
 				conn=db.getConnection();
 				BoardDAO dao = BoardDAO.getDao();
-				 list = dao.BoardgetData(conn, startrow, endrow);
+				 list = dao.BoardgetData(conn, startrow, endrow, category_no);
 			}catch(SQLException | NamingException e) {
 				System.out.println(e);
 			}finally {

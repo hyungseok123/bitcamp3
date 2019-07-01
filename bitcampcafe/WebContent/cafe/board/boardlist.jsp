@@ -113,29 +113,25 @@ text-align: left;
 	<c:set var="endblock" value="${requestScope.endblock }" />
 	<c:set var="blocksize" value="${requestScope.blocksize }" />
 	<c:set var="currpage" value="${requestScope.currpage }" />
-	<table>
-	
-	
 		
-		<div id="pageboard">
-			<c:if test="${list != null }">
-					<c:if test="${startblock>1 }">
-						<div class="pagingbox"><a href="main.do?currpage=${startblock-1 }">이전</a></div>
+	<div id="pageboard">
+		<c:if test="${pagelist != null }">
+				<c:if test="${startblock > 1 }">
+					<div class="pagingbox"><a href="boardlist.do?currpage=${startblock-1 }&cno=${param.cno }">이전</a></div>
+				</c:if>
+				<c:forEach var="i" begin="${startblock }" end="${endblock }">
+					<c:if test="${i==currpage }">
+						<c:out value="${i }"></c:out>
 					</c:if>
-					<c:forEach var="i" begin="${startblock }" end="${endblock }">
-						<c:if test="${i==currpage }">
-							<c:out value="${i }"></c:out>
-						</c:if>
-						<c:if test="${i!=currpage }">
-							<div class="pagingbox"><a href="main.do?currpage=${i }"><c:out value="${i }"></c:out></a></div>
-						</c:if>
-					</c:forEach>
-					<c:if test="${endblock<totalpage }">
-						<div class="pagingbox"><a href="main.do?currpage=${endblock+1 }">다음</a></div>
+					<c:if test="${i!=currpage }">
+						<div class="pagingbox"><a href="boardlist.do?currpage=${i }&cno=${param.cno }"><c:out value="${i }"></c:out></a></div>
 					</c:if>
+				</c:forEach>
+				<c:if test="${endblock < totalpage }">
+					<div class="pagingbox"><a href="boardlist.do?currpage=${endblock+1 }&cno=${param.cno }">다음</a></div>
+				</c:if>
 			</c:if>
 		</div>
-	</table>
 	
 </body>
 </html>
