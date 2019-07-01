@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
 <title>Board</title>
 <style>
 #writeinsert {
@@ -12,7 +15,7 @@
 }
 
 table, tr, td {
-	border: 2px solid #03c75a;
+	border: 1px solid #03c75a;
 	border-collapse: collapse;
 	padding: 4px;
 }
@@ -55,18 +58,25 @@ table, tr, td {
 					style="background-color: transparent; border: 0 solid black;" /></td>
 			</tr>
 			<tr>
-				<td id="title">내 용</td>
-				<td><textarea name="board_content" cols="72" rows="20"
-						required="required"
-						style="background-color: transparent; border: 0 solid black;"></textarea></td>
+				<td colspan="5"><textarea name="board_content" cols="72" rows="50"
+						required="required" id="summernote"
+						style="background-color: transparent; border: 0 solid black;">
+				</textarea></td>
 			</tr>
-
 			<tr align="center" valign="middle">
 				<td colspan="5"><input type="reset" value="작성취소" class="btn">
 					<input type="submit" value="등록" class="btn"> <a
-					href="boardlist.do"><input type="button" value="목록" class="btn"></a></td>
+					href="boardlist.do"><input type="button" value="목록" class="btn"></a>
+				</td>
 			</tr>
 		</table>
 	</form>
+	<script>
+      $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 400
+      });
+    </script>
 </body>
 </html>

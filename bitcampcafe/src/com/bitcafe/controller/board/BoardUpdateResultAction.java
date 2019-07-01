@@ -42,7 +42,7 @@ public class BoardUpdateResultAction implements Action {
 			int result = service.BoardUpdateService(dto);
 			request.setAttribute("result", result);
 			forward.setRedirect(true);
-			forward.setPath("boardlist.do?cno=?" + board_no);
+			forward.setPath("boarddetail.do?no=" + board_no);
 
 		}
 

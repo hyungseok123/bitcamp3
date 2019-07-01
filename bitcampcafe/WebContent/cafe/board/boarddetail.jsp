@@ -62,7 +62,7 @@
 		<c:out default="null" value="${dto.member_nickname }"></c:out> 
       </li>
       <li class="detail_content">
-		<c:out default="null" value="${dto.board_content }"></c:out> 
+		${dto.board_content }
       </li>
     </ul>
   </div>
