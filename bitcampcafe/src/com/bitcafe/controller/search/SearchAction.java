@@ -43,7 +43,6 @@ public class SearchAction implements Action {
 		
 		SearchService searchservice = SearchService.getInstance();
 		int totalcount = searchservice.searchBoardCount(searchtext, searchselect1, searchselect2);
-		
 		//페이징 계산 시작
 		Paging paging = new Paging();
 		paging.setCurrpage(currpage);
@@ -58,7 +57,7 @@ public class SearchAction implements Action {
 		
 		List<BoardDTO> list = searchservice.searchBoard(searchtext, searchselect1, searchselect2, startrow, endrow);
 		if(list != null) {
-			if(!"작성자".equals(searchselect2)) {
+			if("제목만".equals(searchselect2)) {
 				for(int i=0; i<list.size(); i++) { //제목 검색부분 재처리 과정
 					BoardDTO boarddto = list.get(i);
 					String board_title = boarddto.getBoard_title();
@@ -70,7 +69,7 @@ public class SearchAction implements Action {
 					boarddto.setBoard_title(board_title_result);
 				}
 			}
-			else {
+			else if("작성자".equals(searchselect2)){
 				for(int i=0; i<list.size(); i++) { //작성자 검색부분 재처리 과정
 					BoardDTO boarddto = list.get(i);
 					String member_nickname = boarddto.getMember_nickname();
@@ -78,8 +77,29 @@ public class SearchAction implements Action {
 					String member_nickname_result = member_nickname.substring(0, searchindex);
 					member_nickname_result += "<span class=\"searchimport\">"+searchtext+"</span>";
 					member_nickname_result += member_nickname.substring(searchindex+searchtext.length(), member_nickname.length());
-					System.out.println("result : "+member_nickname_result);
 					boarddto.setMember_nickname(member_nickname_result);
+				}
+			}
+			else {
+				for(int i=0; i<list.size(); i++) { //제목+내용 검색부분 재처리 과정
+					BoardDTO boarddto = list.get(i);
+					String board_title = boarddto.getBoard_title();
+					int searchindex = board_title.indexOf(searchtext);
+					if(searchindex >0) {
+						String board_title_result = board_title.substring(0, searchindex);
+						board_title_result += "<span class=\"searchimport\">"+searchtext+"</span>";
+						board_title_result += board_title.substring(searchindex+searchtext.length(), board_title.length());
+						boarddto.setBoard_title(board_title_result);
+					}
+					
+					String board_content = boarddto.getBoard_content();
+					int searchindex2 = board_content.indexOf(searchtext);
+					if(searchindex2 >0) {
+						String board_content_result = board_content.substring(0, searchindex2);
+						board_content_result += "<span class=\"searchimport\">"+searchtext+"</span>";
+						board_content_result += board_content.substring(searchindex2+searchtext.length(), board_content.length());
+						boarddto.setBoard_content(board_content_result);
+					}
 				}
 			}
 		}
@@ -112,5 +132,4 @@ public class SearchAction implements Action {
 		
 		return forward;
 	}
-
 }
