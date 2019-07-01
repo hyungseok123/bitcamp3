@@ -40,9 +40,9 @@
 	width: 70px;
 	height: 30px;
 }
-a{
-text-decoration: none;
-color:black;
+a {
+	text-decoration: none;
+	color:black;
 }
 
 .pagetitle{
@@ -51,7 +51,7 @@ color:black;
 }
 .pagetitle th {
 	border-bottom: 1px solid black;
-	padding-bottom: 5px;
+	padding: 5px 0;
 }
 
 	#pageboard {
@@ -119,22 +119,22 @@ color:black;
 		
 	<div id="pageboard">
 		<c:if test="${pagelist != null }">
-				<c:if test="${startblock > 1 }">
-					<div class="pagingbox"><a href="boardlist.do?currpage=${startblock-1 }&cno=${param.cno }">◀</a></div>
-				</c:if>
-				<c:forEach var="i" begin="${startblock }" end="${endblock }">
-					<c:if test="${i==currpage }">
-						<c:out value="${i }"></c:out>
-					</c:if>
-					<c:if test="${i!=currpage }">
-						<div class="pagingbox"><a href="boardlist.do?currpage=${i }&cno=${param.cno }"><c:out value="${i }"></c:out></a></div>
-					</c:if>
-				</c:forEach>
-				<c:if test="${endblock < totalpage }">
-					<div class="pagingbox"><a href="boardlist.do?currpage=${endblock+1 }&cno=${param.cno }">▶</a></div>
-				</c:if>
+			<c:if test="${startblock > 1 }">
+				<div class="pagingbox"><a href="boardlist.do?currpage=${startblock-1 }&cno=${param.cno }">◀</a></div>
 			</c:if>
-		</div>
+			<c:forEach var="i" begin="${startblock }" end="${endblock }">
+				<c:if test="${i==currpage }">
+					<c:out value="${i }"></c:out>
+				</c:if>
+				<c:if test="${i!=currpage }">
+					<div class="pagingbox"><a href="boardlist.do?currpage=${i }&cno=${param.cno }"><c:out value="${i }"></c:out></a></div>
+				</c:if>
+			</c:forEach>
+			<c:if test="${endblock < totalpage }">
+				<div class="pagingbox"><a href="boardlist.do?currpage=${endblock+1 }&cno=${param.cno }">▶</a></div>
+			</c:if>
+		</c:if>
+	</div>
 	
 </body>
 </html>
