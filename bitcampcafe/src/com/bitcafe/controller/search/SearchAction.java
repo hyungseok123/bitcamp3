@@ -65,7 +65,6 @@ public class SearchAction implements Action {
 					String board_title_result = board_title.substring(0, searchindex);
 					board_title_result += "<span class=\"searchimport\">"+searchtext+"</span>";
 					board_title_result += board_title.substring(searchindex+searchtext.length(), board_title.length());
-					System.out.println("result : "+board_title_result);
 					boarddto.setBoard_title(board_title_result);
 				}
 			}
@@ -85,7 +84,7 @@ public class SearchAction implements Action {
 					BoardDTO boarddto = list.get(i);
 					String board_title = boarddto.getBoard_title();
 					int searchindex = board_title.indexOf(searchtext);
-					if(searchindex >0) {
+					if(searchindex >= 0) {
 						String board_title_result = board_title.substring(0, searchindex);
 						board_title_result += "<span class=\"searchimport\">"+searchtext+"</span>";
 						board_title_result += board_title.substring(searchindex+searchtext.length(), board_title.length());
@@ -94,7 +93,7 @@ public class SearchAction implements Action {
 					
 					String board_content = boarddto.getBoard_content();
 					int searchindex2 = board_content.indexOf(searchtext);
-					if(searchindex2 >0) {
+					if(searchindex2 >= 0) {
 						String board_content_result = board_content.substring(0, searchindex2);
 						board_content_result += "<span class=\"searchimport\">"+searchtext+"</span>";
 						board_content_result += board_content.substring(searchindex2+searchtext.length(), board_content.length());
