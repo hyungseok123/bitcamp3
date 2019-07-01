@@ -108,7 +108,7 @@ a {
 	    <a class="board_list_btn" href="boardinsert.do?cno=${param.cno }"><button>글쓰기</button></a>
 	  </c:if>
 	</div>
-	
+	<p>푸쉬이이이이</p>
 	<!-- 페이징  -->
 	
 	<c:set var="totalpage" value="${requestScope.totalpage }" />
