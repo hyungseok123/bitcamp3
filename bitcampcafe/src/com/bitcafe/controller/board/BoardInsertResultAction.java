@@ -30,7 +30,7 @@ public class BoardInsertResultAction implements Action {
 		     forward.setRedirect(true);
 		     forward.setPath("login.do");
 			
-		}else
+		} else
 		{
 			String board_title = request.getParameter("board_title");
 			String board_content = request.getParameter("board_content");
@@ -46,6 +46,10 @@ public class BoardInsertResultAction implements Action {
 			BoardService service = BoardService.getInstance();
 			//서비스 클래스 안에 있는 insertservice 메서드를 사용
 			int result = service.BoardInsertService(dto);
+			int myboard = service.getMyboard(member_no);//
+			int mycomment = service.getMyComment(member_no);//
+			request.setAttribute("myboard", myboard);//
+			request.setAttribute("mycomment", mycomment);//
 			request.setAttribute("result", result);
 			forward.setRedirect(true);
 			forward.setPath("boardlist.do?cno="+category_no);

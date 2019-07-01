@@ -26,9 +26,16 @@ public class BoardInsertAction implements Action {
 	        act.setPath("login.do");
 		} else {
 			int category_no = Integer.parseInt(request.getParameter("cno"));
+			int member_no = memberInfo.getMember_no();
+		 
 			BoardService service = BoardService.getInstance();
 			String category_name = service.getCategoryName(category_no);
+			int myboard = service.getMyboard(member_no);//
+			int mycomment = service.getMyComment(member_no);//
+			request.setAttribute("myboard", myboard);//
+			request.setAttribute("mycomment", mycomment);//
 			request.setAttribute("category_name", category_name);
+			
 			act.setRedirect(false);
 			act.setPath("/cafe/template/main.jsp?page=/cafe/board/boardinsert.jsp");	
 		}
